@@ -2,6 +2,7 @@ import './App.css'
 
 import { useState } from 'react'
 
+import { ModeToggle } from '@/components/mode-toggle'
 import { Button } from '@/components/ui/button'
 
 import heroImg from './assets/hero.png'
@@ -14,6 +15,7 @@ function App() {
   return (
     <>
       <Button>Wow</Button>
+      <ModeToggle />
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
