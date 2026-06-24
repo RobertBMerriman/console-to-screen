@@ -1,14 +1,16 @@
 import { create } from 'zustand'
 
+import type { ConsoleTag } from '@/lib/consoleData'
+
 interface State {
-  console: string
+  console: ConsoleTag
 }
 
 interface Action {
-  setConsole: (selectedConsole: State['console']) => void
+  setConsole: (console: State['console']) => void
 }
 
 export const useConsoleStore = create<State & Action>()((set) => ({
   console: 'gba',
-  setConsole: (console) => set(() => ({ console: console })),
+  setConsole: (console) => set(() => ({ console })),
 }))

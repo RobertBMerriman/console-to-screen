@@ -1,4 +1,5 @@
 import { ConsoleField } from '@/components/field/ConsoleField'
+import { ScreenField } from '@/components/field/ScreenField'
 import { ModeToggle } from '@/components/mode-toggle'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Separator } from '@/components/ui/separator'
@@ -15,11 +16,16 @@ function App() {
           <H1>Console to Screen</H1>
           <ModeToggle />
         </div>
+
         <Separator />
-        <div>
+
+        <div className="flex flex-row gap-4">
           <ConsoleField />
+          <ScreenField />
         </div>
+
         <Separator />
+
         <div>{console}</div>
       </div>
     </ThemeProvider>
