@@ -8,14 +8,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useConsoleStore } from '@/stores/consoleStore'
 
 export function ConsoleField() {
+  const console = useConsoleStore((state) => state.console)
+  const setConsole = useConsoleStore((state) => state.setConsole)
+
   return (
     <FieldGroup>
       <FieldSet>
         <FieldLegend>Console</FieldLegend>
         <FieldGroup>
-          <Select defaultValue="gba">
+          <Select defaultValue={console} onValueChange={setConsole}>
             <SelectTrigger>
               <SelectValue placeholder="Select a console" />
             </SelectTrigger>
@@ -43,7 +47,7 @@ export function ConsoleField() {
                 <SelectItem value="dc">Dreamcast (640x480)</SelectItem>
               </SelectGroup>
               <SelectGroup>
-                <SelectLabel>Others</SelectLabel>
+                <SelectLabel>Other</SelectLabel>
                 <SelectItem value="pico-8">PICO-8 (128x128)</SelectItem>
                 <SelectItem value="vb">Virtual Boy (384x224)</SelectItem>
               </SelectGroup>
