@@ -25,7 +25,7 @@ function App() {
         </div>
         <button
           type="button"
-          className="bg-amber-600"
+          className="rounded-md bg-amber-600 p-1"
           onClick={() => setCount((count) => count + 1)}
         >
           Wow is {count}
