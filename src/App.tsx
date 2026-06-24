@@ -2,6 +2,8 @@ import './App.css'
 
 import { useState } from 'react'
 
+import { Button } from '@/components/ui/button'
+
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -11,6 +13,7 @@ function App() {
 
   return (
     <>
+      <Button>Wow</Button>
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
