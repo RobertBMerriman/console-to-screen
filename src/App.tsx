@@ -23,7 +23,11 @@ function App() {
             Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
           </p>
         </div>
-        <button type="button" className="counter" onClick={() => setCount((count) => count + 1)}>
+        <button
+          type="button"
+          className="bg-amber-600"
+          onClick={() => setCount((count) => count + 1)}
+        >
           Wow is {count}
         </button>
       </section>
