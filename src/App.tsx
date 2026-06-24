@@ -1,6 +1,8 @@
+import { ConsoleField } from '@/components/field/ConsoleField'
 import { ModeToggle } from '@/components/mode-toggle'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
 
 function App() {
@@ -10,6 +12,10 @@ function App() {
         <div className="flex flex-row justify-between">
           <H1>Console to Screen</H1>
           <ModeToggle />
+        </div>
+        <Separator />
+        <div>
+          <ConsoleField />
         </div>
         <Button>Wow</Button>
       </div>
