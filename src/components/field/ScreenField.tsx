@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { screenRatios, screensByRatio } from '@/lib/screenData'
+import { screenRatioTypes, screensByRatio } from '@/lib/screenData'
 import { useScreenStore } from '@/stores/screenStore'
 
 export function ScreenField() {
@@ -26,7 +26,7 @@ export function ScreenField() {
             </SelectTrigger>
 
             <SelectContent>
-              {screenRatios.map((ratio) => (
+              {screenRatioTypes.map((ratio) => (
                 <SelectGroup key={ratio}>
                   <SelectLabel>{ratio}</SelectLabel>
                   {screensByRatio[ratio].map(({ tag, name, resX, resY, sizeInches }) => (

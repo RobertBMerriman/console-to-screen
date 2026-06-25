@@ -11,6 +11,6 @@ interface Action {
 }
 
 export const useConsoleStore = create<State & Action>()((set) => ({
-  console: consolesByTag['gba'],
+  console: consolesByTag['nds-vertical'],
   setConsoleByTag: (tag) => set(() => ({ console: consolesByTag[tag] })),
 }))
