@@ -1,6 +1,3 @@
-export const consoleTypes = ['Handheld', 'Home console', 'Other'] as const
-export type ConsoleType = (typeof consoleTypes)[number]
-
 export const consoleTags = [
   'poke-mini',
   'lynx',
@@ -22,6 +19,9 @@ export const consoleTags = [
   'vb',
 ] as const
 export type ConsoleTag = (typeof consoleTags)[number]
+
+export const consoleTypes = ['Handheld', 'Home console', 'Other'] as const
+export type ConsoleType = (typeof consoleTypes)[number]
 
 export interface Console {
   tag: ConsoleTag
@@ -159,8 +159,13 @@ export const consoles: Console[] = [
   },
 ]
 
+export type ConsolesByTag = Record<ConsoleTag, Console>
+export let consolesByTag: ConsolesByTag = {} as ConsolesByTag
+
 export type ConsolesByType = Record<ConsoleType, Omit<Console, 'type'>[]>
 export const consolesByType: ConsolesByType = { Handheld: [], 'Home console': [], Other: [] }
+
 consoles.forEach((console) => {
+  consolesByTag[console.tag] = console
   consolesByType[console.type].push(console)
 })

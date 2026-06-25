@@ -4,10 +4,14 @@ import { ModeToggle } from '@/components/mode-toggle'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
+import { consolesByTag } from '@/lib/consoleData'
+import { screensByTag } from '@/lib/screenData'
 import { useConsoleStore } from '@/stores/consoleStore'
+import { useScreenStore } from '@/stores/screenStore'
 
 function App() {
   const console = useConsoleStore((state) => state.console)
+  const screen = useScreenStore((state) => state.screen)
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
@@ -26,7 +30,8 @@ function App() {
 
         <Separator />
 
-        <div>{console}</div>
+        <div>{consolesByTag[console].name}</div>
+        <div>{screensByTag[screen].name}</div>
       </div>
     </ThemeProvider>
   )
