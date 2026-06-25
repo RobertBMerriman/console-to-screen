@@ -64,6 +64,8 @@ export const consoles: Console[] = [
     name: 'WonderSwan',
     resX: 224,
     resY: 144,
+    // ratioX: 14,
+    // ratioY: 9,
     type: 'Handheld',
   },
   {

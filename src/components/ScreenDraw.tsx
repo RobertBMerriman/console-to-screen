@@ -13,8 +13,9 @@ function ppi(diagonalPixels: number, inches: number) {
 // }
 
 export function ScreenDraw() {
-  const screen = useScreenStore((screen) => screen.screen)
-  const consol = useConsoleStore((console) => console.console)
+  const screen = useScreenStore((state) => state.screen)
+  const consol = useConsoleStore((state) => state.console)
+  const integerScaling = useConsoleStore((state) => state.integerScaling)
 
   const screenDiagonalPixels = findDiagonal(screen.resX, screen.resY)
   const screenPpi = ppi(screenDiagonalPixels, screen.sizeInches)
@@ -23,14 +24,15 @@ export function ScreenDraw() {
 
   const consoleScaledX = screen.resX / consol.resX
   const consoleScaledY = screen.resY / consol.resY
-  const consoleScale = Math.min(consoleScaledX, consoleScaledY) // Consider crop overscan
+  const consoleScaleRaw = Math.min(consoleScaledX, consoleScaledY) // Consider crop overscan
+  const consoleScale = integerScaling ? Math.floor(consoleScaleRaw) : consoleScaleRaw
   const consoleScaledResX = consol.resX * consoleScale
   const consoleScaledResY = consol.resY * consoleScale
+  // const consoleDiagonalPixels = findDiagonal(consoleScaledResX, consoleScaledResY)
   const consoleXInches = screen.sizeInches * (consoleScaledResX / screenDiagonalPixels)
   const consoleYInches = screen.sizeInches * (consoleScaledResY / screenDiagonalPixels)
   const consoleSizeInches = findDiagonal(consoleXInches, consoleYInches)
-  const consoleDiagonalPixels = findDiagonal(consoleScaledResX, consoleScaledResY)
-  const consolePpi = Math.round(consoleDiagonalPixels / consoleSizeInches)
+  // const consolePpi = Math.round(consoleDiagonalPixels / consoleSizeInches)
 
   return (
     <div className="flex flex-col gap-4">
@@ -59,9 +61,9 @@ export function ScreenDraw() {
             >
               <span>{consol.name}</span>
               <span>
-                {consoleSizeInches.toFixed(1)}" at {consoleScale.toFixed(1)}x
+                {consoleSizeInches.toLocaleString(undefined, { maximumFractionDigits: 1 })}" at{' '}
+                {consoleScale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
               </span>
-              <span>{consolePpi}ppi</span>
             </div>
           </div>
         </div>
