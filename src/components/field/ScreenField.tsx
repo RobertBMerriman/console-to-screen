@@ -13,14 +13,14 @@ import { useScreenStore } from '@/stores/screenStore'
 
 export function ScreenField() {
   const screen = useScreenStore((state) => state.screen)
-  const setScreen = useScreenStore((state) => state.setScreen)
+  const setScreen = useScreenStore((state) => state.setScreenByTag)
 
   return (
     <FieldGroup>
       <FieldSet>
         <FieldLegend>Screen</FieldLegend>
         <FieldGroup>
-          <Select defaultValue={screen} onValueChange={setScreen}>
+          <Select defaultValue={screen.tag} onValueChange={setScreen}>
             <SelectTrigger>
               <SelectValue placeholder="Select a screen" />
             </SelectTrigger>
@@ -31,7 +31,7 @@ export function ScreenField() {
                   <SelectLabel>{ratio}</SelectLabel>
                   {screensByRatio[ratio].map(({ tag, name, resX, resY, sizeInches }) => (
                     <SelectItem value={tag} key={tag}>
-                      {name} ({resX}x{resY} {sizeInches}")
+                      {name} ({resX}x{resY} - {sizeInches}")
                     </SelectItem>
                   ))}
                 </SelectGroup>

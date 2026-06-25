@@ -4,8 +4,6 @@ import { ModeToggle } from '@/components/mode-toggle'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
-import { consolesByTag } from '@/lib/consoleData'
-import { screensByTag } from '@/lib/screenData'
 import { useConsoleStore } from '@/stores/consoleStore'
 import { useScreenStore } from '@/stores/screenStore'
 
@@ -30,8 +28,8 @@ function App() {
 
         <Separator />
 
-        <div>{consolesByTag[console].name}</div>
-        <div>{screensByTag[screen].name}</div>
+        <div>{console.name}</div>
+        <div>{screen.name}</div>
       </div>
     </ThemeProvider>
   )

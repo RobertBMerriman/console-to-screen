@@ -1,16 +1,16 @@
 import { create } from 'zustand'
 
-import type { ScreenTag } from '@/lib/screenData'
+import { screensByTag, type Screen, type ScreenTag } from '@/lib/screenData'
 
 interface State {
-  screen: ScreenTag
+  screen: Screen
 }
 
 interface Action {
-  setScreen: (screen: State['screen']) => void
+  setScreenByTag: (tag: ScreenTag) => void
 }
 
 export const useScreenStore = create<State & Action>()((set) => ({
-  screen: 'trimui-brick',
-  setScreen: (screen) => set(() => ({ screen })),
+  screen: screensByTag['trimui-brick'],
+  setScreenByTag: (tag) => set(() => ({ screen: screensByTag[tag] })),
 }))
