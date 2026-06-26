@@ -1,17 +1,24 @@
 export const consoleTags = [
-  'poke-mini',
-  'lynx',
   'gb',
+  'lynx',
+  'game-gear',
   'ngp',
   'ws',
   'gba',
+  'poke-mini',
   'nds-single',
   'nds-horizontal',
   'nds-vertical',
+  '3ds-top',
+  '3ds-bottom',
+  '3ds-horizontal',
+  '3ds-vertical',
   'psp',
+  'psv',
   'nes',
-  'genesis',
+  'mega-drive',
   'snes',
+  'saturn',
   'psx',
   'n64',
   'dc',
@@ -20,12 +27,22 @@ export const consoleTags = [
 ] as const
 export type ConsoleTag = (typeof consoleTags)[number]
 
+export const consoleManufacturers = [
+  'Nintendo',
+  'Sega',
+  'Sony',
+  'Atari',
+  'SNK',
+  'Bandai',
+  'Lexaloffle',
+] as const
+export type ConsoleManufacturer = (typeof consoleManufacturers)[number]
 export const consoleTypes = ['Handheld', 'Home console', 'Fantasy console', 'Other'] as const
 export type ConsoleType = (typeof consoleTypes)[number]
 
 export interface Console {
   tag: ConsoleTag
-  manufacturer: 'Nintendo' | 'Sega' | 'Sony' | 'Atari' | 'SNK' | 'Bandai' | 'Lexaloffle'
+  manufacturer: ConsoleManufacturer
   name: string
   resX: number
   resY: number
@@ -36,16 +53,6 @@ export interface Console {
   closestRatioY?: number
 }
 export const consoles: Console[] = [
-  {
-    tag: 'poke-mini',
-    manufacturer: 'Nintendo',
-    name: 'Pokémon mini',
-    resX: 96,
-    resY: 64,
-    type: 'Handheld',
-    ratioX: 3,
-    ratioY: 2,
-  },
   {
     tag: 'lynx',
     manufacturer: 'Atari',
@@ -61,7 +68,7 @@ export const consoles: Console[] = [
   {
     tag: 'gb',
     manufacturer: 'Nintendo',
-    name: 'Game Boy',
+    name: 'Game Boy (Color)',
     resX: 160,
     resY: 144,
     type: 'Handheld',
@@ -71,7 +78,7 @@ export const consoles: Console[] = [
     closestRatioY: 1,
   },
   {
-    tag: 'gb',
+    tag: 'game-gear',
     manufacturer: 'Sega',
     name: 'Game Gear',
     resX: 160,
@@ -85,7 +92,7 @@ export const consoles: Console[] = [
   {
     tag: 'ngp',
     manufacturer: 'SNK',
-    name: 'Neo Geo Pocket',
+    name: 'Neo Geo Pocket (Color)',
     resX: 160,
     resY: 152,
     type: 'Handheld',
@@ -97,7 +104,7 @@ export const consoles: Console[] = [
   {
     tag: 'ws',
     manufacturer: 'Bandai',
-    name: 'WonderSwan',
+    name: 'WonderSwan (Color)',
     resX: 224,
     resY: 144,
     type: 'Handheld',
@@ -112,6 +119,16 @@ export const consoles: Console[] = [
     name: 'Game Boy Advance',
     resX: 240,
     resY: 160,
+    type: 'Handheld',
+    ratioX: 3,
+    ratioY: 2,
+  },
+  {
+    tag: 'poke-mini',
+    manufacturer: 'Nintendo',
+    name: 'Pokémon mini',
+    resX: 96,
+    resY: 64,
     type: 'Handheld',
     ratioX: 3,
     ratioY: 2,
@@ -135,8 +152,6 @@ export const consoles: Console[] = [
     type: 'Handheld',
     ratioX: 8,
     ratioY: 3,
-    closestRatioX: 22,
-    closestRatioY: 9,
   },
   {
     tag: 'nds-vertical',
@@ -145,10 +160,48 @@ export const consoles: Console[] = [
     resX: 256,
     resY: 384,
     type: 'Handheld',
-    ratioX: 128,
-    ratioY: 191,
-    closestRatioX: 3,
-    closestRatioY: 2,
+    ratioX: 2,
+    ratioY: 3,
+  },
+  {
+    tag: '3ds-top',
+    manufacturer: 'Nintendo',
+    name: 'Nintendo 3DS (top screen)',
+    resX: 400,
+    resY: 240,
+    type: 'Handheld',
+    ratioX: 5,
+    ratioY: 3,
+  },
+  {
+    tag: '3ds-bottom',
+    manufacturer: 'Nintendo',
+    name: 'Nintendo 3DS bottom',
+    resX: 320,
+    resY: 240,
+    type: 'Handheld',
+    ratioX: 4,
+    ratioY: 3,
+  },
+  {
+    tag: '3ds-horizontal',
+    manufacturer: 'Nintendo',
+    name: 'Nintendo 3DS ◫',
+    resX: 720,
+    resY: 240,
+    type: 'Handheld',
+    ratioX: 3,
+    ratioY: 1,
+  },
+  {
+    tag: '3ds-vertical',
+    manufacturer: 'Nintendo',
+    name: 'Nintendo 3DS ⊟',
+    resX: 400,
+    resY: 480,
+    type: 'Handheld',
+    ratioX: 5,
+    ratioY: 6,
   },
   {
     tag: 'psp',
@@ -156,6 +209,16 @@ export const consoles: Console[] = [
     name: 'PSP',
     resX: 480,
     resY: 272,
+    type: 'Handheld',
+    ratioX: 16,
+    ratioY: 9,
+  },
+  {
+    tag: 'psv',
+    manufacturer: 'Sony',
+    name: 'PS Vita',
+    resX: 960,
+    resY: 544,
     type: 'Handheld',
     ratioX: 16,
     ratioY: 9,
@@ -173,9 +236,9 @@ export const consoles: Console[] = [
     closestRatioY: 1,
   },
   {
-    tag: 'genesis',
+    tag: 'mega-drive',
     manufacturer: 'Sega',
-    name: 'Genesis',
+    name: 'Mega Drive/Genesis',
     resX: 320,
     resY: 224,
     type: 'Home console',
@@ -193,6 +256,16 @@ export const consoles: Console[] = [
     ratioY: 7,
     closestRatioX: 1,
     closestRatioY: 1,
+  },
+  {
+    tag: 'saturn',
+    manufacturer: 'Sega',
+    name: 'Saturn',
+    resX: 320,
+    resY: 240,
+    type: 'Home console',
+    ratioX: 4,
+    ratioY: 3,
   },
   {
     tag: 'psx',
@@ -249,6 +322,12 @@ export const consoles: Console[] = [
 export type ConsolesByTag = Record<ConsoleTag, Console>
 export let consolesByTag: ConsolesByTag = {} as ConsolesByTag
 
+export type ConsolesByManufacturer = Record<ConsoleManufacturer, Console[]>
+export const consolesByManufacturer: ConsolesByManufacturer = consoleManufacturers.reduce(
+  (consolesBy, manufacturer) => ({ ...consolesBy, [manufacturer]: [] }),
+  {} as ConsolesByManufacturer
+)
+
 export type ConsolesByType = Record<ConsoleType, Omit<Console, 'type'>[]>
 export const consolesByType: ConsolesByType = {
   Handheld: [],
@@ -259,5 +338,6 @@ export const consolesByType: ConsolesByType = {
 
 consoles.forEach((console) => {
   consolesByTag[console.tag] = console
+  consolesByManufacturer[console.manufacturer].push(console)
   consolesByType[console.type].push(console)
 })

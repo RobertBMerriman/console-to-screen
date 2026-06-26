@@ -440,6 +440,7 @@ export const screensByManufacturer: ScreensByManufacturer = screenManufacturers.
   (screensBy, manufacturer) => ({ ...screensBy, [manufacturer]: [] }),
   {} as ScreensByManufacturer
 )
+
 export type ScreensByRatio = Record<ScreenRatioType, Screen[]>
 export const screensByRatio: ScreensByRatio = screenRatioTypes.reduce(
   (screensBy, ratio) => ({ ...screensBy, [ratio]: [] }),
