@@ -52,7 +52,7 @@ export const screenManufacturers = [
 ] as const
 export type ScreenManufacturer = (typeof screenManufacturers)[number]
 
-export const screenRatioTypes = ['1:1', '4:3', '3:2', '16:9', 'Other'] as const
+export const screenRatioTypes = ['4:3', '16:9', '3:2', '1:1', 'Other'] as const
 export type ScreenRatioType = (typeof screenRatioTypes)[number]
 
 export interface Screen {
@@ -77,6 +77,17 @@ export const screens: Screen[] = [
     ratioType: 'Other',
     ratioX: 10,
     ratioY: 9,
+  },
+  {
+    tag: 'rg35xx',
+    manufacturer: 'Anbernic',
+    name: 'RG35XX',
+    resX: 640,
+    resY: 480,
+    sizeInches: 3.5,
+    ratioType: '4:3',
+    ratioX: 4,
+    ratioY: 3,
   },
   {
     tag: 'rg34xx',
@@ -107,17 +118,6 @@ export const screens: Screen[] = [
     resX: 320,
     resY: 240,
     sizeInches: 2.8,
-    ratioType: '4:3',
-    ratioX: 4,
-    ratioY: 3,
-  },
-  {
-    tag: 'rg35xx',
-    manufacturer: 'Anbernic',
-    name: 'RG35XX',
-    resX: 640,
-    resY: 480,
-    sizeInches: 3.5,
     ratioType: '4:3',
     ratioX: 4,
     ratioY: 3,
@@ -376,17 +376,6 @@ export const screens: Screen[] = [
     ratioY: 9,
   },
   {
-    tag: 'trimui-smart',
-    manufacturer: 'TrimUI',
-    name: 'Smart',
-    resX: 320,
-    resY: 240,
-    sizeInches: 2.4,
-    ratioType: '4:3',
-    ratioX: 4,
-    ratioY: 3,
-  },
-  {
     tag: 'trimui-brick',
     manufacturer: 'TrimUI',
     name: 'Brick',
@@ -407,6 +396,17 @@ export const screens: Screen[] = [
     ratioType: '16:9',
     ratioX: 16,
     ratioY: 9,
+  },
+  {
+    tag: 'trimui-smart',
+    manufacturer: 'TrimUI',
+    name: 'Smart',
+    resX: 320,
+    resY: 240,
+    sizeInches: 2.4,
+    ratioType: '4:3',
+    ratioX: 4,
+    ratioY: 3,
   },
   {
     tag: 'steam-deck',
