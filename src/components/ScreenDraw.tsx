@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { useConsoleStore } from '@/stores/consoleStore'
+import { useConsole, useConsoleStore } from '@/stores/consoleStore'
 import { useScreenStore } from '@/stores/screenStore'
 
 function findDiagonal(x: number, y: number) {
@@ -15,7 +15,7 @@ function ppi(diagonalPixels: number, inches: number) {
 
 export function ScreenDraw() {
   const screen = useScreenStore((state) => state.screen)
-  const consol = useConsoleStore((state) => state.console)
+  const consol = useConsole()
   const integerScaling = useConsoleStore((state) => state.integerScaling)
 
   const screenDiagonalPixels = findDiagonal(screen.resX, screen.resY)

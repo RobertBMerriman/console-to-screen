@@ -13,7 +13,7 @@ import { consoleTypes, consolesByType } from '@/lib/consoleData'
 import { useConsoleStore } from '@/stores/consoleStore'
 
 export function ConsoleField() {
-  const console = useConsoleStore((state) => state.console)
+  const consoleTag = useConsoleStore((state) => state.tag)
   const setConsoleByTag = useConsoleStore((state) => state.setConsoleByTag)
   const integerScaling = useConsoleStore((state) => state.integerScaling)
   const setIntegerScaling = useConsoleStore((state) => state.setIntegerScaling)
@@ -23,8 +23,8 @@ export function ConsoleField() {
       <FieldSet>
         <FieldLegend>Console</FieldLegend>
         <FieldGroup>
-          <Field>
-            <Select defaultValue={console.tag} onValueChange={setConsoleByTag}>
+          <Field className="w-fit">
+            <Select defaultValue={consoleTag} onValueChange={setConsoleByTag}>
               <SelectTrigger>
                 <SelectValue placeholder="Select a console" />
               </SelectTrigger>

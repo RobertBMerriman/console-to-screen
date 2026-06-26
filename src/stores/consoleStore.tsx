@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 
-import { consolesByTag, type ConsoleTag, type Console } from '@/lib/consoleData'
+import { consolesByTag, type ConsoleTag } from '@/lib/consoleData'
 import { persist } from 'zustand/middleware'
 
 interface State {
-  console: Console
+  tag: ConsoleTag
   integerScaling: boolean
 }
 
@@ -16,11 +16,15 @@ interface Action {
 export const useConsoleStore = create<State & Action>()(
   persist(
     (set) => ({
-      console: consolesByTag['nds-vertical'],
-      setConsoleByTag: (tag) => set(() => ({ console: consolesByTag[tag] })),
+      tag: 'nds-vertical',
+      setConsoleByTag: (tag) => set(() => ({ tag })),
       integerScaling: true,
       setIntegerScaling: (integerScaling) => set(() => ({ integerScaling })),
     }),
     { name: 'console-storage' }
   )
 )
+
+export const useConsole = () => {
+  return consolesByTag[useConsoleStore((state) => state.tag)]
+}
