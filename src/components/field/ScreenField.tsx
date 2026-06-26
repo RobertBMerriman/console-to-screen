@@ -1,4 +1,4 @@
-import { FieldGroup, FieldLegend, FieldSet } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLegend, FieldSet } from '@/components/ui/field'
 import {
   Select,
   SelectContent,
@@ -20,27 +20,29 @@ export function ScreenField() {
       <FieldSet>
         <FieldLegend>Screen</FieldLegend>
         <FieldGroup>
-          <Select defaultValue={screen.tag} onValueChange={setScreen}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a screen" />
-            </SelectTrigger>
+          <Field className="w-fit">
+            <Select defaultValue={screen.tag} onValueChange={setScreen}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a screen" />
+              </SelectTrigger>
 
-            <SelectContent>
-              {screenRatioTypes.map((ratio) => (
-                <SelectGroup key={ratio}>
-                  <SelectLabel>{ratio}</SelectLabel>
-                  {screensByRatio[ratio].map(
-                    ({ tag, manufacturer, name, resX, resY, sizeInches, ratioX, ratioY }) => (
-                      <SelectItem value={tag} key={tag}>
-                        {ratio === 'Other' && `[${ratioX}:${ratioY}]`} {manufacturer} {name} -{' '}
-                        {resX}x{resY} - {sizeInches}"
-                      </SelectItem>
-                    )
-                  )}
-                </SelectGroup>
-              ))}
-            </SelectContent>
-          </Select>
+              <SelectContent>
+                {screenRatioTypes.map((ratio) => (
+                  <SelectGroup key={ratio}>
+                    <SelectLabel>{ratio}</SelectLabel>
+                    {screensByRatio[ratio].map(
+                      ({ tag, manufacturer, name, resX, resY, sizeInches, ratioX, ratioY }) => (
+                        <SelectItem value={tag} key={tag}>
+                          {ratio === 'Other' && `[${ratioX}:${ratioY}]`} {manufacturer} {name} -{' '}
+                          {resX}x{resY} - {sizeInches}"
+                        </SelectItem>
+                      )
+                    )}
+                  </SelectGroup>
+                ))}
+              </SelectContent>
+            </Select>
+          </Field>
         </FieldGroup>
       </FieldSet>
     </FieldGroup>

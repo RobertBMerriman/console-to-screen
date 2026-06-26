@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { useConsoleStore } from '@/stores/consoleStore'
 import { useScreenStore } from '@/stores/screenStore'
 
@@ -53,7 +54,26 @@ export function ScreenDraw() {
         <div>
           <p>{consol.name}</p>
           <p>
-            {consol.resX}x{consol.resY} - X:Y
+            {consol.resX}x{consol.resY}{' '}
+            <span
+              className={cn({
+                'text-green-600':
+                  consol.ratioX === screen.ratioX && consol.ratioY === screen.ratioY,
+              })}
+            >
+              {consol.ratioX}:{consol.ratioY}
+            </span>{' '}
+            {consol.closestRatioX && consol.closestRatioY && (
+              <span
+                className={cn({
+                  'text-green-600':
+                    consol.closestRatioX === screen.ratioX &&
+                    consol.closestRatioY === screen.ratioY,
+                })}
+              >
+                (closest: {consol.closestRatioX}:{consol.closestRatioY})
+              </span>
+            )}
           </p>
           <div
             className="flex items-center justify-center bg-gray-600"
