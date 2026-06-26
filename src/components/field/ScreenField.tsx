@@ -29,11 +29,14 @@ export function ScreenField() {
               {screenRatioTypes.map((ratio) => (
                 <SelectGroup key={ratio}>
                   <SelectLabel>{ratio}</SelectLabel>
-                  {screensByRatio[ratio].map(({ tag, name, resX, resY, sizeInches }) => (
-                    <SelectItem value={tag} key={tag}>
-                      {name} ({resX}x{resY} - {sizeInches}")
-                    </SelectItem>
-                  ))}
+                  {screensByRatio[ratio].map(
+                    ({ tag, manufacturer, name, resX, resY, sizeInches, ratioX, ratioY }) => (
+                      <SelectItem value={tag} key={tag}>
+                        {ratio === 'Other' && `[${ratioX}:${ratioY}]`} {manufacturer} {name} -{' '}
+                        {resX}x{resY} - {sizeInches}"
+                      </SelectItem>
+                    )
+                  )}
                 </SelectGroup>
               ))}
             </SelectContent>

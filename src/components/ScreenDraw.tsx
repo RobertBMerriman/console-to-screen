@@ -36,12 +36,16 @@ export function ScreenDraw() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-row justify-between">
-        <p>{screen.name}</p>
+      <div className="flex flex-row gap-4 self-center">
+        <p>
+          {screen.manufacturer} {screen.name}
+        </p>
         <p>
           {screen.resX}x{screen.resY}
         </p>
-        <p>{screen.ratioType}</p>
+        <p>
+          {screen.ratioX}:{screen.ratioY}
+        </p>
         <p>{screen.sizeInches}"</p>
         <p>{screenPpi}ppi</p>
       </div>
