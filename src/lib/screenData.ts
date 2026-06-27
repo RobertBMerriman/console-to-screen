@@ -432,6 +432,9 @@ export const screens: Screen[] = [
   // },
 ]
 
+export const screenGroupingOptions = ['ratioType', 'manufacturer'] as const
+export type ScreenGroupingOption = (typeof screenGroupingOptions)[number]
+
 export type ScreensByTag = Record<ScreenTag, Screen>
 export const screensByTag: ScreensByTag = {} as ScreensByTag
 
