@@ -23,6 +23,7 @@ export const consoleTags = [
   'n64',
   'dc',
   'pico-8',
+  'tic-80',
   'vb',
 ] as const
 export type ConsoleTag = (typeof consoleTags)[number]
@@ -34,7 +35,7 @@ export const consoleManufacturers = [
   'Atari',
   'SNK',
   'Bandai',
-  'Lexaloffle',
+  'Other',
 ] as const
 export type ConsoleManufacturer = (typeof consoleManufacturers)[number]
 export const consoleTypes = ['Handheld', 'Home console', 'Fantasy console', 'Other'] as const
@@ -299,13 +300,25 @@ export const consoles: Console[] = [
   },
   {
     tag: 'pico-8',
-    manufacturer: 'Lexaloffle',
+    manufacturer: 'Other',
     name: 'PICO-8',
     resX: 128,
     resY: 128,
     type: 'Fantasy console',
     ratioX: 1,
     ratioY: 1,
+  },
+  {
+    tag: 'tic-80',
+    manufacturer: 'Other',
+    name: 'TIC-80',
+    resX: 240,
+    resY: 136,
+    type: 'Fantasy console',
+    ratioX: 30,
+    ratioY: 17,
+    closestRatioX: 16,
+    closestRatioY: 9,
   },
   {
     tag: 'vb',
