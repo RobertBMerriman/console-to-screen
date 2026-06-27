@@ -333,16 +333,8 @@ export const consoles: Console[] = [
   },
 ]
 
-// I might be clinically insane
-function getPropertyNames<T extends object>(
-  o: T[],
-  expression: (x: { [Property in keyof T]: keyof T }) => (keyof T)[],
-): (keyof T)[] {
-  const res = {} as { [Property in keyof T]: keyof T }
-  ;(Object.keys(o[0]) as (keyof T)[]).forEach((k) => (res[k] = k))
-  return expression(res)
-}
-export const consoleGroupingOptions = getPropertyNames(consoles, (c) => [c.type, c.manufacturer])
+export const consoleGroupingOptions = ['Type', 'Manufacturer'] as const
+export type ConsoleGroupingOption = (typeof consoleGroupingOptions)[number]
 
 export type ConsolesByTag = Record<ConsoleTag, Console>
 export let consolesByTag: ConsolesByTag = {} as ConsolesByTag

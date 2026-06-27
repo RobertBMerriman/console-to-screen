@@ -4,13 +4,14 @@ import {
   consoleGroupingOptions,
   consolesByTag,
   type Console,
+  type ConsoleGroupingOption,
   type ConsoleTag,
 } from '@/lib/consoleData'
 import { persist } from 'zustand/middleware'
 
 interface State {
   tag: ConsoleTag
-  grouping: keyof Console
+  grouping: ConsoleGroupingOption
   integerScaling: boolean
   cropOverscan: boolean
 }

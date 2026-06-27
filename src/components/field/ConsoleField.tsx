@@ -40,7 +40,7 @@ export function ConsoleField() {
               </SelectTrigger>
 
               <SelectContent>
-                {grouping === 'type' &&
+                {grouping === 'Type' &&
                   consoleTypes.map((type) => (
                     <SelectGroup key={type}>
                       <SelectLabel>{type}</SelectLabel>
@@ -51,7 +51,7 @@ export function ConsoleField() {
                       ))}
                     </SelectGroup>
                   ))}
-                {grouping === 'manufacturer' &&
+                {grouping === 'Manufacturer' &&
                   consoleManufacturers.map((manufacturer) => (
                     <SelectGroup key={manufacturer}>
                       <SelectLabel>{manufacturer}</SelectLabel>
@@ -74,7 +74,7 @@ export function ConsoleField() {
               <SelectContent>
                 {consoleGroupingOptions.map((option) => (
                   <SelectItem key={option} value={option}>
-                    {option.toLocaleUpperCase()}
+                    {option}
                   </SelectItem>
                 ))}
               </SelectContent>

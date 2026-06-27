@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 import {
+  screenGroupingOptions,
   screensByTag,
   type Screen,
   type ScreenGroupingOption,
@@ -23,7 +24,7 @@ export const useScreenStore = create<State & Action>()(
     (set) => ({
       tag: 'trimui-brick',
       setScreenByTag: (tag) => set(() => ({ tag })),
-      grouping: 'Aspect ratio',
+      grouping: screenGroupingOptions[0],
       setGrouping: (grouping) => set(() => ({ grouping })),
     }),
     { name: 'screen-storage' },
