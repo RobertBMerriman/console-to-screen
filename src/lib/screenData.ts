@@ -611,7 +611,7 @@ export const screens: Screen[] = [
   // },
 ]
 
-export const screenGroupingOptions = ['ratioType', 'manufacturer'] as const
+export const screenGroupingOptions = ['Aspect ratio', 'Manufacturer', 'Resolution'] as const
 export type ScreenGroupingOption = (typeof screenGroupingOptions)[number]
 
 export type ScreensByTag = Record<ScreenTag, Screen>
@@ -629,10 +629,20 @@ export const screensByRatio: ScreensByRatio = screenRatioTypes.reduce(
   {} as ScreensByRatio,
 )
 
+export type ScreensByRes = Record<string, Screen[]>
+export const screensByRes: ScreensByRes = {} as ScreensByRes
+
 screens.forEach((screen) => {
   screensByTag[screen.tag] = screen
   screensByManufacturer[screen.manufacturer].push(screen)
   screensByRatio[screen.ratioType].push(screen)
+
+  const res = screen.resX + 'x' + screen.resY
+  if (screensByRes.hasOwnProperty(res)) {
+    screensByRes[res].push(screen)
+  } else {
+    screensByRes[res] = [screen]
+  }
 })
 
 // console.log(

@@ -14,6 +14,7 @@ import {
   screenRatioTypes,
   screensByManufacturer,
   screensByRatio,
+  screensByRes,
 } from '@/lib/screenData'
 import { useScreenStore } from '@/stores/screenStore'
 
@@ -35,7 +36,7 @@ export function ScreenField() {
               </SelectTrigger>
 
               <SelectContent>
-                {grouping === 'ratioType' &&
+                {grouping === 'Aspect ratio' &&
                   screenRatioTypes.map((ratio) => (
                     <SelectGroup key={ratio}>
                       <SelectLabel>{ratio}</SelectLabel>
@@ -49,7 +50,7 @@ export function ScreenField() {
                       )}
                     </SelectGroup>
                   ))}
-                {grouping === 'manufacturer' &&
+                {grouping === 'Manufacturer' &&
                   screenManufacturers.map((manufacturer) => (
                     <SelectGroup key={manufacturer}>
                       <SelectLabel>{manufacturer}</SelectLabel>
@@ -61,6 +62,19 @@ export function ScreenField() {
                           </SelectItem>
                         ),
                       )}
+                    </SelectGroup>
+                  ))}
+                {grouping === 'Resolution' &&
+                  Object.keys(screensByRes).map((res) => (
+                    <SelectGroup key={res}>
+                      <SelectLabel>
+                        {res} - {screensByRes[res][0]?.ratioX}:{screensByRes[res][0]?.ratioY}
+                      </SelectLabel>
+                      {screensByRes[res].map(({ tag, manufacturer, name, sizeInches }) => (
+                        <SelectItem value={tag} key={tag}>
+                          {manufacturer} {name} - {sizeInches}"
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   ))}
               </SelectContent>
@@ -75,7 +89,7 @@ export function ScreenField() {
               <SelectContent>
                 {screenGroupingOptions.map((option) => (
                   <SelectItem key={option} value={option}>
-                    {option.toLocaleUpperCase()}
+                    {option}
                   </SelectItem>
                 ))}
               </SelectContent>
