@@ -438,13 +438,13 @@ export const screensByTag: ScreensByTag = {} as ScreensByTag
 export type ScreensByManufacturer = Record<ScreenManufacturer, Screen[]>
 export const screensByManufacturer: ScreensByManufacturer = screenManufacturers.reduce(
   (screensBy, manufacturer) => ({ ...screensBy, [manufacturer]: [] }),
-  {} as ScreensByManufacturer
+  {} as ScreensByManufacturer,
 )
 
 export type ScreensByRatio = Record<ScreenRatioType, Screen[]>
 export const screensByRatio: ScreensByRatio = screenRatioTypes.reduce(
   (screensBy, ratio) => ({ ...screensBy, [ratio]: [] }),
-  {} as ScreensByRatio
+  {} as ScreensByRatio,
 )
 
 screens.forEach((screen) => {

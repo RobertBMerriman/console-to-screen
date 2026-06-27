@@ -38,6 +38,7 @@ export const consoleManufacturers = [
   'Other',
 ] as const
 export type ConsoleManufacturer = (typeof consoleManufacturers)[number]
+
 export const consoleTypes = ['Handheld', 'Home console', 'Fantasy console', 'Other'] as const
 export type ConsoleType = (typeof consoleTypes)[number]
 
@@ -332,13 +333,24 @@ export const consoles: Console[] = [
   },
 ]
 
+// I might be clinically insane
+function getPropertyNames<T extends object>(
+  o: T[],
+  expression: (x: { [Property in keyof T]: keyof T }) => (keyof T)[],
+): (keyof T)[] {
+  const res = {} as { [Property in keyof T]: keyof T }
+  ;(Object.keys(o[0]) as (keyof T)[]).forEach((k) => (res[k] = k))
+  return expression(res)
+}
+export const consoleGroupingOptions = getPropertyNames(consoles, (c) => [c.type, c.manufacturer])
+
 export type ConsolesByTag = Record<ConsoleTag, Console>
 export let consolesByTag: ConsolesByTag = {} as ConsolesByTag
 
 export type ConsolesByManufacturer = Record<ConsoleManufacturer, Console[]>
 export const consolesByManufacturer: ConsolesByManufacturer = consoleManufacturers.reduce(
   (consolesBy, manufacturer) => ({ ...consolesBy, [manufacturer]: [] }),
-  {} as ConsolesByManufacturer
+  {} as ConsolesByManufacturer,
 )
 
 export type ConsolesByType = Record<ConsoleType, Omit<Console, 'type'>[]>
