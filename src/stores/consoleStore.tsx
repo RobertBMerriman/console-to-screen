@@ -10,14 +10,16 @@ import { persist } from 'zustand/middleware'
 
 interface State {
   tag: ConsoleTag
-  integerScaling: boolean
   grouping: keyof Console
+  integerScaling: boolean
+  cropOverscan: boolean
 }
 
 interface Action {
   setConsoleByTag: (tag: ConsoleTag) => void
-  setIntegerScaling: (integerScaling: State['integerScaling']) => void
   setGrouping: (grouping: State['grouping']) => void
+  setIntegerScaling: (integerScaling: State['integerScaling']) => void
+  setCropOverscan: (cropOverscan: State['cropOverscan']) => void
 }
 
 export const useConsoleStore = create<State & Action>()(
@@ -25,10 +27,12 @@ export const useConsoleStore = create<State & Action>()(
     (set) => ({
       tag: 'nds-vertical',
       setConsoleByTag: (tag) => set(() => ({ tag })),
-      integerScaling: true,
-      setIntegerScaling: (integerScaling) => set(() => ({ integerScaling })),
       grouping: consoleGroupingOptions[0],
       setGrouping: (grouping) => set(() => ({ grouping })),
+      integerScaling: false,
+      setIntegerScaling: (integerScaling) => set(() => ({ integerScaling })),
+      cropOverscan: false,
+      setCropOverscan: (cropOverscan) => set(() => ({ cropOverscan })),
     }),
     { name: 'console-storage' },
   ),

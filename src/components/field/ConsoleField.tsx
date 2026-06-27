@@ -21,10 +21,12 @@ import { useConsoleStore } from '@/stores/consoleStore'
 export function ConsoleField() {
   const consoleTag = useConsoleStore((state) => state.tag)
   const setConsoleByTag = useConsoleStore((state) => state.setConsoleByTag)
-  const integerScaling = useConsoleStore((state) => state.integerScaling)
-  const setIntegerScaling = useConsoleStore((state) => state.setIntegerScaling)
   const grouping = useConsoleStore((state) => state.grouping)
   const setGrouping = useConsoleStore((state) => state.setGrouping)
+  const integerScaling = useConsoleStore((state) => state.integerScaling)
+  const setIntegerScaling = useConsoleStore((state) => state.setIntegerScaling)
+  const cropOverscan = useConsoleStore((state) => state.cropOverscan)
+  const setCropOverscan = useConsoleStore((state) => state.setCropOverscan)
 
   return (
     <FieldGroup>
@@ -78,14 +80,24 @@ export function ConsoleField() {
               </SelectContent>
             </Select>
           </Field>
-          <Field orientation={'horizontal'} className="w-fit">
-            <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
-            <Checkbox
-              name="integer-scaling"
-              checked={integerScaling}
-              onCheckedChange={setIntegerScaling}
-            />
-          </Field>
+          <div className="flex flex-row gap-8">
+            <Field orientation={'horizontal'} className="w-fit">
+              <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
+              <Checkbox
+                name="integer-scaling"
+                checked={integerScaling}
+                onCheckedChange={setIntegerScaling}
+              />
+            </Field>
+            <Field orientation={'horizontal'} className="w-fit">
+              <FieldLabel htmlFor="crop-oversan">Crop overscan</FieldLabel>
+              <Checkbox
+                name="crop-oversan"
+                checked={cropOverscan}
+                onCheckedChange={setCropOverscan}
+              />
+            </Field>
+          </div>
         </FieldGroup>
       </FieldSet>
     </FieldGroup>

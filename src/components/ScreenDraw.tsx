@@ -10,13 +10,11 @@ function ppi(diagonalPixels: number, inches: number) {
   return Math.round(diagonalPixels / inches)
 }
 
-// function sizeInches(inches: number, res: number, diagonalPixels: number) {
-// }
-
 export function ScreenDraw() {
   const screen = useScreenStore((state) => state.screen)
   const consol = useConsole()
   const integerScaling = useConsoleStore((state) => state.integerScaling)
+  const cropOverscan = useConsoleStore((state) => state.cropOverscan)
 
   const screenDiagonalPixels = findDiagonal(screen.resX, screen.resY)
   const screenPpi = ppi(screenDiagonalPixels, screen.sizeInches)
@@ -25,7 +23,9 @@ export function ScreenDraw() {
 
   const consoleScaledX = screen.resX / consol.resX
   const consoleScaledY = screen.resY / consol.resY
-  const consoleScaleRaw = Math.min(consoleScaledX, consoleScaledY) // Consider crop overscan
+  const consoleScaleRaw = cropOverscan
+    ? Math.max(consoleScaledX, consoleScaledY)
+    : Math.min(consoleScaledX, consoleScaledY)
   const consoleScale = integerScaling ? Math.floor(consoleScaleRaw) : consoleScaleRaw
   const consoleScaledResX = consol.resX * consoleScale
   const consoleScaledResY = consol.resY * consoleScale
@@ -76,12 +76,17 @@ export function ScreenDraw() {
             )}
           </p>
           <div
-            className="flex items-center justify-center bg-gray-600"
+            className="relative bg-gray-600"
             style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
           >
             <div
-              className="flex flex-col items-center justify-center bg-gray-300 text-gray-900"
-              style={{ width: consoleXInches + 'in', height: consoleYInches + 'in' }}
+              className="absolute flex flex-col items-center justify-center bg-gray-200/50 text-gray-900"
+              style={{
+                width: consoleXInches + 'in',
+                height: consoleYInches + 'in',
+                left: `calc(50% - ${consoleXInches / 2}in)`,
+                top: `calc(50% - ${consoleYInches / 2}in)`,
+              }}
             >
               <span>{consol.name}</span>
               <span>
