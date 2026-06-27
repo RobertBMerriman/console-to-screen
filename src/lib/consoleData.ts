@@ -138,7 +138,7 @@ export const consoles: Console[] = [
   {
     tag: 'nds-single',
     manufacturer: 'Nintendo',
-    name: 'Nintendo DS □',
+    name: 'DS □',
     resX: 256,
     resY: 192,
     type: 'Handheld',
@@ -148,7 +148,7 @@ export const consoles: Console[] = [
   {
     tag: 'nds-horizontal',
     manufacturer: 'Nintendo',
-    name: 'Nintendo DS ◫',
+    name: 'DS ◫',
     resX: 512,
     resY: 192,
     type: 'Handheld',
@@ -158,7 +158,7 @@ export const consoles: Console[] = [
   {
     tag: 'nds-vertical',
     manufacturer: 'Nintendo',
-    name: 'Nintendo DS ⊟',
+    name: 'DS ⊟',
     resX: 256,
     resY: 384,
     type: 'Handheld',
@@ -168,7 +168,7 @@ export const consoles: Console[] = [
   {
     tag: '3ds-top',
     manufacturer: 'Nintendo',
-    name: 'Nintendo 3DS (top screen)',
+    name: '3DS (top)',
     resX: 400,
     resY: 240,
     type: 'Handheld',
@@ -178,7 +178,7 @@ export const consoles: Console[] = [
   {
     tag: '3ds-bottom',
     manufacturer: 'Nintendo',
-    name: 'Nintendo 3DS bottom',
+    name: '3DS (bottom)',
     resX: 320,
     resY: 240,
     type: 'Handheld',
@@ -188,7 +188,7 @@ export const consoles: Console[] = [
   {
     tag: '3ds-horizontal',
     manufacturer: 'Nintendo',
-    name: 'Nintendo 3DS ◫',
+    name: '3DS ◫',
     resX: 720,
     resY: 240,
     type: 'Handheld',
@@ -198,7 +198,7 @@ export const consoles: Console[] = [
   {
     tag: '3ds-vertical',
     manufacturer: 'Nintendo',
-    name: 'Nintendo 3DS ⊟',
+    name: '3DS ⊟',
     resX: 400,
     resY: 480,
     type: 'Handheld',

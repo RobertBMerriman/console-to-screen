@@ -9,7 +9,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { consoleTypes, consolesByType } from '@/lib/consoleData'
+import {
+  consoleGroupingOptions,
+  consoleManufacturers,
+  consoleTypes,
+  consolesByManufacturer,
+  consolesByType,
+} from '@/lib/consoleData'
 import { useConsoleStore } from '@/stores/consoleStore'
 
 export function ConsoleField() {
@@ -17,6 +23,8 @@ export function ConsoleField() {
   const setConsoleByTag = useConsoleStore((state) => state.setConsoleByTag)
   const integerScaling = useConsoleStore((state) => state.integerScaling)
   const setIntegerScaling = useConsoleStore((state) => state.setIntegerScaling)
+  const grouping = useConsoleStore((state) => state.grouping)
+  const setGrouping = useConsoleStore((state) => state.setGrouping)
 
   return (
     <FieldGroup>
@@ -30,15 +38,42 @@ export function ConsoleField() {
               </SelectTrigger>
 
               <SelectContent>
-                {consoleTypes.map((type) => (
-                  <SelectGroup key={type}>
-                    <SelectLabel>{type}</SelectLabel>
-                    {consolesByType[type].map(({ tag, name, resX, resY }) => (
-                      <SelectItem value={tag} key={tag}>
-                        {name} ({resX}x{resY})
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
+                {grouping === 'type' &&
+                  consoleTypes.map((type) => (
+                    <SelectGroup key={type}>
+                      <SelectLabel>{type}</SelectLabel>
+                      {consolesByType[type].map(({ tag, name, resX, resY }) => (
+                        <SelectItem key={tag} value={tag}>
+                          {name} ({resX}x{resY})
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  ))}
+                {grouping === 'manufacturer' &&
+                  consoleManufacturers.map((manufacturer) => (
+                    <SelectGroup key={manufacturer}>
+                      <SelectLabel>{manufacturer}</SelectLabel>
+                      {consolesByManufacturer[manufacturer].map(({ tag, name, resX, resY }) => (
+                        <SelectItem key={tag} value={tag}>
+                          {name} ({resX}x{resY})
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  ))}
+              </SelectContent>
+            </Select>
+          </Field>
+          <Field>
+            <Select defaultValue={grouping} onValueChange={setGrouping}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select grouping" />
+              </SelectTrigger>
+
+              <SelectContent>
+                {consoleGroupingOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option.toLocaleUpperCase()}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
