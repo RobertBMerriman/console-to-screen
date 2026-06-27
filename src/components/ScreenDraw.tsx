@@ -26,7 +26,7 @@ export function ScreenDraw() {
   const consoleScaleRaw = cropOverscan
     ? Math.max(consoleScaledX, consoleScaledY)
     : Math.min(consoleScaledX, consoleScaledY)
-  const consoleScale = integerScaling ? Math.floor(consoleScaleRaw) : consoleScaleRaw
+  const consoleScale = integerScaling ? Math.max(Math.floor(consoleScaleRaw), 1) : consoleScaleRaw
   const consoleScaledResX = consol.resX * consoleScale
   const consoleScaledResY = consol.resY * consoleScale
   // const consoleDiagonalPixels = findDiagonal(consoleScaledResX, consoleScaledResY)
@@ -34,6 +34,9 @@ export function ScreenDraw() {
   const consoleYInches = screen.sizeInches * (consoleScaledResY / screenDiagonalPixels)
   const consoleSizeInches = findDiagonal(consoleXInches, consoleYInches)
   // const consolePpi = Math.round(consoleDiagonalPixels / consoleSizeInches)
+
+  const croppedX = Math.max((consoleScaledResX - screen.resX) / (consoleScale * 2), 0)
+  const croppedY = Math.max((consoleScaledResY - screen.resY) / (consoleScale * 2), 0)
 
   return (
     <div className="flex flex-col gap-4">
@@ -76,7 +79,7 @@ export function ScreenDraw() {
             )}
           </p>
           <div
-            className="relative bg-gray-600"
+            className="relative flex items-center justify-center bg-gray-600"
             style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
           >
             <div
@@ -93,6 +96,49 @@ export function ScreenDraw() {
                 {consoleSizeInches.toLocaleString(undefined, { maximumFractionDigits: 1 })}" at{' '}
                 {consoleScale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
               </span>
+              {(croppedX > 0 || croppedY > 0) && ( // There is an issue with these elements overlapping with transparency, one solution would be to change to a solid color or clamp the inner console size to the screen bounds and draw behind it
+                <>
+                  <span>
+                    (cropped: {Math.ceil(croppedX)},{Math.ceil(croppedY)})
+                  </span>
+                  {croppedX > 0 && (
+                    <>
+                      <div
+                        className="bg-destructive/40 absolute top-0 left-0"
+                        style={{
+                          width: consoleXInches * (croppedX / consol.resX) + 'in',
+                          height: consoleYInches + 'in',
+                        }}
+                      />
+                      <div
+                        className="bg-destructive/40 absolute top-0 right-0"
+                        style={{
+                          width: consoleXInches * (croppedX / consol.resX) + 'in',
+                          height: consoleYInches + 'in',
+                        }}
+                      />
+                    </>
+                  )}
+                  {croppedY > 0 && (
+                    <>
+                      <div
+                        className="bg-destructive/40 absolute top-0 left-0"
+                        style={{
+                          width: consoleXInches + 'in',
+                          height: consoleYInches * (croppedY / consol.resY) + 'in',
+                        }}
+                      />
+                      <div
+                        className="bg-destructive/40 absolute bottom-0 left-0"
+                        style={{
+                          width: consoleXInches + 'in',
+                          height: consoleYInches * (croppedY / consol.resY) + 'in',
+                        }}
+                      />
+                    </>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
