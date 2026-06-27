@@ -9,7 +9,7 @@ import {
 import { persist } from 'zustand/middleware'
 
 interface State {
-  screen: Screen
+  tag: ScreenTag
   grouping: ScreenGroupingOption
 }
 
@@ -21,11 +21,15 @@ interface Action {
 export const useScreenStore = create<State & Action>()(
   persist(
     (set) => ({
-      screen: screensByTag['trimui-brick'],
-      setScreenByTag: (tag) => set(() => ({ screen: screensByTag[tag] })),
-      grouping: 'ratioType',
+      tag: 'trimui-brick',
+      setScreenByTag: (tag) => set(() => ({ tag })),
+      grouping: 'Aspect ratio',
       setGrouping: (grouping) => set(() => ({ grouping })),
     }),
     { name: 'screen-storage' },
   ),
 )
+
+export const useScreen = (): Screen => {
+  return screensByTag[useScreenStore((state) => state.tag)]
+}

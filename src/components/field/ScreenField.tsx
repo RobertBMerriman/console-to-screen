@@ -19,7 +19,7 @@ import {
 import { useScreenStore } from '@/stores/screenStore'
 
 export function ScreenField() {
-  const screen = useScreenStore((state) => state.screen)
+  const tag = useScreenStore((state) => state.tag)
   const setScreen = useScreenStore((state) => state.setScreenByTag)
   const grouping = useScreenStore((state) => state.grouping)
   const setGrouping = useScreenStore((state) => state.setGrouping)
@@ -30,7 +30,7 @@ export function ScreenField() {
         <FieldLegend>Screen</FieldLegend>
         <FieldGroup>
           <Field className="w-fit">
-            <Select defaultValue={screen.tag} onValueChange={setScreen}>
+            <Select defaultValue={tag} onValueChange={setScreen}>
               <SelectTrigger>
                 <SelectValue placeholder="Select a screen" />
               </SelectTrigger>

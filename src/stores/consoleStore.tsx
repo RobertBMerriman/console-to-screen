@@ -38,6 +38,6 @@ export const useConsoleStore = create<State & Action>()(
   ),
 )
 
-export const useConsole = () => {
+export const useConsole = (): Console => {
   return consolesByTag[useConsoleStore((state) => state.tag)]
 }

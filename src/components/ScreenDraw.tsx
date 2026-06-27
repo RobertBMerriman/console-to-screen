@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { useConsole, useConsoleStore } from '@/stores/consoleStore'
-import { useScreenStore } from '@/stores/screenStore'
+import { useScreen } from '@/stores/screenStore'
 
 function findDiagonal(x: number, y: number) {
   return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))
@@ -11,7 +11,7 @@ function ppi(diagonalPixels: number, inches: number) {
 }
 
 export function ScreenDraw() {
-  const screen = useScreenStore((state) => state.screen)
+  const screen = useScreen()
   const consol = useConsole()
   const integerScaling = useConsoleStore((state) => state.integerScaling)
   const cropOverscan = useConsoleStore((state) => state.cropOverscan)
