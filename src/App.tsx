@@ -17,7 +17,7 @@ function App() {
 
         <Separator />
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-8 max-lg:flex-wrap">
           <ConsoleField />
           <ScreenField />
         </div>

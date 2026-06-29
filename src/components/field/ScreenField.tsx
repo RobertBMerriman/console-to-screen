@@ -1,4 +1,4 @@
-import { Field, FieldGroup, FieldLegend, FieldSet } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
   Select,
   SelectContent,
@@ -27,9 +27,9 @@ export function ScreenField() {
   return (
     <FieldGroup>
       <FieldSet>
-        <FieldLegend>Screen</FieldLegend>
-        <FieldGroup>
-          <Field className="w-fit">
+        <FieldGroup className="flex flex-row gap-4">
+          <Field>
+            <FieldLabel>Device</FieldLabel>
             <Select defaultValue={tag} onValueChange={setScreen}>
               <SelectTrigger>
                 <SelectValue placeholder="Select a screen" />
@@ -80,7 +80,8 @@ export function ScreenField() {
               </SelectContent>
             </Select>
           </Field>
-          <Field>
+          <Field className="w-fit">
+            <FieldLabel>Group by</FieldLabel>
             <Select defaultValue={grouping} onValueChange={setGrouping}>
               <SelectTrigger>
                 <SelectValue placeholder="Select grouping" />

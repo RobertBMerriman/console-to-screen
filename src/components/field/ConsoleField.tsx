@@ -1,5 +1,5 @@
 import { Checkbox } from '@/components/ui/checkbox'
-import { Field, FieldGroup, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
   Select,
   SelectContent,
@@ -31,57 +31,60 @@ export function ConsoleField() {
   return (
     <FieldGroup>
       <FieldSet>
-        <FieldLegend>Console</FieldLegend>
         <FieldGroup>
-          <Field className="w-fit">
-            <Select defaultValue={consoleTag} onValueChange={setConsoleByTag}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a console" />
-              </SelectTrigger>
+          <div className="flex flex-row gap-4">
+            <Field>
+              <FieldLabel>Console</FieldLabel>
+              <Select defaultValue={consoleTag} onValueChange={setConsoleByTag}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a console" />
+                </SelectTrigger>
 
-              <SelectContent>
-                {grouping === 'Type' &&
-                  consoleTypes.map((type) => (
-                    <SelectGroup key={type}>
-                      <SelectLabel>{type}</SelectLabel>
-                      {consolesByType[type].map(({ tag, name, resX, resY, ratioX, ratioY }) => (
-                        <SelectItem key={tag} value={tag}>
-                          {name} [{ratioX}:{ratioY} - {resX}x{resY}]
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  ))}
-                {grouping === 'Manufacturer' &&
-                  consoleManufacturers.map((manufacturer) => (
-                    <SelectGroup key={manufacturer}>
-                      <SelectLabel>{manufacturer}</SelectLabel>
-                      {consolesByManufacturer[manufacturer].map(
-                        ({ tag, name, resX, resY, ratioX, ratioY }) => (
+                <SelectContent>
+                  {grouping === 'Type' &&
+                    consoleTypes.map((type) => (
+                      <SelectGroup key={type}>
+                        <SelectLabel>{type}</SelectLabel>
+                        {consolesByType[type].map(({ tag, name, resX, resY, ratioX, ratioY }) => (
                           <SelectItem key={tag} value={tag}>
                             {name} [{ratioX}:{ratioY} - {resX}x{resY}]
                           </SelectItem>
-                        ),
-                      )}
-                    </SelectGroup>
-                  ))}
-              </SelectContent>
-            </Select>
-          </Field>
-          <Field>
-            <Select defaultValue={grouping} onValueChange={setGrouping}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select grouping" />
-              </SelectTrigger>
+                        ))}
+                      </SelectGroup>
+                    ))}
+                  {grouping === 'Manufacturer' &&
+                    consoleManufacturers.map((manufacturer) => (
+                      <SelectGroup key={manufacturer}>
+                        <SelectLabel>{manufacturer}</SelectLabel>
+                        {consolesByManufacturer[manufacturer].map(
+                          ({ tag, name, resX, resY, ratioX, ratioY }) => (
+                            <SelectItem key={tag} value={tag}>
+                              {name} [{ratioX}:{ratioY} - {resX}x{resY}]
+                            </SelectItem>
+                          ),
+                        )}
+                      </SelectGroup>
+                    ))}
+                </SelectContent>
+              </Select>
+            </Field>
+            <Field className="w-fit">
+              <FieldLabel>Group by</FieldLabel>
+              <Select defaultValue={grouping} onValueChange={setGrouping}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select grouping" />
+                </SelectTrigger>
 
-              <SelectContent>
-                {consoleGroupingOptions.map((option) => (
-                  <SelectItem key={option} value={option}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </Field>
+                <SelectContent>
+                  {consoleGroupingOptions.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </Field>
+          </div>
           <div className="flex flex-row gap-8">
             <Field orientation={'horizontal'} className="w-fit">
               <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
