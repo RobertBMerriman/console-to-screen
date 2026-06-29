@@ -1,3 +1,4 @@
+import { ScreenCombobox } from '@/components/screen/ScreenCombobox'
 import { ScreenSelect } from '@/components/screen/ScreenSelect'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
@@ -19,8 +20,8 @@ export function ScreenField() {
       <FieldSet>
         <FieldGroup className="flex flex-row gap-4">
           <Field>
-            <FieldLabel>Device</FieldLabel>
-            <ScreenSelect />
+            <FieldLabel>Screen</FieldLabel>
+            <ScreenCombobox />
           </Field>
 
           <Field className="w-fit">

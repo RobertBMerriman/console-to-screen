@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import {
-  screenGroupingOptions,
   screenManufacturers,
   screenRatioTypes,
   screensByManufacturer,
@@ -18,8 +17,8 @@ import {
 import { useScreenStore } from '@/stores/screenStore'
 
 export function ScreenSelect() {
-  const tag = useScreenStore((state) => state.tag)
-  const setScreen = useScreenStore((state) => state.setScreenByTag)
+  const tag = useScreenStore((state) => state.tags)
+  const setScreen = useScreenStore((state) => state.setScreensByTags)
   const grouping = useScreenStore((state) => state.grouping)
 
   return (

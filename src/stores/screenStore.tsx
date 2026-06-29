@@ -10,20 +10,20 @@ import {
 import { persist } from 'zustand/middleware'
 
 interface State {
-  tag: ScreenTag
+  tags: ScreenTag[]
   grouping: ScreenGroupingOption
 }
 
 interface Action {
-  setScreenByTag: (tag: ScreenTag) => void
+  setScreensByTags: (tags: State['tags']) => void
   setGrouping: (grouping: State['grouping']) => void
 }
 
 export const useScreenStore = create<State & Action>()(
   persist(
     (set) => ({
-      tag: 'trimui-brick',
-      setScreenByTag: (tag) => set(() => ({ tag })),
+      tags: ['trimui-brick'],
+      setScreensByTags: (tags) => set(() => ({ tags })),
       grouping: screenGroupingOptions[0],
       setGrouping: (grouping) => set(() => ({ grouping })),
     }),
@@ -31,6 +31,6 @@ export const useScreenStore = create<State & Action>()(
   ),
 )
 
-export const useScreen = (): Screen => {
-  return screensByTag[useScreenStore((state) => state.tag)]
+export const useScreens = (): Screen[] => {
+  return useScreenStore((state) => state.tags).map((tag) => screensByTag[tag])
 }
