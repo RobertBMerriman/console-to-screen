@@ -44,9 +44,9 @@ export function ConsoleField() {
                   consoleTypes.map((type) => (
                     <SelectGroup key={type}>
                       <SelectLabel>{type}</SelectLabel>
-                      {consolesByType[type].map(({ tag, name, resX, resY }) => (
+                      {consolesByType[type].map(({ tag, name, resX, resY, ratioX, ratioY }) => (
                         <SelectItem key={tag} value={tag}>
-                          {name} ({resX}x{resY})
+                          {name} [{ratioX}:{ratioY} - {resX}x{resY}]
                         </SelectItem>
                       ))}
                     </SelectGroup>
@@ -55,11 +55,13 @@ export function ConsoleField() {
                   consoleManufacturers.map((manufacturer) => (
                     <SelectGroup key={manufacturer}>
                       <SelectLabel>{manufacturer}</SelectLabel>
-                      {consolesByManufacturer[manufacturer].map(({ tag, name, resX, resY }) => (
-                        <SelectItem key={tag} value={tag}>
-                          {name} ({resX}x{resY})
-                        </SelectItem>
-                      ))}
+                      {consolesByManufacturer[manufacturer].map(
+                        ({ tag, name, resX, resY, ratioX, ratioY }) => (
+                          <SelectItem key={tag} value={tag}>
+                            {name} [{ratioX}:{ratioY} - {resX}x{resY}]
+                          </SelectItem>
+                        ),
+                      )}
                     </SelectGroup>
                   ))}
               </SelectContent>

@@ -43,8 +43,8 @@ export function ScreenField() {
                       {screensByRatio[ratio].map(
                         ({ tag, manufacturer, name, resX, resY, sizeInches, ratioX, ratioY }) => (
                           <SelectItem value={tag} key={tag}>
-                            {ratio === 'Other' && `[${ratioX}:${ratioY}]`} {manufacturer} {name} -{' '}
-                            {resX}x{resY} - {sizeInches}"
+                            {ratio === 'Other' && `[${ratioX}:${ratioY}]`} {manufacturer} {name} [
+                            {resX}x{resY} - {sizeInches}"]
                           </SelectItem>
                         ),
                       )}
@@ -57,8 +57,8 @@ export function ScreenField() {
                       {screensByManufacturer[manufacturer].map(
                         ({ tag, manufacturer, name, resX, resY, sizeInches, ratioX, ratioY }) => (
                           <SelectItem value={tag} key={tag}>
-                            {manufacturer} {name} - {ratioX}:{ratioY} - {resX}x{resY} - {sizeInches}
-                            "
+                            {manufacturer} {name} [{ratioX}:{ratioY} - {resX}x{resY} - {sizeInches}
+                            "]
                           </SelectItem>
                         ),
                       )}
@@ -72,7 +72,7 @@ export function ScreenField() {
                       </SelectLabel>
                       {screensByRes[res].map(({ tag, manufacturer, name, sizeInches }) => (
                         <SelectItem value={tag} key={tag}>
-                          {manufacturer} {name} - {sizeInches}"
+                          {manufacturer} {name} [{sizeInches}"]
                         </SelectItem>
                       ))}
                     </SelectGroup>
