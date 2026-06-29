@@ -34,9 +34,9 @@ export function ConsoleField() {
         <FieldGroup>
           <div className="flex flex-row gap-4">
             <Field>
-              <FieldLabel>Console</FieldLabel>
+              <FieldLabel htmlFor="console">Console</FieldLabel>
               <Select defaultValue={consoleTag} onValueChange={setConsoleByTag}>
-                <SelectTrigger>
+                <SelectTrigger id="console">
                   <SelectValue placeholder="Select a console" />
                 </SelectTrigger>
 
@@ -71,9 +71,9 @@ export function ConsoleField() {
               </Select>
             </Field>
             <Field className="w-fit">
-              <FieldLabel>Group by</FieldLabel>
+              <FieldLabel htmlFor="console-group">Group by</FieldLabel>
               <Select defaultValue={grouping} onValueChange={setGrouping}>
-                <SelectTrigger>
+                <SelectTrigger id="console-group">
                   <SelectValue placeholder="Select grouping" />
                 </SelectTrigger>
 
@@ -91,6 +91,7 @@ export function ConsoleField() {
             <Field orientation={'horizontal'} className="w-fit">
               <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
               <Checkbox
+                id="integer-scaling"
                 name="integer-scaling"
                 checked={integerScaling}
                 onCheckedChange={setIntegerScaling}
@@ -99,6 +100,7 @@ export function ConsoleField() {
             <Field orientation={'horizontal'} className="w-fit">
               <FieldLabel htmlFor="crop-oversan">Crop overscan</FieldLabel>
               <Checkbox
+                id="crop-oversan"
                 name="crop-oversan"
                 checked={cropOverscan}
                 onCheckedChange={setCropOverscan}

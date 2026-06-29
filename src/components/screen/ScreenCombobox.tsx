@@ -80,7 +80,7 @@ export function ScreenCombobox() {
             )
           })}
         </ComboboxValue>
-        <ComboboxChipsInput placeholder="Select a device" />
+        <ComboboxChipsInput id="screen" placeholder="Select a device" />
       </ComboboxChips>
       {/* <ComboboxInput
         placeholder="Select a device"

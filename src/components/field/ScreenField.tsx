@@ -1,5 +1,4 @@
 import { ScreenCombobox } from '@/components/screen/ScreenCombobox'
-import { ScreenSelect } from '@/components/screen/ScreenSelect'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
   Select,
@@ -20,14 +19,14 @@ export function ScreenField() {
       <FieldSet>
         <FieldGroup className="flex flex-row gap-4">
           <Field>
-            <FieldLabel>Screen</FieldLabel>
+            <FieldLabel htmlFor="screen">Screen</FieldLabel>
             <ScreenCombobox />
           </Field>
 
           <Field className="w-fit">
-            <FieldLabel>Group by</FieldLabel>
+            <FieldLabel htmlFor="screen-group">Group by</FieldLabel>
             <Select defaultValue={grouping} onValueChange={setGrouping}>
-              <SelectTrigger>
+              <SelectTrigger id="screen-group">
                 <SelectValue placeholder="Select grouping" />
               </SelectTrigger>
 
