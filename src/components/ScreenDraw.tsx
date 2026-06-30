@@ -1,3 +1,5 @@
+import { H3 } from '@/components/ui/typography/H3'
+import { H4 } from '@/components/ui/typography/H4'
 import type { Screen } from '@/lib/screenData'
 import { cn } from '@/lib/utils'
 import { useConsole, useConsoleStore } from '@/stores/consoleStore'
@@ -42,34 +44,38 @@ export function ScreenDraw({ screen }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-row gap-4 self-center">
-        <p>
+      <div className="flex flex-col items-center gap-2">
+        <H3>
           {screen.manufacturer} {screen.name}
-        </p>
-        <p>
-          {screen.resX}x{screen.resY}
-        </p>
-        <p>
-          {screen.ratioX}:{screen.ratioY}
-        </p>
-        <p>{screen.sizeInches}"</p>
-        <p>{screenPpi}ppi</p>
+        </H3>
+        <div className="flex flex-row gap-4">
+          <p>
+            {screen.resX}x{screen.resY}
+          </p>
+          <p>
+            {screen.ratioX}:{screen.ratioY}
+          </p>
+          <p>{screen.sizeInches}"</p>
+          <p>{screenPpi}ppi</p>
+        </div>
       </div>
       <div className="flex flex-row flex-wrap">
-        <div>
-          <p>{consol.name}</p>
-          <p>
-            {consol.resX}x{consol.resY}{' '}
-            <span
+        <div className="flex flex-col gap-1">
+          <H4>{consol.name}</H4>
+          <div className="flex flex-row gap-3">
+            <p>
+              {consol.resX}x{consol.resY}
+            </p>
+            <p
               className={cn({
                 'text-green-600':
                   consol.ratioX === screen.ratioX && consol.ratioY === screen.ratioY,
               })}
             >
               {consol.ratioX}:{consol.ratioY}
-            </span>{' '}
+            </p>
             {consol.closestRatioX && consol.closestRatioY && (
-              <span
+              <p
                 className={cn({
                   'text-green-600':
                     consol.closestRatioX === screen.ratioX &&
@@ -77,9 +83,9 @@ export function ScreenDraw({ screen }: Props) {
                 })}
               >
                 (closest: {consol.closestRatioX}:{consol.closestRatioY})
-              </span>
+              </p>
             )}
-          </p>
+          </div>
           <div
             className="relative flex items-center justify-center bg-gray-600"
             style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
@@ -98,7 +104,7 @@ export function ScreenDraw({ screen }: Props) {
                 {consoleSizeInches.toLocaleString(undefined, { maximumFractionDigits: 1 })}" at{' '}
                 {consoleScale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
               </span>
-              {(croppedX > 0 || croppedY > 0) && ( // There is an issue with these elements overlapping with transparency, one solution would be to change to a solid color or clamp the inner console size to the screen bounds and draw behind it
+              {(croppedX > 0 || croppedY > 0) && ( // There is an issue with these elements overlapping with transparency, one solution would be to change to a solid color or another would be to clamp the inner console size to the screen bounds and draw behind it
                 <>
                   <span>
                     (cropped: {Math.ceil(croppedX)},{Math.ceil(croppedY)})
