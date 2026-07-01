@@ -18,10 +18,13 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
 
   const consoleScaledX = screen.resX / consol.resX
   const consoleScaledY = screen.resY / consol.resY
-  const consoleScaleRaw = cropOverscan
+  const consoleScaleRaw = Math.min(consoleScaledX, consoleScaledY)
+  const consoleScaleWithOverscan = cropOverscan
     ? Math.max(consoleScaledX, consoleScaledY)
-    : Math.min(consoleScaledX, consoleScaledY)
-  const consoleScale = integerScaling ? Math.max(Math.floor(consoleScaleRaw), 1) : consoleScaleRaw
+    : consoleScaleRaw
+  const consoleScale = integerScaling
+    ? Math.max(Math.floor(consoleScaleWithOverscan), 1)
+    : consoleScaleWithOverscan
   const consoleScaledResX = consol.resX * consoleScale
   const consoleScaledResY = consol.resY * consoleScale
   // const consoleDiagonalPixels = findDiagonal(consoleScaledResX, consoleScaledResY)
@@ -75,7 +78,13 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
           <span>{consol.name}</span>
           <span>
             {consoleSizeInches.toLocaleString(undefined, { maximumFractionDigits: 1 })}" at{' '}
-            {consoleScale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
+            <span
+              className={cn({
+                'font-medium text-green-700': consoleScaleRaw === Math.floor(consoleScaleRaw),
+              })}
+            >
+              {consoleScale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
+            </span>
           </span>
           {(croppedX > 0 || croppedY > 0) && ( // There is an issue with these elements overlapping with transparency, one solution would be to change to a solid color or another would be to clamp the inner console size to the screen bounds and draw behind it
             <>
