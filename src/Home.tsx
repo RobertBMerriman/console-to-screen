@@ -1,3 +1,5 @@
+import { Fragment } from 'react/jsx-runtime'
+
 import { ScreenDraw } from '@/components/ScreenDraw'
 import { ConsoleField } from '@/components/field/ConsoleField'
 import { ScreenField } from '@/components/field/ScreenField'
@@ -31,10 +33,10 @@ export function Home() {
 
       <div className="flex flex-col gap-6">
         {screens.toReversed().map((screen, index) => (
-          <>
-            <ScreenDraw key={screen.tag} screen={screen} />
+          <Fragment key={screen.tag}>
+            <ScreenDraw screen={screen} />
             {index < screens.length - 1 && <Separator />}
-          </>
+          </Fragment>
         ))}
       </div>
     </div>

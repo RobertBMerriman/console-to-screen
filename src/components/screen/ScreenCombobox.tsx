@@ -23,6 +23,7 @@ import {
   screensByTag,
   type ScreenGroupingOption,
 } from '@/lib/screenData'
+import { cn } from '@/lib/utils'
 import { useScreenStore } from '@/stores/screenStore'
 import type { Group } from '@base-ui/react/internals/resolveValueLabel'
 
@@ -70,7 +71,7 @@ export function ScreenCombobox() {
   return (
     <Combobox items={groups} multiple value={tags} onValueChange={setScreensByTags} autoHighlight>
       <ComboboxChips ref={anchor} className="flex-col">
-        <div className="flex flex-wrap gap-1">
+        <div className={cn('flex flex-wrap gap-1', { hidden: tags.length === 0 })}>
           <ComboboxValue>
             {tags.map((tag) => {
               const screen = screensByTag[tag]

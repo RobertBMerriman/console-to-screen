@@ -233,7 +233,7 @@ export const screens: Screen[] = [
   {
     tag: 'rg-cube',
     manufacturer: 'Anbernic',
-    name: 'RG Cube',
+    name: 'RG Cube(XX)',
     resX: 720,
     resY: 720,
     sizeInches: 3.95,
