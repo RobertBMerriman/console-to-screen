@@ -95,7 +95,7 @@ export const screens: Screen[] = [
   {
     tag: 'rg-rotate',
     manufacturer: 'Anbernic',
-    name: 'Rotate',
+    name: 'RG Rotate',
     resX: 720,
     resY: 720,
     sizeInches: 3.5,

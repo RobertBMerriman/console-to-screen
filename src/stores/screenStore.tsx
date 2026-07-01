@@ -24,9 +24,11 @@ export const useScreenStore = create<State & Action>()(
     (set) => ({
       tags: ['trimui-brick'],
       setScreensByTags: (tags) => set(() => ({ tags })),
+
       grouping: screenGroupingOptions[0],
       setGrouping: (grouping) => set(() => ({ grouping })),
     }),
+
     { name: 'screen-storage' },
   ),
 )

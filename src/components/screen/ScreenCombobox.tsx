@@ -69,17 +69,19 @@ export function ScreenCombobox() {
   const anchor = useComboboxAnchor()
   return (
     <Combobox items={groups} multiple value={tags} onValueChange={setScreensByTags} autoHighlight>
-      <ComboboxChips ref={anchor}>
-        <ComboboxValue>
-          {tags.map((tag) => {
-            const screen = screensByTag[tag]
-            return (
-              <ComboboxChip key={tag}>
-                {screen.manufacturer} {screen.name}
-              </ComboboxChip>
-            )
-          })}
-        </ComboboxValue>
+      <ComboboxChips ref={anchor} className="flex-col">
+        <div className="flex flex-wrap gap-1">
+          <ComboboxValue>
+            {tags.map((tag) => {
+              const screen = screensByTag[tag]
+              return (
+                <ComboboxChip key={tag}>
+                  {screen.manufacturer} {screen.name}
+                </ComboboxChip>
+              )
+            })}
+          </ComboboxValue>
+        </div>
         <ComboboxChipsInput id="screen" placeholder="Select a device" />
       </ComboboxChips>
       {/* <ComboboxInput

@@ -1,3 +1,6 @@
+import { X } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
@@ -14,13 +17,15 @@ import {
   consoleManufacturers,
   consoleTypes,
   consolesByManufacturer,
+  consolesByTag,
   consolesByType,
+  type ConsoleTag,
 } from '@/lib/consoleData'
 import { useConsoleStore } from '@/stores/consoleStore'
 
 export function ConsoleField() {
-  const consoleTag = useConsoleStore((state) => state.tag)
-  const setConsoleByTag = useConsoleStore((state) => state.setConsoleByTag)
+  const tags = useConsoleStore((state) => state.tags)
+  const setConsolesByTags = useConsoleStore((state) => state.setConsolesByTags)
   const grouping = useConsoleStore((state) => state.grouping)
   const setGrouping = useConsoleStore((state) => state.setGrouping)
   const integerScaling = useConsoleStore((state) => state.integerScaling)
@@ -32,10 +37,28 @@ export function ConsoleField() {
     <FieldGroup>
       <FieldSet>
         <FieldGroup>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row items-end gap-4">
             <Field>
               <FieldLabel htmlFor="console">Console</FieldLabel>
-              <Select defaultValue={consoleTag} onValueChange={setConsoleByTag}>
+
+              <div className="flex flex-row flex-wrap gap-1">
+                {tags.toReversed().map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className="cursor-pointer"
+                    onClick={() => setConsolesByTags(tags.filter((t) => t !== tag))}
+                  >
+                    {consolesByTag[tag].name}
+                    <X data-icon="inline-end" />
+                  </Badge>
+                ))}
+              </div>
+
+              <Select
+                value={tags[tags.length - 1]}
+                onValueChange={(value) => setConsolesByTags([...tags, value as ConsoleTag])}
+              >
                 <SelectTrigger id="console">
                   <SelectValue placeholder="Select a console" />
                 </SelectTrigger>
