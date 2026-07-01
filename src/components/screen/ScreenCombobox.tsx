@@ -83,7 +83,7 @@ export function ScreenCombobox() {
             })}
           </ComboboxValue>
         </div>
-        <ComboboxChipsInput id="screen" placeholder="Select a device" />
+        <ComboboxChipsInput id="screen" placeholder="Select a device or search" />
       </ComboboxChips>
       {/* <ComboboxInput
         placeholder="Select a device"

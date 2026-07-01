@@ -30,7 +30,7 @@ export function ScreenDraw({ screen }: Props) {
           <p>{screenPpi}ppi</p>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap gap-16">
+      <div className="flex flex-row flex-wrap justify-center gap-x-16 gap-y-8">
         {consoles.toReversed().map((consol) => (
           <ConsoleDraw
             key={consol.tag}
