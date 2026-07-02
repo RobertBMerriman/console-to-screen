@@ -350,6 +350,8 @@ export const consolesByType: ConsolesByType = {
   'Fantasy console': [],
   Other: [],
 }
+
+//
 ;(Object.keys(consolesByTag) as ConsoleTag[]).forEach((tag) => {
   const console = consolesByTag[tag]
   consolesByManufacturer[console.manufacturer].push(console)

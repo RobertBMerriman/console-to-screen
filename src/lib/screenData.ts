@@ -75,6 +75,8 @@ export type ScreenManufacturer = (typeof screenManufacturers)[number]
 export const screenRatioTypes = ['4:3', '16:9', '3:2', '1:1', 'Other'] as const
 export type ScreenRatioType = (typeof screenRatioTypes)[number]
 
+export type ScreensByTag = Record<ScreenTag, Screen>
+
 export interface Screen {
   tag: ScreenTag
   manufacturer: ScreenManufacturer
@@ -86,8 +88,8 @@ export interface Screen {
   ratioX: number
   ratioY: number
 }
-export const screens: Screen[] = [
-  {
+export const screensByTag: Record<ScreenTag, Screen> = {
+  'analogue-pocket': {
     tag: 'analogue-pocket',
     manufacturer: 'Analogue',
     name: 'Pocket',
@@ -98,7 +100,7 @@ export const screens: Screen[] = [
     ratioX: 10,
     ratioY: 9,
   },
-  {
+  'rg-rotate': {
     tag: 'rg-rotate',
     manufacturer: 'Anbernic',
     name: 'RG Rotate',
@@ -109,7 +111,7 @@ export const screens: Screen[] = [
     ratioX: 1,
     ratioY: 1,
   },
-  {
+  'rg-ds': {
     tag: 'rg-ds',
     manufacturer: 'Anbernic',
     name: 'RG DS',
@@ -120,7 +122,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg477v: {
     tag: 'rg477v',
     manufacturer: 'Anbernic',
     name: 'RG 477V',
@@ -131,7 +133,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg476h: {
     tag: 'rg476h',
     manufacturer: 'Anbernic',
     name: 'RG 476H',
@@ -142,7 +144,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg477m: {
     tag: 'rg477m',
     manufacturer: 'Anbernic',
     name: 'RG 477M',
@@ -153,7 +155,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg35xx: {
     tag: 'rg35xx',
     manufacturer: 'Anbernic',
     name: 'RG 35XX (all models)',
@@ -164,7 +166,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg34xx: {
     tag: 'rg34xx',
     manufacturer: 'Anbernic',
     name: 'RG 34XX (all models)',
@@ -175,7 +177,7 @@ export const screens: Screen[] = [
     ratioX: 3,
     ratioY: 2,
   },
-  {
+  rg40xx: {
     tag: 'rg40xx',
     manufacturer: 'Anbernic',
     name: 'RG 40XX (all models)',
@@ -186,7 +188,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg28xx: {
     tag: 'rg28xx',
     manufacturer: 'Anbernic',
     name: 'RG 28XX',
@@ -197,7 +199,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg557: {
     tag: 'rg557',
     manufacturer: 'Anbernic',
     name: 'RG 577',
@@ -208,7 +210,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  rg351p: {
     tag: 'rg351p',
     manufacturer: 'Anbernic',
     name: 'RG 351P',
@@ -219,7 +221,7 @@ export const screens: Screen[] = [
     ratioX: 3,
     ratioY: 2,
   },
-  {
+  rg406v: {
     tag: 'rg406v',
     manufacturer: 'Anbernic',
     name: 'RG 406V',
@@ -230,7 +232,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'rg-cube': {
     tag: 'rg-cube',
     manufacturer: 'Anbernic',
     name: 'RG Cube(XX)',
@@ -241,7 +243,7 @@ export const screens: Screen[] = [
     ratioX: 1,
     ratioY: 1,
   },
-  {
+  rg556: {
     tag: 'rg556',
     manufacturer: 'Anbernic',
     name: 'RG 556',
@@ -252,7 +254,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  rg405m: {
     tag: 'rg405m',
     manufacturer: 'Anbernic',
     name: 'RG 405(M & V)',
@@ -263,7 +265,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  rg503: {
     tag: 'rg503',
     manufacturer: 'Anbernic',
     name: 'RG 503',
@@ -274,7 +276,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  win600: {
     tag: 'win600',
     manufacturer: 'Anbernic',
     name: 'WIN600',
@@ -285,7 +287,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  rg552: {
     tag: 'rg552',
     manufacturer: 'Anbernic',
     name: 'RG 552',
@@ -296,7 +298,7 @@ export const screens: Screen[] = [
     ratioX: 5,
     ratioY: 3,
   },
-  {
+  'pocket-micro': {
     tag: 'pocket-micro',
     manufacturer: 'Ayaneo',
     name: 'Pocket Micro',
@@ -307,7 +309,7 @@ export const screens: Screen[] = [
     ratioX: 3,
     ratioY: 2,
   },
-  {
+  'pocket-s': {
     tag: 'pocket-s',
     manufacturer: 'Ayaneo',
     name: 'Pocket S',
@@ -318,7 +320,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'pocket-evo': {
     tag: 'pocket-evo',
     manufacturer: 'Ayaneo',
     name: 'Pocket EVO',
@@ -329,7 +331,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'pocket-dmg': {
     tag: 'pocket-dmg',
     manufacturer: 'Ayaneo',
     name: 'Pocket DMG',
@@ -340,7 +342,7 @@ export const screens: Screen[] = [
     ratioX: 31,
     ratioY: 27,
   },
-  {
+  'thor-top': {
     tag: 'thor-top',
     manufacturer: 'AYN',
     name: 'Thor (top)',
@@ -351,7 +353,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'thor-bottom': {
     tag: 'thor-bottom',
     manufacturer: 'AYN',
     name: 'Thor (bottom)',
@@ -362,7 +364,7 @@ export const screens: Screen[] = [
     ratioX: 31,
     ratioY: 27,
   },
-  {
+  'odin-3': {
     tag: 'odin-3',
     manufacturer: 'AYN',
     name: 'Odin 3',
@@ -373,7 +375,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'odin-2-portal': {
     tag: 'odin-2-portal',
     manufacturer: 'AYN',
     name: 'Odin 2 Portal',
@@ -384,7 +386,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'odin-2': {
     tag: 'odin-2',
     manufacturer: 'AYN',
     name: 'Odin 2',
@@ -395,7 +397,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'funkey-s': {
     tag: 'funkey-s',
     manufacturer: 'FunKey',
     name: 'S',
@@ -406,7 +408,7 @@ export const screens: Screen[] = [
     ratioX: 1,
     ratioY: 1,
   },
-  {
+  'fp-rpp': {
     tag: 'fp-rpp',
     manufacturer: 'FunnyPlaying',
     name: 'Retro Pixel Pocket',
@@ -417,7 +419,7 @@ export const screens: Screen[] = [
     ratioX: 1,
     ratioY: 1,
   },
-  {
+  'kt-r1': {
     tag: 'kt-r1',
     manufacturer: 'KT Pocket',
     name: 'KT-R1',
@@ -428,7 +430,7 @@ export const screens: Screen[] = [
     ratioX: 3,
     ratioY: 2,
   },
-  {
+  'magicx-zero-40': {
     tag: 'magicx-zero-40',
     manufacturer: 'MagicX',
     name: 'Zero 40',
@@ -439,7 +441,7 @@ export const screens: Screen[] = [
     ratioX: 3,
     ratioY: 5,
   },
-  {
+  'miyoo-mini': {
     tag: 'miyoo-mini',
     manufacturer: 'Miyoo',
     name: 'Mini',
@@ -450,7 +452,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'miyoo-mini-v4': {
     tag: 'miyoo-mini-v4',
     manufacturer: 'Miyoo',
     name: 'Mini (v4)',
@@ -461,7 +463,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'miyoo-mini-flip': {
     tag: 'miyoo-mini-flip',
     manufacturer: 'Miyoo',
     name: 'Mini Flip',
@@ -472,7 +474,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'miyoo-mini-plus': {
     tag: 'miyoo-mini-plus',
     manufacturer: 'Miyoo',
     name: 'Mini Plus',
@@ -483,7 +485,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'pk-rgb30': {
     tag: 'pk-rgb30',
     manufacturer: 'PowKiddy',
     name: 'RGB30',
@@ -494,7 +496,7 @@ export const screens: Screen[] = [
     ratioX: 1,
     ratioY: 1,
   },
-  {
+  'pk-rgb10-max': {
     tag: 'pk-rgb10-max',
     manufacturer: 'PowKiddy',
     name: 'RGB10 Max',
@@ -505,7 +507,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'rp-nova': {
     tag: 'rp-nova',
     manufacturer: 'Retroid Pocket',
     name: 'Nova',
@@ -516,7 +518,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'rp-6': {
     tag: 'rp-6',
     manufacturer: 'Retroid Pocket',
     name: '6',
@@ -527,7 +529,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'rp-flip-2': {
     tag: 'rp-flip-2',
     manufacturer: 'Retroid Pocket',
     name: 'Flip 2',
@@ -538,7 +540,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'rp-classic': {
     tag: 'rp-classic',
     manufacturer: 'Retroid Pocket',
     name: 'Classic',
@@ -549,7 +551,7 @@ export const screens: Screen[] = [
     ratioX: 31,
     ratioY: 27,
   },
-  {
+  'rp-5': {
     tag: 'rp-5',
     manufacturer: 'Retroid Pocket',
     name: '5',
@@ -560,7 +562,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'rp-4': {
     tag: 'rp-4',
     manufacturer: 'Retroid Pocket',
     name: '4/4 Pro',
@@ -571,7 +573,7 @@ export const screens: Screen[] = [
     ratioX: 667,
     ratioY: 375,
   },
-  {
+  'rp-mini': {
     tag: 'rp-mini',
     manufacturer: 'Retroid Pocket',
     name: 'Mini',
@@ -582,7 +584,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'rp-3': {
     tag: 'rp-3',
     manufacturer: 'Retroid Pocket',
     name: '3',
@@ -593,7 +595,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'sjgam-m17': {
     tag: 'sjgam-m17',
     manufacturer: 'SJGAM',
     name: 'M17',
@@ -604,7 +606,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'trimui-brick-pro': {
     tag: 'trimui-brick-pro',
     manufacturer: 'TrimUI',
     name: 'Brick (Hammer) PRO (U)',
@@ -615,7 +617,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'trimui-brick': {
     tag: 'trimui-brick',
     manufacturer: 'TrimUI',
     name: 'Brick (Hammer)',
@@ -626,7 +628,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'trimui-smart-pro': {
     tag: 'trimui-smart-pro',
     manufacturer: 'TrimUI',
     name: 'Smart Pro',
@@ -637,7 +639,7 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  'trimui-smart': {
     tag: 'trimui-smart',
     manufacturer: 'TrimUI',
     name: 'Smart',
@@ -648,7 +650,7 @@ export const screens: Screen[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'steam-deck': {
     tag: 'steam-deck',
     manufacturer: 'Valve',
     name: 'Steam Deck',
@@ -659,24 +661,10 @@ export const screens: Screen[] = [
     ratioX: 16,
     ratioY: 10,
   },
-  // {
-  //   tag: '',
-  //   manufacturer: '',
-  //   name: '',
-  //   resX: ,
-  //   resY: ,
-  //   sizeInches: ,
-  //   ratioType: '',
-  //   ratioX: ,
-  //   ratioY: ,
-  // },
-]
+}
 
 export const screenGroupingOptions = ['Aspect ratio', 'Manufacturer', 'Resolution'] as const
 export type ScreenGroupingOption = (typeof screenGroupingOptions)[number]
-
-export type ScreensByTag = Record<ScreenTag, Screen>
-export const screensByTag: ScreensByTag = {} as ScreensByTag
 
 export type ScreensByManufacturer = Record<ScreenManufacturer, Screen[]>
 export const screensByManufacturer: ScreensByManufacturer = screenManufacturers.reduce(
@@ -693,8 +681,9 @@ export const screensByRatio: ScreensByRatio = screenRatioTypes.reduce(
 export type ScreensByRes = Record<string, Screen[]>
 export const screensByRes: ScreensByRes = {} as ScreensByRes
 
-screens.forEach((screen) => {
-  screensByTag[screen.tag] = screen
+//
+;(Object.keys(screensByTag) as ScreenTag[]).forEach((tag) => {
+  const screen = screensByTag[tag]
   screensByManufacturer[screen.manufacturer].push(screen)
   screensByRatio[screen.ratioType].push(screen)
 
@@ -705,7 +694,3 @@ screens.forEach((screen) => {
     screensByRes[res] = [screen]
   }
 })
-
-// console.log(
-//   screens.toSorted((a, b) => a.manufacturer.localeCompare(b.manufacturer)).map((a) => a.tag)
-// )
