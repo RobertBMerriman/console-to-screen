@@ -40,6 +40,9 @@ export const consoleTags = [
 ] as const
 export type ConsoleTag = (typeof consoleTags)[number]
 
+export const consoleGens = [3, 4, 5, 6, 7, 8, 8.5, 'Fantasy'] as const
+export type ConsoleGen = (typeof consoleGens)[number]
+
 export const consoleManufacturers = [
   'Nintendo',
   'Sega',
@@ -64,7 +67,7 @@ export type ConsoleType = (typeof consoleTypes)[number]
 export type ConsolesByTag = Record<ConsoleTag, Console>
 export interface Console extends ResAndRatio {
   tag: ConsoleTag
-  gen: number | 'Fantasy'
+  gen: ConsoleGen
   manufacturer: ConsoleManufacturer
   name: string
   type: ConsoleType
@@ -410,8 +413,20 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   },
 }
 
-export const consoleGroupingOptions = ['Type', 'Manufacturer'] as const
+export const consoleGroupingOptions = ['Type', 'Manufacturer', 'Generation'] as const
 export type ConsoleGroupingOption = (typeof consoleGroupingOptions)[number]
+
+export type ConsolesByGen = Record<ConsoleGen, Console[]>
+export const consolesByGen: ConsolesByGen = {
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  8.5: [],
+  Fantasy: [],
+}
 
 export type ConsolesByManufacturer = Record<ConsoleManufacturer, Console[]>
 export const consolesByManufacturer: ConsolesByManufacturer = consoleManufacturers.reduce(
@@ -431,6 +446,7 @@ export const consolesByType: ConsolesByType = {
 //
 ;(Object.keys(consolesByTag) as ConsoleTag[]).forEach((tag) => {
   const console = consolesByTag[tag]
+  consolesByGen[console.gen].push(console)
   consolesByManufacturer[console.manufacturer].push(console)
   consolesByType[console.type].push(console)
 })

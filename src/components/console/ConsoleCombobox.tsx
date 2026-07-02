@@ -15,7 +15,9 @@ import {
   useComboboxAnchor,
 } from '@/components/ui/combobox'
 import {
+  consoleGens,
   consoleManufacturers,
+  consolesByGen,
   consolesByManufacturer,
   consolesByTag,
   consolesByType,
@@ -30,6 +32,7 @@ interface ConsoleGroup {
   label: string
   items: ReadonlyArray<Console>
 }
+// Replace with map lookup?
 function group(grouping: ConsoleGroupingOption) {
   const groups: ConsoleGroup[] = []
 
@@ -46,6 +49,14 @@ function group(grouping: ConsoleGroupingOption) {
       groups.push({
         label: manufacturer,
         items: consolesByManufacturer[manufacturer],
+      })
+    })
+  }
+  if (grouping === 'Generation') {
+    consoleGens.forEach((gen) => {
+      groups.push({
+        label: String(gen),
+        items: consolesByGen[gen],
       })
     })
   }
