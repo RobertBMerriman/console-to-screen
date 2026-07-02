@@ -343,7 +343,7 @@ export const consolesByManufacturer: ConsolesByManufacturer = consoleManufacture
   {} as ConsolesByManufacturer,
 )
 
-export type ConsolesByType = Record<ConsoleType, Omit<Console, 'type'>[]>
+export type ConsolesByType = Record<ConsoleType, Console[]>
 export const consolesByType: ConsolesByType = {
   Handheld: [],
   'Home console': [],

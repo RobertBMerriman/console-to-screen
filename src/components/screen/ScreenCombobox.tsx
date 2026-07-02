@@ -21,14 +21,18 @@ import {
   screensByRatio,
   screensByRes,
   screensByTag,
+  type Screen,
   type ScreenGroupingOption,
 } from '@/lib/screenData'
 import { cn } from '@/lib/utils'
 import { useScreenStore } from '@/stores/screenStore'
-import type { Group } from '@base-ui/react/internals/resolveValueLabel'
 
+interface ScreenGroup {
+  label: string
+  items: ReadonlyArray<Screen>
+}
 function group(grouping: ScreenGroupingOption) {
-  const groups: Group[] = []
+  const groups: ScreenGroup[] = []
 
   if (grouping === 'Aspect ratio') {
     screenRatioTypes.forEach((ratio) => {
@@ -65,9 +69,8 @@ export function ScreenCombobox() {
 
   const groups = group(grouping)
 
-  // const [value, setValue] = useState('')
-
   const anchor = useComboboxAnchor()
+
   return (
     <Combobox items={groups} multiple value={tags} onValueChange={setScreensByTags} autoHighlight>
       <ComboboxChips ref={anchor} className="flex-col">
@@ -85,30 +88,14 @@ export function ScreenCombobox() {
         </div>
         <ComboboxChipsInput id="screen" placeholder="Select a device or search" />
       </ComboboxChips>
-      {/* <ComboboxInput
-        placeholder="Select a device"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onFocus={() => setValue('')}
-        onBlur={() =>
-          setValue(
-            tags.length +
-              ': ' +
-              tags
-                .toReversed()
-                .map((tag) => screensByTag[tag])
-                .map((screen) => screen.manufacturer + ' ' + screen.name)
-                .join(', '),
-          )
-        }
-      /> */}
+
       <ComboboxContent anchor={anchor} className={'h-full'}>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
-        <ComboboxList>
+        <ComboboxList<ScreenGroup>>
           {(group, index) => (
             <ComboboxGroup key={group.label} items={group.items}>
               <ComboboxLabel>{group.label}</ComboboxLabel>
-              <ComboboxCollection>
+              <ComboboxCollection<Screen>>
                 {(screen) => (
                   <ComboboxItem key={screen.tag} value={screen.tag}>
                     {screen.manufacturer} {screen.name}

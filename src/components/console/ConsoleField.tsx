@@ -1,4 +1,4 @@
-import { ConsoleSelect } from '@/components/console/ConsoleSelect'
+import { ConsoleCombobox } from '@/components/console/ConsoleCombobox'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
@@ -27,7 +27,7 @@ export function ConsoleField() {
             <Field>
               <FieldLabel htmlFor="console">Console</FieldLabel>
 
-              <ConsoleSelect />
+              <ConsoleCombobox />
             </Field>
             <Field className="w-fit">
               <FieldLabel htmlFor="console-group">Group by</FieldLabel>

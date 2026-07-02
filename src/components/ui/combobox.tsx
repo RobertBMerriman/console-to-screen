@@ -116,7 +116,11 @@ function ComboboxContent({
   )
 }
 
-function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
+interface ComboboxListProps<T> extends Omit<ComboboxPrimitive.List.Props, 'children'> {
+  children?: React.ReactNode | ((item: T, index: number) => React.ReactNode)
+}
+
+function ComboboxList<T>({ className, ...props }: ComboboxListProps<T>) {
   return (
     <ComboboxPrimitive.List
       data-slot="combobox-list"
@@ -165,7 +169,13 @@ function ComboboxLabel({ className, ...props }: ComboboxPrimitive.GroupLabel.Pro
   )
 }
 
-function ComboboxCollection({ ...props }: ComboboxPrimitive.Collection.Props) {
+export interface ComboboxCollectionProps<T> extends Omit<
+  ComboboxPrimitive.Collection.Props,
+  'children'
+> {
+  children: (item: T, index: number) => React.ReactNode
+}
+function ComboboxCollection<T>({ ...props }: ComboboxCollectionProps<T>) {
   return <ComboboxPrimitive.Collection data-slot="combobox-collection" {...props} />
 }
 
