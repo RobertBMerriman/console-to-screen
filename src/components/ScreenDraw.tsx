@@ -1,5 +1,6 @@
 import ConsoleDraw from '@/components/ConsoleDraw'
 import { H3 } from '@/components/ui/typography/H3'
+import { H4 } from '@/components/ui/typography/H4'
 import type { Screen } from '@/lib/screenData'
 import { findDiagonal, ppi } from '@/lib/utils'
 import { useConsoles } from '@/stores/consoleStore'
@@ -31,6 +32,7 @@ export function ScreenDraw({ screen }: Props) {
         </div>
       </div>
       <div className="flex flex-row flex-wrap justify-center gap-x-16 gap-y-8">
+        {consoles.length === 0 && <H4>Please select a console</H4>}
         {consoles.toReversed().map((consol) => (
           <ConsoleDraw
             key={consol.tag}

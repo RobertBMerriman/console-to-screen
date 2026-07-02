@@ -6,6 +6,7 @@ import { ModeToggle } from '@/components/mode-toggle'
 import { ScreenField } from '@/components/screen/ScreenField'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
+import { H3 } from '@/components/ui/typography/H3'
 import { H4 } from '@/components/ui/typography/H4'
 import { useScreens } from '@/stores/screenStore'
 
@@ -32,6 +33,7 @@ export function Home() {
       <Separator />
 
       <div className="flex flex-col gap-6">
+        {screens.length === 0 && <H3 className="text-center">Please select a screen</H3>}
         {screens.toReversed().map((screen, index) => (
           <Fragment key={screen.tag}>
             <ScreenDraw screen={screen} />

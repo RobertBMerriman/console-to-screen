@@ -73,7 +73,7 @@ export function ConsoleCombobox() {
             })}
           </ComboboxValue>
         </div>
-        <ComboboxChipsInput id="console" placeholder="Select a console" />
+        <ComboboxChipsInput id="console" placeholder="Select a console or search" />
       </ComboboxChips>
 
       <ComboboxContent anchor={anchor} className={'h-full'}>

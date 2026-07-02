@@ -17,7 +17,7 @@ export function ScreenField() {
   return (
     <FieldGroup>
       <FieldSet>
-        <FieldGroup className="flex flex-row gap-4">
+        <FieldGroup className="flex flex-row items-end gap-4">
           <Field>
             <FieldLabel htmlFor="screen">Screen</FieldLabel>
             <ScreenCombobox />
