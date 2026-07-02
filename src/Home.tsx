@@ -1,9 +1,9 @@
 import { Fragment } from 'react/jsx-runtime'
 
 import { ScreenDraw } from '@/components/ScreenDraw'
-import { ConsoleField } from '@/components/field/ConsoleField'
-import { ScreenField } from '@/components/field/ScreenField'
+import { ConsoleField } from '@/components/console/ConsoleField'
 import { ModeToggle } from '@/components/mode-toggle'
+import { ScreenField } from '@/components/screen/ScreenField'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
 import { H4 } from '@/components/ui/typography/H4'
