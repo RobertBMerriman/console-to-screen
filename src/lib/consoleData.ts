@@ -73,19 +73,6 @@ export interface Console extends ResAndRatio {
 }
 export const consolesByTag: Record<ConsoleTag, Console> = {
   // Handhelds
-  lynx: {
-    tag: 'lynx',
-    gen: 4,
-    manufacturer: 'Atari',
-    name: 'Lynx',
-    type: 'Handheld',
-    resX: 160,
-    resY: 102,
-    ratioX: 80,
-    ratioY: 51,
-    closestRatioX: 3,
-    closestRatioY: 2,
-  },
   gb: {
     tag: 'gb',
     gen: 4,
@@ -111,6 +98,19 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     ratioY: 9,
     closestRatioX: 1,
     closestRatioY: 1,
+  },
+  lynx: {
+    tag: 'lynx',
+    gen: 4,
+    manufacturer: 'Atari',
+    name: 'Lynx',
+    type: 'Handheld',
+    resX: 160,
+    resY: 102,
+    ratioX: 80,
+    ratioY: 51,
+    closestRatioX: 3,
+    closestRatioY: 2,
   },
   ngp: {
     tag: 'ngp',
@@ -313,6 +313,14 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 1,
     closestRatioY: 1,
   },
+  n64: {
+    tag: 'n64',
+    gen: 5,
+    manufacturer: 'Nintendo',
+    name: 'Nintendo 64 (NTSC)',
+    type: 'Home console',
+    ...p240,
+  },
   saturn: {
     tag: 'saturn',
     gen: 5,
@@ -329,13 +337,13 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     type: 'Home console',
     ...p240,
   },
-  n64: {
-    tag: 'n64',
-    gen: 5,
+  ngc: {
+    tag: 'ngc',
+    gen: 6,
     manufacturer: 'Nintendo',
-    name: 'Nintendo 64 (NTSC)',
+    name: 'Gamecube (NTSC)',
     type: 'Home console',
-    ...p240,
+    ...p480,
   },
   dc: {
     tag: 'dc',
@@ -350,14 +358,6 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     gen: 6,
     manufacturer: 'Sony',
     name: 'PlayStation 2 (NTSC)',
-    type: 'Home console',
-    ...p480,
-  },
-  ngc: {
-    tag: 'ngc',
-    gen: 6,
-    manufacturer: 'Nintendo',
-    name: 'Gamecube (NTSC)',
     type: 'Home console',
     ...p480,
   },
