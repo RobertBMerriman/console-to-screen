@@ -2,12 +2,14 @@ import { Fragment } from 'react/jsx-runtime'
 
 import { ScreenDraw } from '@/components/ScreenDraw'
 import { ConsoleField } from '@/components/console/ConsoleField'
+import { Github } from '@/components/icons/Github'
 import { ModeToggle } from '@/components/mode-toggle'
 import { ScreenField } from '@/components/screen/ScreenField'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
 import { H3 } from '@/components/ui/typography/H3'
 import { H4 } from '@/components/ui/typography/H4'
+import { Muted } from '@/components/ui/typography/Muted'
 import { useScreens } from '@/stores/screenStore'
 
 export function Home() {
@@ -32,7 +34,7 @@ export function Home() {
 
       <Separator />
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-1 flex-col gap-6">
         {screens.length === 0 && <H3 className="text-center opacity-80">Please select a screen</H3>}
         {screens.toReversed().map((screen, index) => (
           <Fragment key={screen.tag}>
@@ -40,6 +42,24 @@ export function Home() {
             {index < screens.length - 1 && <Separator />}
           </Fragment>
         ))}
+      </div>
+
+      <div className="mt-6 flex flex-col gap-2">
+        <Separator />
+        <div className="flex flex-col justify-center gap-1">
+          <Muted className="mx-4 text-center">
+            Handcrafted by{' '}
+            <a href="https://robertbmerriman.co.uk" target="_blank">
+              Robert Merriman
+            </a>{' '}
+            for the love of the games
+          </Muted>
+          <div className="flex justify-center gap-2">
+            <a href="https://github.com/RobertBMerriman/console-to-screen" target="_blank">
+              <Github className="text-muted-foreground" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   )
