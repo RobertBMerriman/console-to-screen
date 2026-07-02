@@ -42,6 +42,7 @@ export type ConsoleManufacturer = (typeof consoleManufacturers)[number]
 export const consoleTypes = ['Handheld', 'Home console', 'Fantasy console', 'Other'] as const
 export type ConsoleType = (typeof consoleTypes)[number]
 
+export type ConsolesByTag = Record<ConsoleTag, Console>
 export interface Console {
   tag: ConsoleTag
   manufacturer: ConsoleManufacturer
@@ -54,8 +55,8 @@ export interface Console {
   closestRatioX?: number
   closestRatioY?: number
 }
-export const consoles: Console[] = [
-  {
+export const consolesByTag: Record<ConsoleTag, Console> = {
+  lynx: {
     tag: 'lynx',
     manufacturer: 'Atari',
     name: 'Lynx',
@@ -67,7 +68,7 @@ export const consoles: Console[] = [
     closestRatioX: 3,
     closestRatioY: 2,
   },
-  {
+  gb: {
     tag: 'gb',
     manufacturer: 'Nintendo',
     name: 'Game Boy (Color)',
@@ -79,7 +80,7 @@ export const consoles: Console[] = [
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  {
+  'game-gear': {
     tag: 'game-gear',
     manufacturer: 'Sega',
     name: 'Game Gear',
@@ -91,7 +92,7 @@ export const consoles: Console[] = [
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  {
+  ngp: {
     tag: 'ngp',
     manufacturer: 'SNK',
     name: 'Neo Geo Pocket (Color)',
@@ -103,7 +104,7 @@ export const consoles: Console[] = [
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  {
+  ws: {
     tag: 'ws',
     manufacturer: 'Bandai',
     name: 'WonderSwan (Color)',
@@ -115,7 +116,7 @@ export const consoles: Console[] = [
     closestRatioX: 3,
     closestRatioY: 2,
   },
-  {
+  gba: {
     tag: 'gba',
     manufacturer: 'Nintendo',
     name: 'Game Boy Advance',
@@ -125,7 +126,7 @@ export const consoles: Console[] = [
     ratioX: 3,
     ratioY: 2,
   },
-  {
+  'poke-mini': {
     tag: 'poke-mini',
     manufacturer: 'Nintendo',
     name: 'Pokémon mini',
@@ -135,7 +136,7 @@ export const consoles: Console[] = [
     ratioX: 3,
     ratioY: 2,
   },
-  {
+  'nds-single': {
     tag: 'nds-single',
     manufacturer: 'Nintendo',
     name: 'DS □',
@@ -145,7 +146,7 @@ export const consoles: Console[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'nds-horizontal': {
     tag: 'nds-horizontal',
     manufacturer: 'Nintendo',
     name: 'DS ◫',
@@ -155,7 +156,7 @@ export const consoles: Console[] = [
     ratioX: 8,
     ratioY: 3,
   },
-  {
+  'nds-vertical': {
     tag: 'nds-vertical',
     manufacturer: 'Nintendo',
     name: 'DS ⊟',
@@ -165,7 +166,7 @@ export const consoles: Console[] = [
     ratioX: 2,
     ratioY: 3,
   },
-  {
+  '3ds-top': {
     tag: '3ds-top',
     manufacturer: 'Nintendo',
     name: '3DS (top)',
@@ -175,7 +176,7 @@ export const consoles: Console[] = [
     ratioX: 5,
     ratioY: 3,
   },
-  {
+  '3ds-bottom': {
     tag: '3ds-bottom',
     manufacturer: 'Nintendo',
     name: '3DS (bottom)',
@@ -185,7 +186,7 @@ export const consoles: Console[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  '3ds-horizontal': {
     tag: '3ds-horizontal',
     manufacturer: 'Nintendo',
     name: '3DS ◫',
@@ -195,7 +196,7 @@ export const consoles: Console[] = [
     ratioX: 3,
     ratioY: 1,
   },
-  {
+  '3ds-vertical': {
     tag: '3ds-vertical',
     manufacturer: 'Nintendo',
     name: '3DS ⊟',
@@ -205,7 +206,7 @@ export const consoles: Console[] = [
     ratioX: 5,
     ratioY: 6,
   },
-  {
+  psp: {
     tag: 'psp',
     manufacturer: 'Sony',
     name: 'PSP',
@@ -215,7 +216,7 @@ export const consoles: Console[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  psv: {
     tag: 'psv',
     manufacturer: 'Sony',
     name: 'PS Vita',
@@ -225,7 +226,7 @@ export const consoles: Console[] = [
     ratioX: 16,
     ratioY: 9,
   },
-  {
+  nes: {
     tag: 'nes',
     manufacturer: 'Nintendo',
     name: 'NES',
@@ -237,7 +238,7 @@ export const consoles: Console[] = [
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  {
+  'mega-drive': {
     tag: 'mega-drive',
     manufacturer: 'Sega',
     name: 'Mega Drive/Genesis',
@@ -247,7 +248,7 @@ export const consoles: Console[] = [
     ratioX: 10,
     ratioY: 7,
   },
-  {
+  snes: {
     tag: 'snes',
     manufacturer: 'Nintendo',
     name: 'SNES',
@@ -259,7 +260,7 @@ export const consoles: Console[] = [
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  {
+  saturn: {
     tag: 'saturn',
     manufacturer: 'Sega',
     name: 'Saturn',
@@ -269,7 +270,7 @@ export const consoles: Console[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  psx: {
     tag: 'psx',
     manufacturer: 'Sony',
     name: 'PlayStation',
@@ -279,7 +280,7 @@ export const consoles: Console[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  n64: {
     tag: 'n64',
     manufacturer: 'Nintendo',
     name: 'Nintendo 64',
@@ -289,7 +290,7 @@ export const consoles: Console[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  dc: {
     tag: 'dc',
     manufacturer: 'Sega',
     name: 'Dreamcast',
@@ -299,7 +300,7 @@ export const consoles: Console[] = [
     ratioX: 4,
     ratioY: 3,
   },
-  {
+  'pico-8': {
     tag: 'pico-8',
     manufacturer: 'Other',
     name: 'PICO-8',
@@ -309,7 +310,7 @@ export const consoles: Console[] = [
     ratioX: 1,
     ratioY: 1,
   },
-  {
+  'tic-80': {
     tag: 'tic-80',
     manufacturer: 'Other',
     name: 'TIC-80',
@@ -321,7 +322,7 @@ export const consoles: Console[] = [
     closestRatioX: 16,
     closestRatioY: 9,
   },
-  {
+  vb: {
     tag: 'vb',
     manufacturer: 'Nintendo',
     name: 'Virtual Boy',
@@ -331,13 +332,10 @@ export const consoles: Console[] = [
     ratioX: 12,
     ratioY: 7,
   },
-]
+}
 
 export const consoleGroupingOptions = ['Type', 'Manufacturer'] as const
 export type ConsoleGroupingOption = (typeof consoleGroupingOptions)[number]
-
-export type ConsolesByTag = Record<ConsoleTag, Console>
-export let consolesByTag: ConsolesByTag = {} as ConsolesByTag
 
 export type ConsolesByManufacturer = Record<ConsoleManufacturer, Console[]>
 export const consolesByManufacturer: ConsolesByManufacturer = consoleManufacturers.reduce(
@@ -352,9 +350,8 @@ export const consolesByType: ConsolesByType = {
   'Fantasy console': [],
   Other: [],
 }
-
-consoles.forEach((console) => {
-  consolesByTag[console.tag] = console
+;(Object.keys(consolesByTag) as ConsoleTag[]).forEach((tag) => {
+  const console = consolesByTag[tag]
   consolesByManufacturer[console.manufacturer].push(console)
   consolesByType[console.type].push(console)
 })
