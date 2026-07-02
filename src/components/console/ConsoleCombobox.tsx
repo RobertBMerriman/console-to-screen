@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import {
   Combobox,
   ComboboxChip,
@@ -83,6 +84,11 @@ export function ConsoleCombobox() {
               return <ComboboxChip key={tag}>{console.name}</ComboboxChip>
             })}
           </ComboboxValue>
+          {tags.length > 0 && (
+            <Button variant={'ghost'} size={'chip'} onClick={() => setConsolesByTags([])}>
+              Clear all
+            </Button>
+          )}
         </div>
         <ComboboxChipsInput id="console" placeholder="Select a console or search" />
       </ComboboxChips>

@@ -277,7 +277,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     tag: 'switch-handheld',
     gen: 8.5,
     manufacturer: 'Nintendo',
-    name: 'Switch (handheld)',
+    name: 'Switch (handheld & Lite)',
     type: 'Hybrid',
     ...p720,
   },

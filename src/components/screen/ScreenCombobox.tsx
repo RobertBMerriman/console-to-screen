@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import {
   Combobox,
   ComboboxChip,
@@ -85,6 +86,11 @@ export function ScreenCombobox() {
               )
             })}
           </ComboboxValue>
+          {tags.length > 0 && (
+            <Button variant={'ghost'} size={'chip'} onClick={() => setScreensByTags([])}>
+              Clear all
+            </Button>
+          )}
         </div>
         <ComboboxChipsInput id="screen" placeholder="Select a device or search" />
       </ComboboxChips>
@@ -98,6 +104,11 @@ export function ScreenCombobox() {
               <ComboboxCollection<Screen>>
                 {(screen) => (
                   <ComboboxItem key={screen.tag} value={screen.tag}>
+                    {grouping === 'Aspect ratio' && screen.ratioType === 'Other' && (
+                      <>
+                        [{screen.ratioX}:{screen.ratioY}]{' '}
+                      </>
+                    )}
                     {screen.manufacturer} {screen.name}
                   </ComboboxItem>
                 )}
