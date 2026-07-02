@@ -89,19 +89,6 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  'game-gear': {
-    tag: 'game-gear',
-    gen: 4,
-    manufacturer: 'Sega',
-    name: 'Game Gear',
-    type: 'Handheld',
-    resX: 160,
-    resY: 144,
-    ratioX: 10,
-    ratioY: 9,
-    closestRatioX: 1,
-    closestRatioY: 1,
-  },
   lynx: {
     tag: 'lynx',
     gen: 4,
@@ -115,6 +102,20 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 3,
     closestRatioY: 2,
   },
+  'game-gear': {
+    tag: 'game-gear',
+    gen: 4,
+    manufacturer: 'Sega',
+    name: 'Game Gear',
+    type: 'Handheld',
+    resX: 160,
+    resY: 144,
+    ratioX: 10,
+    ratioY: 9,
+    closestRatioX: 1,
+    closestRatioY: 1,
+  },
+
   ngp: {
     tag: 'ngp',
     gen: 5,
@@ -141,6 +142,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 3,
     closestRatioY: 2,
   },
+
   gba: {
     tag: 'gba',
     gen: 6,
@@ -163,6 +165,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     ratioX: 3,
     ratioY: 2,
   },
+
   'nds-single': {
     tag: 'nds-single',
     gen: 7,
@@ -207,6 +210,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     ratioX: 16,
     ratioY: 9,
   },
+
   '3ds-top': {
     tag: '3ds-top',
     gen: 8,
@@ -292,6 +296,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 1,
     closestRatioY: 1,
   },
+
   'mega-drive': {
     tag: 'mega-drive',
     gen: 4,
@@ -316,14 +321,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 1,
     closestRatioY: 1,
   },
-  n64: {
-    tag: 'n64',
-    gen: 5,
-    manufacturer: 'Nintendo',
-    name: 'Nintendo 64 (NTSC)',
-    type: 'Home console',
-    ...p240,
-  },
+
   saturn: {
     tag: 'saturn',
     gen: 5,
@@ -340,14 +338,15 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     type: 'Home console',
     ...p240,
   },
-  ngc: {
-    tag: 'ngc',
-    gen: 6,
+  n64: {
+    tag: 'n64',
+    gen: 5,
     manufacturer: 'Nintendo',
-    name: 'Gamecube (NTSC)',
+    name: 'Nintendo 64 (NTSC)',
     type: 'Home console',
-    ...p480,
+    ...p240,
   },
+
   dc: {
     tag: 'dc',
     gen: 6,
@@ -361,6 +360,14 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     gen: 6,
     manufacturer: 'Sony',
     name: 'PlayStation 2 (NTSC)',
+    type: 'Home console',
+    ...p480,
+  },
+  ngc: {
+    tag: 'ngc',
+    gen: 6,
+    manufacturer: 'Nintendo',
+    name: 'Gamecube (NTSC)',
     type: 'Home console',
     ...p480,
   },

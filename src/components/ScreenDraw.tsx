@@ -32,7 +32,7 @@ export function ScreenDraw({ screen }: Props) {
         </div>
       </div>
       <div className="flex flex-row flex-wrap justify-center gap-x-16 gap-y-8">
-        {consoles.length === 0 && <H4>Please select a console</H4>}
+        {consoles.length === 0 && <H4 className="opacity-60">Please select a console</H4>}
         {consoles.toReversed().map((consol) => (
           <ConsoleDraw
             key={consol.tag}

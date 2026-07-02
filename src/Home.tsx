@@ -33,7 +33,7 @@ export function Home() {
       <Separator />
 
       <div className="flex flex-col gap-6">
-        {screens.length === 0 && <H3 className="text-center">Please select a screen</H3>}
+        {screens.length === 0 && <H3 className="text-center opacity-80">Please select a screen</H3>}
         {screens.toReversed().map((screen, index) => (
           <Fragment key={screen.tag}>
             <ScreenDraw screen={screen} />
