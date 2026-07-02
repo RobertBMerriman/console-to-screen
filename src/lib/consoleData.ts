@@ -1,6 +1,7 @@
-import { p240, p480, type ResAndRatio } from '@/lib/commonData'
+import { p1080, p240, p480, p720, type ResAndRatio } from '@/lib/commonData'
 
 export const consoleTags = [
+  // Handhelds
   'gb',
   'lynx',
   'game-gear',
@@ -11,12 +12,16 @@ export const consoleTags = [
   'nds-single',
   'nds-horizontal',
   'nds-vertical',
+  'psp',
   '3ds-top',
   '3ds-bottom',
   '3ds-horizontal',
   '3ds-vertical',
-  'psp',
   'psv',
+  // Hybrids
+  'switch-handheld',
+  'switch-docked',
+  // Home coneoles
   'nes',
   'mega-drive',
   'snes',
@@ -24,8 +29,13 @@ export const consoleTags = [
   'psx',
   'n64',
   'dc',
+  'ps2',
+  'ngc',
+  'xbox',
+  // Fantasy consoles
   'pico-8',
   'tic-80',
+  // Others
   'vb',
 ] as const
 export type ConsoleTag = (typeof consoleTags)[number]
@@ -34,6 +44,7 @@ export const consoleManufacturers = [
   'Nintendo',
   'Sega',
   'Sony',
+  'Microsoft',
   'Atari',
   'SNK',
   'Bandai',
@@ -41,12 +52,19 @@ export const consoleManufacturers = [
 ] as const
 export type ConsoleManufacturer = (typeof consoleManufacturers)[number]
 
-export const consoleTypes = ['Handheld', 'Home console', 'Fantasy console', 'Other'] as const
+export const consoleTypes = [
+  'Handheld',
+  'Hybrid',
+  'Home console',
+  'Fantasy console',
+  'Other',
+] as const
 export type ConsoleType = (typeof consoleTypes)[number]
 
 export type ConsolesByTag = Record<ConsoleTag, Console>
 export interface Console extends ResAndRatio {
   tag: ConsoleTag
+  gen: number | 'Fantasy'
   manufacturer: ConsoleManufacturer
   name: string
   type: ConsoleType
@@ -57,6 +75,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   lynx: {
     tag: 'lynx',
     manufacturer: 'Atari',
+    gen: 4,
     name: 'Lynx',
     type: 'Handheld',
     resX: 160,
@@ -69,6 +88,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   gb: {
     tag: 'gb',
     manufacturer: 'Nintendo',
+    gen: 4,
     name: 'Game Boy (Color)',
     type: 'Handheld',
     resX: 160,
@@ -81,6 +101,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   'game-gear': {
     tag: 'game-gear',
     manufacturer: 'Sega',
+    gen: 4,
     name: 'Game Gear',
     type: 'Handheld',
     resX: 160,
@@ -93,6 +114,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   ngp: {
     tag: 'ngp',
     manufacturer: 'SNK',
+    gen: 5,
     name: 'Neo Geo Pocket (Color)',
     type: 'Handheld',
     resX: 160,
@@ -105,6 +127,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   ws: {
     tag: 'ws',
     manufacturer: 'Bandai',
+    gen: 5,
     name: 'WonderSwan (Color)',
     type: 'Handheld',
     resX: 224,
@@ -117,6 +140,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   gba: {
     tag: 'gba',
     manufacturer: 'Nintendo',
+    gen: 6,
     name: 'Game Boy Advance',
     type: 'Handheld',
     resX: 240,
@@ -127,6 +151,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   'poke-mini': {
     tag: 'poke-mini',
     manufacturer: 'Nintendo',
+    gen: 6,
     name: 'Pokémon mini',
     type: 'Handheld',
     resX: 96,
@@ -137,6 +162,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   'nds-single': {
     tag: 'nds-single',
     manufacturer: 'Nintendo',
+    gen: 7,
     name: 'DS □',
     type: 'Handheld',
     resX: 256,
@@ -147,6 +173,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   'nds-horizontal': {
     tag: 'nds-horizontal',
     manufacturer: 'Nintendo',
+    gen: 7,
     name: 'DS ◫',
     type: 'Handheld',
     resX: 512,
@@ -157,6 +184,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   'nds-vertical': {
     tag: 'nds-vertical',
     manufacturer: 'Nintendo',
+    gen: 7,
     name: 'DS ⊟',
     type: 'Handheld',
     resX: 256,
@@ -164,9 +192,21 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     ratioX: 2,
     ratioY: 3,
   },
+  psp: {
+    tag: 'psp',
+    manufacturer: 'Sony',
+    gen: 7,
+    name: 'PSP',
+    type: 'Handheld',
+    resX: 480,
+    resY: 272,
+    ratioX: 16,
+    ratioY: 9,
+  },
   '3ds-top': {
     tag: '3ds-top',
     manufacturer: 'Nintendo',
+    gen: 8,
     name: '3DS (top)',
     type: 'Handheld',
     resX: 400,
@@ -177,6 +217,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   '3ds-bottom': {
     tag: '3ds-bottom',
     manufacturer: 'Nintendo',
+    gen: 8,
     name: '3DS (bottom)',
     type: 'Handheld',
     ...p240,
@@ -184,6 +225,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   '3ds-horizontal': {
     tag: '3ds-horizontal',
     manufacturer: 'Nintendo',
+    gen: 8,
     name: '3DS ◫',
     type: 'Handheld',
     resX: 720,
@@ -194,6 +236,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   '3ds-vertical': {
     tag: '3ds-vertical',
     manufacturer: 'Nintendo',
+    gen: 8,
     name: '3DS ⊟',
     type: 'Handheld',
     resX: 400,
@@ -201,19 +244,10 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     ratioX: 5,
     ratioY: 6,
   },
-  psp: {
-    tag: 'psp',
-    manufacturer: 'Sony',
-    name: 'PSP',
-    type: 'Handheld',
-    resX: 480,
-    resY: 272,
-    ratioX: 16,
-    ratioY: 9,
-  },
   psv: {
     tag: 'psv',
     manufacturer: 'Sony',
+    gen: 8,
     name: 'PS Vita',
     type: 'Handheld',
     resX: 960,
@@ -221,9 +255,30 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     ratioX: 16,
     ratioY: 9,
   },
+
+  // Hybrids
+  'switch-handheld': {
+    tag: 'switch-handheld',
+    manufacturer: 'Nintendo',
+    gen: 8.5,
+    name: 'Switch (handheld)',
+    type: 'Hybrid',
+    ...p720,
+  },
+  'switch-docked': {
+    tag: 'switch-docked',
+    manufacturer: 'Nintendo',
+    gen: 8.5,
+    name: 'Switch (docked)',
+    type: 'Hybrid',
+    ...p1080,
+  },
+
+  // Home consoles
   nes: {
     tag: 'nes',
     manufacturer: 'Nintendo',
+    gen: 3,
     name: 'NES',
     type: 'Home console',
     resX: 256,
@@ -235,6 +290,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   },
   'mega-drive': {
     tag: 'mega-drive',
+    gen: 4,
     manufacturer: 'Sega',
     name: 'Mega Drive/Genesis',
     type: 'Home console',
@@ -246,6 +302,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   snes: {
     tag: 'snes',
     manufacturer: 'Nintendo',
+    gen: 4,
     name: 'SNES',
     type: 'Home console',
     resX: 256,
@@ -258,34 +315,65 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   saturn: {
     tag: 'saturn',
     manufacturer: 'Sega',
-    name: 'Saturn',
+    gen: 5,
+    name: 'Saturn (NTSC)',
     type: 'Home console',
     ...p240,
   },
   psx: {
     tag: 'psx',
     manufacturer: 'Sony',
-    name: 'PlayStation',
+    gen: 5,
+    name: 'PlayStation (NTSC)',
     type: 'Home console',
     ...p240,
   },
   n64: {
     tag: 'n64',
     manufacturer: 'Nintendo',
-    name: 'Nintendo 64',
+    gen: 5,
+    name: 'Nintendo 64 (NTSC)',
     type: 'Home console',
     ...p240,
   },
   dc: {
     tag: 'dc',
     manufacturer: 'Sega',
-    name: 'Dreamcast',
+    gen: 6,
+    name: 'Dreamcast (NTSC)',
     type: 'Home console',
     ...p480,
   },
+  ps2: {
+    tag: 'ps2',
+    manufacturer: 'Sony',
+    gen: 6,
+    name: 'PlayStation 2 (NTSC)',
+    type: 'Home console',
+    ...p480,
+  },
+  ngc: {
+    tag: 'ngc',
+    manufacturer: 'Nintendo',
+    gen: 6,
+    name: 'Gamecube (NTSC)',
+    type: 'Home console',
+    ...p480,
+  },
+  xbox: {
+    tag: 'xbox',
+    manufacturer: 'Microsoft',
+    gen: 6,
+    name: 'Xbox (NTSC)',
+    type: 'Home console',
+    ...p480,
+  },
+
+  // Fantasy consoles
   'pico-8': {
     tag: 'pico-8',
     manufacturer: 'Other',
+    gen: 'Fantasy',
     name: 'PICO-8',
     type: 'Fantasy console',
     resX: 128,
@@ -296,6 +384,7 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   'tic-80': {
     tag: 'tic-80',
     manufacturer: 'Other',
+    gen: 'Fantasy',
     name: 'TIC-80',
     type: 'Fantasy console',
     resX: 240,
@@ -305,9 +394,12 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     closestRatioX: 16,
     closestRatioY: 9,
   },
+
+  // Others
   vb: {
     tag: 'vb',
     manufacturer: 'Nintendo',
+    gen: 5,
     name: 'Virtual Boy',
     type: 'Other',
     resX: 384,
@@ -329,6 +421,7 @@ export const consolesByManufacturer: ConsolesByManufacturer = consoleManufacture
 export type ConsolesByType = Record<ConsoleType, Console[]>
 export const consolesByType: ConsolesByType = {
   Handheld: [],
+  Hybrid: [],
   'Home console': [],
   'Fantasy console': [],
   Other: [],
