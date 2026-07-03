@@ -4,9 +4,10 @@ import { H4 } from '@/components/ui/typography/H4'
 import type { Screen } from '@/lib/screenData'
 import { findDiagonal, ppi } from '@/lib/utils'
 import { useConsoles } from '@/stores/consoleStore'
+import type { CustomScreen } from '@/stores/customScreenStore'
 
 interface Props {
-  screen: Screen
+  screen: Screen | (CustomScreen & { manufacturer?: string })
 }
 export function ScreenDraw({ screen }: Props) {
   const consoles = useConsoles()

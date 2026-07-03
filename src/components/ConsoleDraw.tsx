@@ -3,9 +3,10 @@ import type { Console } from '@/lib/consoleData'
 import type { Screen } from '@/lib/screenData'
 import { cn, findDiagonal } from '@/lib/utils'
 import { useConsoleStore } from '@/stores/consoleStore'
+import type { CustomScreen } from '@/stores/customScreenStore'
 
 interface Props {
-  screen: Screen
+  screen: Screen | CustomScreen
   screenDiagonalPixels: number
   consol: Console
 }

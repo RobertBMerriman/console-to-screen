@@ -25,7 +25,7 @@ export function ConsoleField() {
         <FieldGroup>
           <div className="flex flex-row items-end gap-4">
             <Field>
-              <FieldLabel htmlFor="console">Console</FieldLabel>
+              <FieldLabel htmlFor="console">Consoles</FieldLabel>
 
               <ConsoleCombobox />
             </Field>
