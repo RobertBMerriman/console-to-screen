@@ -27,7 +27,17 @@ export const useCustomScreenStore = create<State & Action>()(
       selectedTags: [],
       setSelectedTags: (selectedTags) => set(() => ({ selectedTags })),
 
-      customScreens: {},
+      customScreens: {
+        test: {
+          tag: 'test',
+          name: 'Test',
+          sizeInches: 4,
+          resX: 1024,
+          resY: 768,
+          ratioX: 4,
+          ratioY: 3,
+        },
+      },
       setCustomScreens: (customScreens) => set(() => ({ customScreens })),
     }),
 
@@ -35,8 +45,13 @@ export const useCustomScreenStore = create<State & Action>()(
   ),
 )
 
-export const useCustomScreens = (): CustomScreen[] => {
+export const useSelectedCustomScreens = (): CustomScreen[] => {
   const selectedTags = useCustomScreenStore((state) => state.selectedTags)
   const customScreens = useCustomScreenStore((state) => state.customScreens)
   return selectedTags.map((tag) => customScreens[tag])
+}
+
+export const useCustomScreens = (): CustomScreen[] => {
+  const customScreens = useCustomScreenStore((state) => state.customScreens)
+  return Object.keys(customScreens).map((tag) => customScreens[tag])
 }

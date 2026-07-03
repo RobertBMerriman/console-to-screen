@@ -1,4 +1,5 @@
 import { ScreenCombobox } from '@/components/screen/ScreenCombobox'
+import { CustomScreenCombobox } from '@/components/screen/custom/CustomScreenCombobox'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
   Select,
@@ -38,6 +39,13 @@ export function ScreenField() {
                 ))}
               </SelectContent>
             </Select>
+          </Field>
+        </FieldGroup>
+
+        <FieldGroup className="flex flex-row items-end gap-4">
+          <Field>
+            <FieldLabel htmlFor="custom-screen">Custom screens</FieldLabel>
+            <CustomScreenCombobox />
           </Field>
         </FieldGroup>
       </FieldSet>
