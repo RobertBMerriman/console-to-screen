@@ -46,17 +46,26 @@ export function Home() {
 
       <div className="mt-6 flex flex-col gap-2">
         <Separator />
-        <div className="flex flex-col justify-center gap-1">
-          <Muted className="mx-4 text-center">
-            Handcrafted by{' '}
-            <a href="https://robertbmerriman.co.uk" target="_blank">
-              Robert Merriman
-            </a>{' '}
-            for the love of the games
-          </Muted>
-          <div className="flex justify-center gap-2">
+        <div className="flex flex-row justify-center gap-6">
+          <div className="flex flex-col gap-1">
+            <Muted className="text-center">
+              Handcrafted by{' '}
+              <a href="https://robertbmerriman.co.uk" target="_blank">
+                Robert Merriman
+              </a>{' '}
+              for the love of the game(s)
+            </Muted>
+            <Muted className="text-center">
+              Heavily inspired by{' '}
+              <a href="https://shauninman.com/utils/screens/" target="_blank">
+                Shaun Inman's original
+              </a>{' '}
+              {'<3'}
+            </Muted>
+          </div>
+          <div className="flex items-center justify-center gap-2">
             <a href="https://github.com/RobertBMerriman/console-to-screen" target="_blank">
-              <Github className="text-muted-foreground" />
+              <Github className="text-muted-foreground" width={18} height={18} />
             </a>
           </div>
         </div>
