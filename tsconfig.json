@@ -2,12 +2,14 @@
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
 
-  /* For shadcn */
   "compilerOptions": {
+    /* For shadcn */
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    /* Tanstack form */
+    "strict": true
   }
 }
