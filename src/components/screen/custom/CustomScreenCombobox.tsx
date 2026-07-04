@@ -54,12 +54,11 @@ export function CustomScreenCombobox() {
       </ComboboxChips>
 
       <ComboboxContent anchor={anchor} className={'h-full'}>
-        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxEmpty>No items found. Add one with the button over there --{'>'}</ComboboxEmpty>
         <ComboboxList<CustomScreen>>
           {(screen) => (
             <ComboboxItem key={screen.tag} value={screen.tag}>
               {screen.name}
-              <DeleteCustomScreenConfirmation screen={screen} />
             </ComboboxItem>
           )}
         </ComboboxList>

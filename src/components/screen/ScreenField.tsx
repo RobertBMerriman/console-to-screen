@@ -1,6 +1,7 @@
 import { ScreenCombobox } from '@/components/screen/ScreenCombobox'
 import { AddCustomScreenDialog } from '@/components/screen/custom/AddCustomScreenDialog'
 import { CustomScreenCombobox } from '@/components/screen/custom/CustomScreenCombobox'
+import { ManageCustomScreensDialog } from '@/components/screen/custom/ManageCustomScreensDialog'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
   Select,
@@ -49,9 +50,10 @@ export function ScreenField() {
             <CustomScreenCombobox />
           </Field>
 
-          <Field className="w-fit">
+          <div className="flex gap-2">
             <AddCustomScreenDialog />
-          </Field>
+            <ManageCustomScreensDialog />
+          </div>
         </FieldGroup>
       </FieldSet>
     </FieldGroup>

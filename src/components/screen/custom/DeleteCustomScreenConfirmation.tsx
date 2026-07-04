@@ -14,12 +14,12 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import type { CustomScreen } from '@/stores/customScreenStore'
 
 interface Props {
-  screen: CustomScreen
+  tag: string
+  name: string
 }
-export function DeleteCustomScreenConfirmation({ screen }: Props) {
+export function DeleteCustomScreenConfirmation({ tag, name }: Props) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -28,30 +28,29 @@ export function DeleteCustomScreenConfirmation({ screen }: Props) {
         <Button
           variant={'destructive'}
           size={'icon-sm'}
-          onClick={(e) => {
-            e.stopPropagation()
+          onClick={() => {
             setOpen(true)
           }}
         >
           <Trash2Icon />
-        </Button>{' '}
+        </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent size="sm">
+      <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
             <Trash2Icon />
           </AlertDialogMedia>
-          <AlertDialogTitle>Delete {screen.name}?</AlertDialogTitle>
+          <AlertDialogTitle>Delete {name}?</AlertDialogTitle>
           <AlertDialogDescription>
             This will permanently delete this custom screen. Are you sure you wanna do it?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel variant="outline">Nahh my bad</AlertDialogCancel>
+          <AlertDialogCancel variant="outline">Nah my bad</AlertDialogCancel>
           <AlertDialogAction
             variant="destructive"
             onClick={() => {
-              setOpen(false)
+              // setOpen(false)
             }}
           >
             Yeah man I wanna do it
