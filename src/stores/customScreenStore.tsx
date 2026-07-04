@@ -19,6 +19,7 @@ interface State {
 interface Action {
   setSelectedTags: (selectedTags: State['selectedTags']) => void
   setCustomScreens: (customScreens: State['customScreens']) => void
+  addCustomScreen: (customScreen: CustomScreen) => void
 }
 
 export const useCustomScreenStore = create<State & Action>()(
@@ -39,6 +40,10 @@ export const useCustomScreenStore = create<State & Action>()(
         },
       },
       setCustomScreens: (customScreens) => set(() => ({ customScreens })),
+      addCustomScreen: (customScreen) =>
+        set(({ customScreens }) => ({
+          customScreens: { ...customScreens, [customScreen.tag]: customScreen },
+        })),
     }),
 
     { name: 'custom-screen-storage' },
