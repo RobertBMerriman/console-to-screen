@@ -160,7 +160,11 @@ export function AddCustomScreenDialog() {
                       step={0.1}
                       value={field.state.value || ''}
                       onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(Math.abs(e.target.valueAsNumber))}
+                      onChange={(e) =>
+                        field.handleChange(
+                          isNaN(e.target.valueAsNumber) ? 0 : Math.abs(e.target.valueAsNumber),
+                        )
+                      }
                       aria-invalid={isInvalid}
                       placeholder="Diagonal screen size in inches"
                       autoComplete="off"

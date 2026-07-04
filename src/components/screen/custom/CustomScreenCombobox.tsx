@@ -1,3 +1,4 @@
+import { DeleteCustomScreenConfirmation } from '@/components/screen/custom/DeleteCustomScreenConfirmation'
 import { Button } from '@/components/ui/button'
 import {
   Combobox,
@@ -58,6 +59,7 @@ export function CustomScreenCombobox() {
           {(screen) => (
             <ComboboxItem key={screen.tag} value={screen.tag}>
               {screen.name}
+              <DeleteCustomScreenConfirmation screen={screen} />
             </ComboboxItem>
           )}
         </ComboboxList>
