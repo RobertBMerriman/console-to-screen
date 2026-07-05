@@ -14,12 +14,15 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
+import { useCustomScreenStore } from '@/stores/customScreenStore'
 
 interface Props {
   tag: string
   name: string
 }
 export function DeleteCustomScreenConfirmation({ tag, name }: Props) {
+  const deleteScreen = useCustomScreenStore((state) => state.deleteScreen)
+
   const [open, setOpen] = useState(false)
 
   return (
@@ -50,7 +53,7 @@ export function DeleteCustomScreenConfirmation({ tag, name }: Props) {
           <AlertDialogAction
             variant="destructive"
             onClick={() => {
-              // setOpen(false)
+              deleteScreen(tag)
             }}
           >
             Yeah man I wanna do it
