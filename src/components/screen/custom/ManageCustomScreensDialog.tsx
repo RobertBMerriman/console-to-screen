@@ -1,4 +1,4 @@
-import { SlidersHorizontalIcon } from 'lucide-react'
+import { MonitorCogIcon } from 'lucide-react'
 import { Fragment } from 'react/jsx-runtime'
 
 import { AddCustomScreenDialog } from '@/components/screen/custom/AddCustomScreenDialog'
@@ -20,7 +20,7 @@ export function ManageCustomScreensDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={'secondary'} size={'icon-lg'} className="w-9!">
-          <SlidersHorizontalIcon />
+          <MonitorCogIcon />
         </Button>
       </DialogTrigger>
 
