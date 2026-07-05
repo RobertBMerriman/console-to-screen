@@ -37,10 +37,10 @@ const formSchema = z.object({
   name: z
     .string()
     .min(1, 'Must be at least 1 character.')
-    .max(32, 'Must be at most 256 characters.'),
+    .max(256, 'Must be at most 256 characters.'),
   sizeInches: z.number().gte(1).lte(120),
-  resX: z.int().gte(1).lte(15360),
-  resY: z.int('whole number pls').gte(1).lte(15360),
+  resX: z.int().gte(100).lte(15360),
+  resY: z.int('whole number pls').gte(100).lte(15360),
 })
 
 interface Props {
