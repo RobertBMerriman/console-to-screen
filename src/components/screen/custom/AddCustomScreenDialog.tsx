@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react'
+import { PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import * as z from 'zod'
@@ -43,7 +43,10 @@ const formSchema = z.object({
   resY: z.int('whole number pls').gte(1).lte(15360),
 })
 
-export function AddCustomScreenDialog() {
+interface Props {
+  icon?: boolean
+}
+export function AddCustomScreenDialog({ icon = false }: Props) {
   const addCustomScreen = useCustomScreenStore((state) => state.addCustomScreen)
   const selectTag = useCustomScreenStore((state) => state.selectTag)
 
@@ -107,9 +110,15 @@ export function AddCustomScreenDialog() {
       }}
     >
       <DialogTrigger asChild onClick={() => setOpen(true)}>
-        <Button variant={'secondary'} size={'icon-lg'} className="w-9!">
-          <Plus />
-        </Button>
+        {icon ? (
+          <Button variant={'secondary'} size={'icon-lg'}>
+            <PlusIcon />
+          </Button>
+        ) : (
+          <Button variant={'secondary'}>
+            <PlusIcon data-icon="inline-start" /> Add
+          </Button>
+        )}
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-sm">

@@ -28,6 +28,9 @@ export function ManageCustomScreensDialog() {
         <DialogHeader>
           <DialogTitle>Manage custom screens</DialogTitle>
         </DialogHeader>
+        <div className="flex justify-end">
+          <AddCustomScreenDialog />
+        </div>
         <div
           className="grid items-center gap-x-2 gap-y-1"
           style={{ gridTemplateColumns: 'auto auto min-content min-content' }}
@@ -44,7 +47,6 @@ export function ManageCustomScreensDialog() {
           ))}
         </div>
         // Better buttons here pls
-        <AddCustomScreenDialog />
       </DialogContent>
     </Dialog>
   )

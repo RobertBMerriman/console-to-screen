@@ -51,7 +51,7 @@ export function ScreenField() {
           </Field>
 
           <div className="flex gap-2">
-            <AddCustomScreenDialog />
+            <AddCustomScreenDialog icon />
             <ManageCustomScreensDialog />
           </div>
         </FieldGroup>
