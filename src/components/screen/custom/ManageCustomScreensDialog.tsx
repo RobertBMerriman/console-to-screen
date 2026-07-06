@@ -1,5 +1,4 @@
 import { MonitorCogIcon } from 'lucide-react'
-import { Fragment } from 'react/jsx-runtime'
 
 import { AddCustomScreenDialog } from '@/components/screen/custom/AddCustomScreenDialog'
 import { DeleteCustomScreenConfirmation } from '@/components/screen/custom/DeleteCustomScreenConfirmation'
