@@ -23,13 +23,13 @@ export function ConsoleField() {
     <FieldGroup>
       <FieldSet>
         <FieldGroup>
-          <div className="flex flex-row items-end gap-4">
+          <div className="flex flex-col items-end gap-4 sm:flex-row">
             <Field>
               <FieldLabel htmlFor="console">Consoles</FieldLabel>
 
               <ConsoleCombobox />
             </Field>
-            <Field className="w-fit">
+            <Field className="sm:w-fit">
               <FieldLabel htmlFor="console-group">Group by</FieldLabel>
               <Select defaultValue={grouping} onValueChange={setGrouping}>
                 <SelectTrigger id="console-group">

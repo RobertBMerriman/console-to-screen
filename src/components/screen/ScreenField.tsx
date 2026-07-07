@@ -20,13 +20,13 @@ export function ScreenField() {
   return (
     <FieldGroup>
       <FieldSet>
-        <FieldGroup className="flex flex-row items-end gap-4">
+        <FieldGroup className="flex flex-col items-end gap-4 sm:flex-row">
           <Field>
             <FieldLabel htmlFor="screen">Screens</FieldLabel>
             <ScreenCombobox />
           </Field>
 
-          <Field className="w-fit">
+          <Field className="sm:w-fit">
             <FieldLabel htmlFor="screen-group">Group by</FieldLabel>
             <Select defaultValue={grouping} onValueChange={setGrouping}>
               <SelectTrigger id="screen-group">
