@@ -23,16 +23,17 @@ export function ScreenField() {
         <FieldGroup className="flex flex-col items-end gap-4 sm:flex-row">
           <Field>
             <FieldLabel htmlFor="screen">Screens</FieldLabel>
+
             <ScreenCombobox />
           </Field>
 
           <Field className="sm:w-fit">
             <FieldLabel htmlFor="screen-group">Group by</FieldLabel>
+
             <Select defaultValue={grouping} onValueChange={setGrouping}>
               <SelectTrigger id="screen-group">
                 <SelectValue placeholder="Select grouping" />
               </SelectTrigger>
-
               <SelectContent>
                 {screenGroupingOptions.map((option) => (
                   <SelectItem key={option} value={option}>
@@ -47,6 +48,7 @@ export function ScreenField() {
         <FieldGroup className="flex flex-row items-end gap-4">
           <Field>
             <FieldLabel htmlFor="custom-screen">Custom screens</FieldLabel>
+
             <CustomScreenCombobox />
           </Field>
 

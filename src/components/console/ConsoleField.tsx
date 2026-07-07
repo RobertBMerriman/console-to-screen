@@ -29,13 +29,14 @@ export function ConsoleField() {
 
               <ConsoleCombobox />
             </Field>
+
             <Field className="sm:w-fit">
               <FieldLabel htmlFor="console-group">Group by</FieldLabel>
+
               <Select defaultValue={grouping} onValueChange={setGrouping}>
                 <SelectTrigger id="console-group">
                   <SelectValue placeholder="Select grouping" />
                 </SelectTrigger>
-
                 <SelectContent>
                   {consoleGroupingOptions.map((option) => (
                     <SelectItem key={option} value={option}>
@@ -46,9 +47,11 @@ export function ConsoleField() {
               </Select>
             </Field>
           </div>
+
           <div className="flex flex-row gap-8">
             <Field orientation={'horizontal'} className="w-fit">
               <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
+
               <Checkbox
                 id="integer-scaling"
                 name="integer-scaling"
@@ -56,8 +59,10 @@ export function ConsoleField() {
                 onCheckedChange={setIntegerScaling}
               />
             </Field>
+
             <Field orientation={'horizontal'} className="w-fit">
               <FieldLabel htmlFor="crop-oversan">Crop overscan</FieldLabel>
+
               <Checkbox
                 id="crop-oversan"
                 name="crop-oversan"
