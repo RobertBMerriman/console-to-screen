@@ -1,5 +1,5 @@
 import { Home } from '@/Home'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider } from '@/components/ThemeProvider'
 // import { TanStackDevtools } from '@tanstack/react-devtools'
 // import { formDevtoolsPlugin } from '@tanstack/react-form-devtools'
 

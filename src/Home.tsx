@@ -1,9 +1,9 @@
 import { Fragment } from 'react/jsx-runtime'
 
 import { ScreenDraw } from '@/components/ScreenDraw'
+import { ThemeModeToggle } from '@/components/ThemeModeToggle'
 import { ConsoleField } from '@/components/console/ConsoleField'
 import { Github } from '@/components/icons/Github'
-import { ModeToggle } from '@/components/mode-toggle'
 import { ScreenField } from '@/components/screen/ScreenField'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
@@ -24,7 +24,9 @@ export function Home() {
           <H1>Console to Screen</H1>
           <H4 className="text-gray-600">(V2 beta)</H4>
         </div>
-        <ModeToggle />
+        <div className="flex h-10 flex-row items-center gap-2">
+          <ThemeModeToggle />
+        </div>
       </div>
 
       <Separator />
