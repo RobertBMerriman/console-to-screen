@@ -26,7 +26,7 @@ interface Action {
 export const useConsoleStore = create<State & Action>()(
   persist(
     (set) => ({
-      tags: ['nds-vertical'],
+      tags: ['gba'],
       setConsolesByTags: (tags) => set(() => ({ tags })),
 
       grouping: consoleGroupingOptions[0],
