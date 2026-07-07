@@ -3,6 +3,7 @@
 Compare many console resolutions to many device resolutions for emulation.
 
 - Full screen, integer scaling and crop overscan modes
+- Highlights natural integer scaling and matching aspect ratios for full-screen
 - Many consoles and emulation devices to choose from
 - Compare many consoles and screens at the same time
 - Custom screen resolutions
