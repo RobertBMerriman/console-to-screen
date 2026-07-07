@@ -28,6 +28,7 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
     : consoleScaleWithOverscan
   const consoleScaledResX = consol.resX * consoleScale
   const consoleScaledResY = consol.resY * consoleScale
+
   // const consoleDiagonalPixels = findDiagonal(consoleScaledResX, consoleScaledResY)
   const consoleXInches = screen.sizeInches * (consoleScaledResX / screenDiagonalPixels)
   const consoleYInches = screen.sizeInches * (consoleScaledResY / screenDiagonalPixels)
@@ -71,14 +72,24 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
         className="relative flex items-center justify-center bg-gray-600"
         style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
       >
-        {/* Console */}
+        {/* Overscan */}
         <div
-          className="absolute flex flex-col items-center justify-center bg-gray-200/50 text-gray-900"
+          className="bg-destructive/40 absolute -z-50"
           style={{
             width: consoleXInches + 'in',
             height: consoleYInches + 'in',
             left: `calc(50% - ${consoleXInches / 2}in)`,
             top: `calc(50% - ${consoleYInches / 2}in)`,
+          }}
+        ></div>
+        {/* Console */}
+        <div
+          className="z-0 flex flex-col items-center justify-center bg-gray-400 text-center text-gray-900"
+          style={{
+            width: consoleXInches + 'in',
+            height: consoleYInches + 'in',
+            maxWidth: screenXInches + 'in',
+            maxHeight: screenYInches + 'in',
           }}
         >
           <span>{consol.name}</span>
@@ -97,42 +108,6 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
               <span>
                 (cropped: {Math.ceil(croppedX)},{Math.ceil(croppedY)})
               </span>
-              {croppedX > 0 && (
-                <>
-                  <div
-                    className="bg-destructive/40 absolute top-0 left-0"
-                    style={{
-                      width: consoleXInches * (croppedX / consol.resX) + 'in',
-                      height: consoleYInches + 'in',
-                    }}
-                  />
-                  <div
-                    className="bg-destructive/40 absolute top-0 right-0"
-                    style={{
-                      width: consoleXInches * (croppedX / consol.resX) + 'in',
-                      height: consoleYInches + 'in',
-                    }}
-                  />
-                </>
-              )}
-              {croppedY > 0 && (
-                <>
-                  <div
-                    className="bg-destructive/40 absolute top-0 left-0"
-                    style={{
-                      width: consoleXInches + 'in',
-                      height: consoleYInches * (croppedY / consol.resY) + 'in',
-                    }}
-                  />
-                  <div
-                    className="bg-destructive/40 absolute bottom-0 left-0"
-                    style={{
-                      width: consoleXInches + 'in',
-                      height: consoleYInches * (croppedY / consol.resY) + 'in',
-                    }}
-                  />
-                </>
-              )}
             </>
           )}
         </div>
