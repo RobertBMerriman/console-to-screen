@@ -1,9 +1,10 @@
 import {
-  oneByOne720,
+  p720_1by1,
   p1080,
   p240,
   p480,
   p560,
+  p640_3by2,
   p720,
   p768,
   p960,
@@ -11,12 +12,14 @@ import {
   ratio1by1,
   ratio3by2,
   ratio4by3,
-  whyThisRes,
+  whyThisRatio,
   type ResAndRatioWithType,
 } from '@/lib/commonData'
 
 const screenTags = [
+  // Analogue
   'analogue-pocket',
+  // Anbernic
   'rg-rotate',
   'rg477v',
   'rg-ds',
@@ -35,25 +38,35 @@ const screenTags = [
   'rg556',
   'win600',
   'rg552',
+  // Ayaneo
   'pocket-micro',
   'pocket-s',
   'pocket-evo',
   'pocket-dmg',
+  // AYN
   'thor-top',
   'thor-bottom',
   'odin-3',
   'odin-2-portal',
   'odin-2',
+  // FunKey
   'funkey-s',
+  // FunnyPlaying
   'fp-rpp',
+  // KT Pocket
   'kt-r1',
+  // MagicX
+  'magicx-one-35',
   'magicx-zero-40',
+  // Miyoo
   'miyoo-mini',
   'miyoo-mini-v4',
   'miyoo-mini-flip',
   'miyoo-mini-plus',
+  // PowKiddy
   'pk-rgb30',
   'pk-rgb10-max',
+  // Retroid Pocket
   'rp-nova',
   'rp-6',
   'rp-flip-2',
@@ -62,11 +75,14 @@ const screenTags = [
   'rp-4',
   'rp-mini',
   'rp-3',
+  // SJGAM
   'sjgam-m17',
+  // TrimUI
   'trimui-brick-pro',
   'trimui-brick',
   'trimui-smart-pro',
   'trimui-smart',
+  // Valve
   'steam-deck',
 ] as const
 export type ScreenTag = (typeof screenTags)[number]
@@ -101,6 +117,7 @@ export type Screen = ResAndRatioWithType & {
   sizeInches: number
 }
 export const screensByTag: Record<ScreenTag, Screen> = {
+  // Analogue
   'analogue-pocket': {
     tag: 'analogue-pocket',
     manufacturer: 'Analogue',
@@ -112,12 +129,14 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     ratioY: 9,
     ratioType: 'Other',
   },
+
+  // Anbernic
   'rg-rotate': {
     tag: 'rg-rotate',
     manufacturer: 'Anbernic',
     name: 'RG Rotate',
     sizeInches: 3.5,
-    ...oneByOne720,
+    ...p720_1by1,
   },
   'rg-ds': {
     tag: 'rg-ds',
@@ -207,7 +226,7 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     manufacturer: 'Anbernic',
     name: 'RG Cube(XX)',
     sizeInches: 3.95,
-    ...oneByOne720,
+    ...p720_1by1,
   },
   rg556: {
     tag: 'rg556',
@@ -250,14 +269,14 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     ratioY: 3,
     ratioType: 'Other',
   },
+
+  // Ayaneo
   'pocket-micro': {
     tag: 'pocket-micro',
     manufacturer: 'Ayaneo',
     name: 'Pocket Micro',
     sizeInches: 3.5,
-    resX: 960,
-    resY: 640,
-    ...ratio3by2,
+    ...p640_3by2,
   },
   'pocket-s': {
     tag: 'pocket-s',
@@ -280,8 +299,10 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     manufacturer: 'Ayaneo',
     name: 'Pocket DMG',
     sizeInches: 3.92,
-    ...whyThisRes,
+    ...whyThisRatio,
   },
+
+  // AYN
   'thor-top': {
     tag: 'thor-top',
     manufacturer: 'AYN',
@@ -294,7 +315,7 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     manufacturer: 'AYN',
     name: 'Thor (bottom)',
     sizeInches: 3.92,
-    ...whyThisRes,
+    ...whyThisRatio,
   },
   'odin-3': {
     tag: 'odin-3',
@@ -317,6 +338,8 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     sizeInches: 6,
     ...p1080,
   },
+
+  // FunKey
   'funkey-s': {
     tag: 'funkey-s',
     manufacturer: 'FunKey',
@@ -326,13 +349,17 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     resY: 240,
     ...ratio1by1,
   },
+
+  // FunnyPlaying
   'fp-rpp': {
     tag: 'fp-rpp',
     manufacturer: 'FunnyPlaying',
     name: 'Retro Pixel Pocket',
     sizeInches: 3.1,
-    ...oneByOne720,
+    ...p720_1by1,
   },
+
+  // KT Pocket
   'kt-r1': {
     tag: 'kt-r1',
     manufacturer: 'KT Pocket',
@@ -341,6 +368,15 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     resX: 1620,
     resY: 1080,
     ...ratio3by2,
+  },
+
+  // MagicX
+  'magicx-one-35': {
+    tag: 'magicx-one-35',
+    manufacturer: 'MagicX',
+    name: 'One 35',
+    sizeInches: 3.5,
+    ...p640_3by2,
   },
   'magicx-zero-40': {
     tag: 'magicx-zero-40',
@@ -353,6 +389,8 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     ratioY: 5,
     ratioType: 'Other',
   },
+
+  // Miyoo
   'miyoo-mini': {
     tag: 'miyoo-mini',
     manufacturer: 'Miyoo',
@@ -381,12 +419,14 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     sizeInches: 3.5,
     ...p480,
   },
+
+  // PowKiddy
   'pk-rgb30': {
     tag: 'pk-rgb30',
     manufacturer: 'PowKiddy',
     name: 'RGB30',
     sizeInches: 4,
-    ...oneByOne720,
+    ...p720_1by1,
   },
   'pk-rgb10-max': {
     tag: 'pk-rgb10-max',
@@ -397,6 +437,8 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     resY: 480,
     ...ratio16by9,
   },
+
+  // Retroid Pocket
   'rp-nova': {
     tag: 'rp-nova',
     manufacturer: 'Retroid Pocket',
@@ -423,7 +465,7 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     manufacturer: 'Retroid Pocket',
     name: 'Classic',
     sizeInches: 3.92,
-    ...whyThisRes,
+    ...whyThisRatio,
   },
   'rp-5': {
     tag: 'rp-5',
@@ -459,6 +501,8 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     resY: 750,
     ...ratio16by9,
   },
+
+  // SJGAM
   'sjgam-m17': {
     tag: 'sjgam-m17',
     manufacturer: 'SJGAM',
@@ -468,6 +512,8 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     resY: 272,
     ...ratio16by9,
   },
+
+  // TrimUI
   'trimui-brick-pro': {
     tag: 'trimui-brick-pro',
     manufacturer: 'TrimUI',
@@ -485,7 +531,7 @@ export const screensByTag: Record<ScreenTag, Screen> = {
   'trimui-smart-pro': {
     tag: 'trimui-smart-pro',
     manufacturer: 'TrimUI',
-    name: 'Smart Pro',
+    name: 'Smart Pro (S)',
     sizeInches: 4.96,
     ...p720,
   },
@@ -496,6 +542,8 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     sizeInches: 2.4,
     ...p240,
   },
+
+  // Valve
   'steam-deck': {
     tag: 'steam-deck',
     manufacturer: 'Valve',

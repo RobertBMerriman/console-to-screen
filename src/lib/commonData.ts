@@ -100,15 +100,22 @@ export const p1080: ResAndRatioWithType = {
   ...ratio16by9,
 }
 
+// 3:2
+export const p640_3by2: ResAndRatioWithType = {
+  resX: 960,
+  resY: 640,
+  ...ratio3by2,
+}
+
 // 1:1
-export const oneByOne720 = {
+export const p720_1by1 = {
   resX: 720,
   resY: 720,
   ...ratio1by1,
 }
 
 // Other
-export const whyThisRes: ResAndRatioWithType = {
+export const whyThisRatio: ResAndRatioWithType = {
   resX: 1240,
   resY: 1080,
   ratioX: 31,
