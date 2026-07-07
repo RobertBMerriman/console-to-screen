@@ -36,9 +36,11 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
 
   const croppedX = Math.max((consoleScaledResX - screen.resX) / (consoleScale * 2), 0)
   const croppedY = Math.max((consoleScaledResY - screen.resY) / (consoleScale * 2), 0)
+
   return (
     <div className="flex flex-col gap-1">
       <H4>{consol.name}</H4>
+
       <div className="flex flex-row gap-3">
         <p>
           {consol.resX}x{consol.resY}
@@ -63,10 +65,13 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
           )}
         </div>
       </div>
+
+      {/* Screen */}
       <div
         className="relative flex items-center justify-center bg-gray-600"
         style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
       >
+        {/* Console */}
         <div
           className="absolute flex flex-col items-center justify-center bg-gray-200/50 text-gray-900"
           style={{
