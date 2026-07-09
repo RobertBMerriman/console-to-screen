@@ -161,4 +161,9 @@
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 20%;
+  }
 }

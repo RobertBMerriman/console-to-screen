@@ -1,16 +1,15 @@
 import { Fragment } from 'react/jsx-runtime'
 
+import { Footer } from '@/components/Footer'
 import { ScreenDraw } from '@/components/ScreenDraw'
 // import { SettingsDialog } from '@/components/SettingsDialog'
 import { ThemeModeToggle } from '@/components/ThemeModeToggle'
 import { ConsoleField } from '@/components/console/ConsoleField'
-import { Github } from '@/components/icons/Github'
 import { ScreenField } from '@/components/screen/ScreenField'
 import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
 import { H3 } from '@/components/ui/typography/H3'
 import { H4 } from '@/components/ui/typography/H4'
-import { Muted } from '@/components/ui/typography/Muted'
 import { useSelectedCustomScreens } from '@/stores/customScreenStore'
 import { useScreens } from '@/stores/screenStore'
 
@@ -61,32 +60,7 @@ export function Home() {
         ))}
       </div>
 
-      <div className="mt-6 flex flex-col gap-2">
-        <Separator />
-        <div className="flex flex-row justify-center gap-6">
-          <div className="flex flex-col gap-1">
-            <Muted className="text-center">
-              Handcrafted by{' '}
-              <a href="https://robertbmerriman.co.uk" target="_blank">
-                Robert Merriman
-              </a>{' '}
-              for the love of the game(s)
-            </Muted>
-            <Muted className="text-center">
-              Heavily inspired by{' '}
-              <a href="https://shauninman.com/utils/screens/" target="_blank">
-                Shaun Inman's original
-              </a>{' '}
-              {'<3'}
-            </Muted>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <a href="https://github.com/RobertBMerriman/console-to-screen" target="_blank">
-              <Github className="text-muted-foreground" width={18} height={18} />
-            </a>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   )
 }

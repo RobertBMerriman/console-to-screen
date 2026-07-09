@@ -78,7 +78,7 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
       >
         {/* Overscan */}
         <div
-          className={cn('bg-destructive/40 absolute -z-50', { hidden: !notWorthIt })}
+          className={cn('bg-destructive/40 absolute -z-50', { hidden: notWorthIt })}
           style={{
             width: consoleXInches + 'in',
             height: consoleYInches + 'in',

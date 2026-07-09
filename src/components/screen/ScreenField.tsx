@@ -45,7 +45,7 @@ export function ScreenField() {
           </Field>
         </FieldGroup>
 
-        <FieldGroup className="flex flex-row items-end gap-4">
+        <FieldGroup className="flex flex-row items-end gap-2 sm:gap-4">
           <Field>
             <FieldLabel htmlFor="custom-screen">Custom screens</FieldLabel>
 
