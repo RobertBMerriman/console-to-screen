@@ -22,12 +22,21 @@ export function Footer() {
           </a>
         </div>
 
-        <Muted size="xs" className="text-center max-sm:order-2 sm:text-right">
-          Heavily inspired by{' '}
-          <a href="https://shauninman.com/utils/screens/" target="_blank">
-            Shaun Inman's original
-          </a>
-        </Muted>
+        <div className="flex flex-col gap-2 max-sm:order-2 sm:gap-1">
+          <Muted size="xs" className="text-center sm:text-right">
+            Heavily inspired by{' '}
+            <a href="https://shauninman.com/utils/screens/" target="_blank">
+              Shaun Inman's original
+            </a>
+          </Muted>
+
+          <Muted size="xs" className="text-center sm:text-right">
+            If you find an bug/problem, please raise an issue{' '}
+            <a href="https://github.com/RobertBMerriman/console-to-screen/issues" target="_blank">
+              here
+            </a>
+          </Muted>
+        </div>
       </div>
     </div>
   )
