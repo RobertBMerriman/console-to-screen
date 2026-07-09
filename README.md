@@ -21,6 +21,7 @@ Compare many console resolutions to many device resolutions for retro game emula
 
 **Potential ideas:**
 
+- Scale screens to match real world sizes somehow
 - Better support for dual screen devices
 
 ## Contributing
