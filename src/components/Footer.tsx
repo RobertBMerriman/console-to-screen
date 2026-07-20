@@ -1,5 +1,5 @@
 import { GithubIcon } from '@/components/icons/GithubIcon'
-import { KofiIcon } from '@/components/icons/KofiIcon'
+// import { KofiIcon } from '@/components/icons/KofiIcon'
 import { Separator } from '@/components/ui/separator'
 import { Muted } from '@/components/ui/typography/Muted'
 
@@ -24,9 +24,9 @@ export function Footer() {
           <a href="https://github.com/RobertBMerriman/console-to-screen">
             <GithubIcon />
           </a>
-          <a href="https://ko-fi.com/robertbmerriman">
+          {/* <a href="https://ko-fi.com/robertbmerriman">
             <KofiIcon />
-          </a>
+          </a> */}
         </div>
 
         <div className="flex flex-col gap-2 text-center max-sm:order-2 sm:gap-1 sm:text-right">
