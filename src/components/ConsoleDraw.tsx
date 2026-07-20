@@ -4,7 +4,7 @@ import type { Screen } from '@/lib/screenData'
 import { cn, findDiagonal } from '@/lib/utils'
 import { useConsoleStore } from '@/stores/consoleStore'
 import type { CustomScreen } from '@/stores/customScreenStore'
-// import { useSettingsStore } from '@/stores/settingsStore'
+import { useSettingsStore } from '@/stores/settingsStore'
 
 interface Props {
   screen: Screen | CustomScreen
@@ -13,6 +13,7 @@ interface Props {
 }
 export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Props) {
   // const screensMaxDisplayWidth = useSettingsStore((s) => s.screensMaxDisplayWidth)
+  const minimumComfortableScreenSize = useSettingsStore((s) => s.minimumComfortableScreenSize)
 
   const integerScaling = useConsoleStore((state) => state.integerScaling)
   const cropOverscan = useConsoleStore((state) => state.cropOverscan)
@@ -101,7 +102,14 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
         >
           <span>{consol.name}</span>
           <span>
-            {consoleSizeInches.toLocaleString(undefined, { maximumFractionDigits: 1 })}" at{' '}
+            <span
+              className={cn({
+                'font-medium text-red-800': consoleSizeInches < minimumComfortableScreenSize,
+              })}
+            >
+              {consoleSizeInches.toLocaleString(undefined, { maximumFractionDigits: 1 })}"
+            </span>{' '}
+            at{' '}
             <span
               className={cn({
                 'font-medium text-green-700': consoleScaleRaw === Math.floor(consoleScaleRaw),

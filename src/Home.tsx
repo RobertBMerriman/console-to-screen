@@ -2,7 +2,7 @@ import { Fragment } from 'react/jsx-runtime'
 
 import { Footer } from '@/components/Footer'
 import { ScreenDraw } from '@/components/ScreenDraw'
-// import { SettingsDialog } from '@/components/SettingsDialog'
+import { SettingsDialog } from '@/components/SettingsDialog'
 import { ThemeModeToggle } from '@/components/ThemeModeToggle'
 import { ConsoleField } from '@/components/console/ConsoleField'
 import { ScreenField } from '@/components/screen/ScreenField'
@@ -25,7 +25,7 @@ export function Home() {
           <H4 className="text-gray-600">(V2 beta)</H4>
         </div>
         <div className="flex h-10 flex-row items-center gap-2">
-          {/* <SettingsDialog /> */}
+          <SettingsDialog />
           <ThemeModeToggle />
         </div>
       </div>
