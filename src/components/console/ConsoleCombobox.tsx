@@ -20,6 +20,7 @@ import {
   consoleManufacturers,
   consolesByGen,
   consolesByManufacturer,
+  consolesByRatio,
   consolesByTag,
   consolesByType,
   consoleTypes,
@@ -58,6 +59,14 @@ function group(grouping: ConsoleGroupingOption) {
       groups.push({
         label: String(gen),
         items: consolesByGen[gen],
+      })
+    })
+  }
+  if (grouping === 'Aspect ratio') {
+    Object.entries(consolesByRatio).forEach(([ratio, consoles]) => {
+      groups.push({
+        label: ratio,
+        items: consoles,
       })
     })
   }

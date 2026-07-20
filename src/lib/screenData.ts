@@ -581,6 +581,7 @@ export const screensByRes: ScreensByRes = {} as ScreensByRes
   screensByManufacturer[screen.manufacturer].push(screen)
   screensByRatio[screen.ratioType].push(screen)
 
+  // TODO: Order these somehow...
   const res = screen.resX + 'x' + screen.resY
   if (screensByRes.hasOwnProperty(res)) {
     screensByRes[res].push(screen)

@@ -504,7 +504,12 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
   },
 }
 
-export const consoleGroupingOptions = ['Type', 'Manufacturer', 'Generation'] as const
+export const consoleGroupingOptions = [
+  'Type',
+  'Manufacturer',
+  'Generation',
+  'Aspect ratio',
+] as const
 export type ConsoleGroupingOption = (typeof consoleGroupingOptions)[number]
 
 export type ConsolesByGen = Record<ConsoleGen, Console[]>
@@ -534,10 +539,20 @@ export const consolesByType: ConsolesByType = {
   Other: [],
 }
 
+export type ConsolesByRatio = Record<string, Console[]>
+export const consolesByRatio: ConsolesByRatio = { '4:3': [], '16:9': [], '3:2': [], '1:1': [] } // Seed for ordering purposes
+
 //
 ;(Object.keys(consolesByTag) as ConsoleTag[]).forEach((tag) => {
   const console = consolesByTag[tag]
   consolesByGen[console.gen].push(console)
   consolesByManufacturer[console.manufacturer].push(console)
   consolesByType[console.type].push(console)
+
+  const ratio = console.ratioX + ':' + console.ratioY
+  if (consolesByRatio.hasOwnProperty(ratio)) {
+    consolesByRatio[ratio].push(console)
+  } else {
+    consolesByRatio[ratio] = [console]
+  }
 })
