@@ -14,6 +14,7 @@ interface Props {
 export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Props) {
   // const screensMaxDisplayWidth = useSettingsStore((s) => s.screensMaxDisplayWidth)
   const minimumComfortableScreenSize = useSettingsStore((s) => s.minimumComfortableScreenSize)
+  const compactMode = useSettingsStore((s) => s.compactMode)
 
   const integerScaling = useConsoleStore((state) => state.integerScaling)
   const cropOverscan = useConsoleStore((state) => state.cropOverscan)
@@ -45,9 +46,9 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
 
   return (
     <div className="flex flex-col gap-1">
-      <H4>{consol.name}</H4>
+      <H4 className={cn({ hidden: compactMode })}>{consol.name}</H4>
 
-      <div className="flex flex-row gap-3">
+      <div className={cn('flex flex-row gap-3', { hidden: compactMode })}>
         <p>
           {consol.resX}x{consol.resY}
         </p>

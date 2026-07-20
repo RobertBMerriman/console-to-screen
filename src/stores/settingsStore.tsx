@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware'
 interface State {
   screensMaxDisplayWidth: boolean
   minimumComfortableScreenSize: number
+  compactMode: boolean
 }
 
 interface Action {
@@ -11,6 +12,7 @@ interface Action {
   setMinimumComfortableScreenSize: (
     minimumScreenSize: State['minimumComfortableScreenSize'],
   ) => void
+  setCompactMode: (compactMode: State['compactMode']) => void
 }
 
 export const useSettingsStore = create<State & Action>()(
@@ -23,6 +25,9 @@ export const useSettingsStore = create<State & Action>()(
       minimumComfortableScreenSize: 2.8,
       setMinimumComfortableScreenSize: (minimumScreenSize) =>
         set(() => ({ minimumComfortableScreenSize: minimumScreenSize })),
+
+      compactMode: false,
+      setCompactMode: (compactMode) => set(() => ({ compactMode })),
     }),
 
     { name: 'settings-storage' },

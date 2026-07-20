@@ -1,7 +1,7 @@
 import { SettingsIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-// import { Checkbox } from '@/components/ui/checkbox'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
   DialogClose,
@@ -24,6 +24,8 @@ export function SettingsDialog() {
   // const setScreensMaxDisplayWidth = useSettingsStore((s) => s.setScreensMaxDisplayWidth)
   const minimumComfortableScreenSize = useSettingsStore((s) => s.minimumComfortableScreenSize)
   const setMinimumComfortableScreenSize = useSettingsStore((s) => s.setMinimumComfortableScreenSize)
+  const compactMode = useSettingsStore((s) => s.compactMode)
+  const setCompactMode = useSettingsStore((s) => s.setCompactMode)
 
   return (
     <Dialog>
@@ -63,6 +65,13 @@ export function SettingsDialog() {
                 <InputGroupText>inches</InputGroupText>
               </InputGroupAddon>
             </InputGroup>
+          </div>
+
+          <div className="flex flex-row place-items-end justify-between">
+            Compact mode:
+            <br />
+            Hide console title and stats above screen?
+            <Checkbox checked={compactMode} onCheckedChange={setCompactMode} />
           </div>
         </div>
 
