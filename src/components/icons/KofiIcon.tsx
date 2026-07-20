@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-function Kofi(props: SVGProps<SVGSVGElement>) {
+export function KofiIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 24 24" {...props}>
       <path
@@ -10,5 +10,3 @@ function Kofi(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
-
-export default Kofi

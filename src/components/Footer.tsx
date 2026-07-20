@@ -1,5 +1,5 @@
-import { Github } from '@/components/icons/Github'
-import Kofi from '@/components/icons/Kofi'
+import { GithubIcon } from '@/components/icons/GithubIcon'
+import { KofiIcon } from '@/components/icons/KofiIcon'
 import { Separator } from '@/components/ui/separator'
 import { Muted } from '@/components/ui/typography/Muted'
 
@@ -20,12 +20,12 @@ export function Footer() {
           </Muted>
         </div>
 
-        <div className="flex items-center justify-center gap-2 max-sm:mb-1">
+        <div className="text-muted-foreground flex items-center justify-center gap-2 text-lg max-sm:mb-1">
           <a href="https://github.com/RobertBMerriman/console-to-screen">
-            <Github className="text-muted-foreground text-lg" />
+            <GithubIcon />
           </a>
           <a href="https://ko-fi.com/robertbmerriman">
-            <Kofi className="text-muted-foreground text-lg" />
+            <KofiIcon />
           </a>
         </div>
 
