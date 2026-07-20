@@ -1,17 +1,8 @@
 import type { SVGProps } from 'react'
 
-export function Github({ width: w, height: h, ...rest }: SVGProps<SVGSVGElement>) {
-  const width = w ?? '1em'
-  const height = h ?? '1em'
-
+export function Github(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      {...rest}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
       <path d="M0 0h24v24H0z" fill="none" />
       <path
         fill="currentColor"
