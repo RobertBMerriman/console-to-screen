@@ -17,7 +17,7 @@ Compare many console resolutions to many device resolutions for retro game emula
 - Custom console input
 - Save & load custom lists of consoles and screens
 - Add PAL options for home consoles in the CRT era (without cluttering dropdown)
-- Add consoles used for emulation to screens (without cluttering dropdown)
+- Add consoles used for emulation (eg 3DS & Vita) to screens (without cluttering dropdown)
 
 **Potential ideas:**
 
