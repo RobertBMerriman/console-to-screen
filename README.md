@@ -11,6 +11,8 @@ Compare many console resolutions to many device resolutions for retro game emula
 - Offline first
 - Dark mode
 
+Inspired by [Shaun Inman's original](https://shauninman.com/utils/screens/) (Thank you Shaun!)
+
 **Roadmap:**
 
 - Render better on mobile
