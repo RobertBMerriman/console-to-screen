@@ -1,4 +1,5 @@
 import { ConsoleCombobox } from '@/components/console/ConsoleCombobox'
+import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
@@ -18,6 +19,7 @@ export function ConsoleField() {
   const setIntegerScaling = useConsoleStore((state) => state.setIntegerScaling)
   const cropOverscan = useConsoleStore((state) => state.cropOverscan)
   const setCropOverscan = useConsoleStore((state) => state.setCropOverscan)
+  const selectAll = useConsoleStore((s) => s.selectAll)
 
   return (
     <FieldGroup>
@@ -69,6 +71,12 @@ export function ConsoleField() {
                 checked={cropOverscan}
                 onCheckedChange={setCropOverscan}
               />
+            </Field>
+
+            <Field orientation={'horizontal'} className="w-fit">
+              <Button onClick={selectAll} variant={'secondary'}>
+                Select all
+              </Button>
             </Field>
           </div>
         </FieldGroup>

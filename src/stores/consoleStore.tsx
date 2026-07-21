@@ -3,6 +3,7 @@ import { create } from 'zustand'
 import {
   consoleGroupingOptions,
   consolesByTag,
+  consoleTags,
   type Console,
   type ConsoleGroupingOption,
   type ConsoleTag,
@@ -18,6 +19,7 @@ interface State {
 
 interface Action {
   setConsolesByTags: (tags: State['tags']) => void
+  selectAll: () => void
   setGrouping: (grouping: State['grouping']) => void
   setIntegerScaling: (integerScaling: State['integerScaling']) => void
   setCropOverscan: (cropOverscan: State['cropOverscan']) => void
@@ -28,6 +30,7 @@ export const useConsoleStore = create<State & Action>()(
     (set) => ({
       tags: ['gba'],
       setConsolesByTags: (tags) => set(() => ({ tags })),
+      selectAll: () => set(() => ({ tags: consoleTags.toReversed() })),
 
       grouping: consoleGroupingOptions[0],
       setGrouping: (grouping) => set(() => ({ grouping })),
