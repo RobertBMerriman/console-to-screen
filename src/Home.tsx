@@ -30,6 +30,10 @@ export function Home() {
         </div>
       </div>
 
+      <span className="text-destructive text-center sm:hidden">
+        Not optimised for this screen size
+      </span>
+
       <Separator />
 
       <div className="flex flex-row gap-8 max-lg:flex-wrap">
