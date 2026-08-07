@@ -57,9 +57,6 @@ export const upToPs1NoProblem: ConsoleTag[] = [
   'ws',
   'gba',
   'poke-mini',
-  'nds-single',
-  'nds-horizontal',
-  'nds-vertical',
   // Fantasy consoles
   'pico-8',
   'tic-80',
@@ -75,6 +72,9 @@ export const upToPs1NoProblem: ConsoleTag[] = [
 export const upToDcN64Psp: ConsoleTag[] = [
   ...upToPs1NoProblem,
   // Handhelds
+  'nds-single',
+  'nds-horizontal',
+  'nds-vertical',
   'psp',
   // Home consoles
   'n64',
@@ -90,6 +90,7 @@ export const upToNgcPs2: ConsoleTag[] = [
   '3ds-vertical',
   'psv',
   // Home consoles
+  'saturn',
   'ps2',
   'ngc',
   'wii',
@@ -97,7 +98,6 @@ export const upToNgcPs2: ConsoleTag[] = [
 
 export const aboveNgc: ConsoleTag[] = [
   // Home consoles
-  'saturn',
   'xbox',
   'wii-u',
   'wii-u-gamepad',

@@ -23,8 +23,8 @@ import { useState } from 'react'
 
 const items: SelectItems<string, PerfBracket>[] = [
   { label: 'Up to PS1', value: 'upToPs1NoProblem' },
-  { label: 'Up to DC, N64, PSP etc', value: 'upToDcN64Psp' },
-  { label: 'Up to PS2, Gamecube etc', value: 'upToNgcPs2' },
+  { label: 'Up to NS, PSP, DC, N64 etc', value: 'upToDcN64Psp' },
+  { label: 'Up to PS2, Gamecube, Saturn etc', value: 'upToNgcPs2' },
   { label: 'Up to Switch, Wii U etc', value: 'aboveNgc' },
 ]
 
