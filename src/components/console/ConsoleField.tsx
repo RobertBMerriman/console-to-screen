@@ -1,4 +1,5 @@
 import { ConsoleCombobox } from '@/components/console/ConsoleCombobox'
+import { ConsoleSubsetDialog } from '@/components/console/ConsoleSubsetDialog'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
@@ -50,34 +51,38 @@ export function ConsoleField() {
             </Field>
           </div>
 
-          <div className="flex flex-row gap-8">
-            <Field orientation={'horizontal'} className="w-fit">
-              <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
+          <div className="flex flex-row gap-8 max-sm:justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:gap-8">
+              <Field orientation={'horizontal'} className="w-fit">
+                <FieldLabel htmlFor="integer-scaling">Integer scaling</FieldLabel>
 
-              <Checkbox
-                id="integer-scaling"
-                name="integer-scaling"
-                checked={integerScaling}
-                onCheckedChange={setIntegerScaling}
-              />
-            </Field>
+                <Checkbox
+                  id="integer-scaling"
+                  name="integer-scaling"
+                  checked={integerScaling}
+                  onCheckedChange={setIntegerScaling}
+                />
+              </Field>
 
-            <Field orientation={'horizontal'} className="w-fit">
-              <FieldLabel htmlFor="crop-oversan">Crop overscan</FieldLabel>
+              <Field orientation={'horizontal'} className="w-fit">
+                <FieldLabel htmlFor="crop-oversan">Crop overscan</FieldLabel>
 
-              <Checkbox
-                id="crop-oversan"
-                name="crop-oversan"
-                checked={cropOverscan}
-                onCheckedChange={setCropOverscan}
-              />
-            </Field>
+                <Checkbox
+                  id="crop-oversan"
+                  name="crop-oversan"
+                  checked={cropOverscan}
+                  onCheckedChange={setCropOverscan}
+                />
+              </Field>
+            </div>
 
-            <Field orientation={'horizontal'} className="w-fit">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ConsoleSubsetDialog />
+
               <Button onClick={selectAll} variant={'secondary'}>
                 Select all
               </Button>
-            </Field>
+            </div>
           </div>
         </FieldGroup>
       </FieldSet>

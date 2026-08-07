@@ -169,6 +169,11 @@ function SelectScrollDownButton({
   )
 }
 
+interface SelectItems<T, U> {
+  label: T
+  value: U
+}
+
 export {
   Select,
   SelectContent,
@@ -180,4 +185,5 @@ export {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
+  type SelectItems,
 }

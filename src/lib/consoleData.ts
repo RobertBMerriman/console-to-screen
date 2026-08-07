@@ -21,7 +21,7 @@ export const consoleTags = [
   // Hybrids
   'switch-handheld',
   'switch-docked',
-  // Home coneoles
+  // Home consoles
   'nes',
   'mega-drive',
   'snes',
@@ -47,6 +47,65 @@ export const consoleTags = [
   'vb',
 ] as const
 export type ConsoleTag = (typeof consoleTags)[number]
+
+export const upToPs1NoProblem: ConsoleTag[] = [
+  // Handhelds
+  'gb',
+  'lynx',
+  'game-gear',
+  'ngp',
+  'ws',
+  'gba',
+  'poke-mini',
+  'nds-single',
+  'nds-horizontal',
+  'nds-vertical',
+  // Fantasy consoles
+  'pico-8',
+  'tic-80',
+  // Others
+  'vb',
+  // Home consoles
+  'nes',
+  'mega-drive',
+  'snes',
+  // 'saturn',
+  'psx',
+]
+export const upToDcN64Psp: ConsoleTag[] = [
+  ...upToPs1NoProblem,
+  // Handhelds
+  'psp',
+  // Home consoles
+  'n64',
+  'dc',
+]
+
+export const upToNgcPs2: ConsoleTag[] = [
+  ...upToDcN64Psp,
+  // Handhelds
+  '3ds-top',
+  '3ds-bottom',
+  '3ds-horizontal',
+  '3ds-vertical',
+  'psv',
+  // Home consoles
+  'ps2',
+  'ngc',
+  'wii',
+]
+
+export const aboveNgc: ConsoleTag[] = [
+  // Home consoles
+  'saturn',
+  'xbox',
+  'wii-u',
+  'wii-u-gamepad',
+  'wii-u-stacked',
+  // Hybrids
+  'switch-handheld',
+  'switch-docked',
+]
 
 export const consoleGens = [3, 4, 5, 6, 7, 8, 8.5, 'Fantasy'] as const
 export type ConsoleGen = (typeof consoleGens)[number]

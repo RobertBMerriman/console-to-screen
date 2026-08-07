@@ -77,6 +77,7 @@ function group(grouping: ConsoleGroupingOption) {
 export function ConsoleCombobox() {
   const tags = useConsoleStore((state) => state.tags)
   const setConsolesByTags = useConsoleStore((state) => state.setConsolesByTags)
+  const clearAll = useConsoleStore((state) => state.clearAll)
   const grouping = useConsoleStore((state) => state.grouping)
 
   const groups = group(grouping)
@@ -94,7 +95,7 @@ export function ConsoleCombobox() {
             })}
           </ComboboxValue>
           {tags.length > 0 && (
-            <Button variant={'ghost'} size={'chip'} onClick={() => setConsolesByTags([])}>
+            <Button variant={'ghost'} size={'chip'} onClick={clearAll}>
               Clear all
             </Button>
           )}
