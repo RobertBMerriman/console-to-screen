@@ -14,12 +14,17 @@ import {
   ratio4by3,
   whyThisRatio,
   type ResAndRatioWithType,
+  p720_4by3,
+  p480_3by2,
+  analoguePocketScreen,
 } from '@/lib/commonData'
 
 const screenTags = [
   // Analogue
   'analogue-pocket',
   // Anbernic
+  'rg-ds-plus',
+  'rg55g1',
   'rg-rotate',
   'rg477v',
   'rg-ds',
@@ -39,10 +44,13 @@ const screenTags = [
   'win600',
   'rg552',
   // Ayaneo
-  'pocket-micro',
-  'pocket-s',
+  'pocket-vert',
+  'pocket-s-mini',
+  'pocket-air-mini',
   'pocket-evo',
   'pocket-dmg',
+  'pocket-micro',
+  'pocket-s',
   // AYN
   'thor-top',
   'thor-bottom',
@@ -53,11 +61,20 @@ const screenTags = [
   'funkey-s',
   // FunnyPlaying
   'fp-rpp',
+  // Konker
+  'kp-advance',
   // KT Pocket
   'kt-r1',
   // MagicX
   'magicx-one-35',
   'magicx-zero-40',
+  // Mangmi
+  'mangmi-air-y-pro',
+  'mangmi-air-y',
+  'mangmi-pocket-max',
+  'mangmi-air-x',
+  // Miniloong
+  'miniloong-pocket-1',
   // Miyoo
   'miyoo-mini',
   'miyoo-mini-v4',
@@ -67,6 +84,9 @@ const screenTags = [
   'pk-rgb30',
   'pk-rgb10-max',
   // Retroid Pocket
+  'rp-duo+lite',
+  'rp-duo-bottom',
+  'rp-duo-lite-bottom',
   'rp-nova',
   'rp-6',
   'rp-flip-2',
@@ -75,6 +95,8 @@ const screenTags = [
   'rp-4',
   'rp-mini',
   'rp-3',
+  // Second Bedroom
+  'game-bub-v4',
   // SJGAM
   'sjgam-m17',
   // TrimUI
@@ -94,11 +116,15 @@ export const screenManufacturers = [
   'AYN',
   'FunKey',
   'FunnyPlaying',
+  'Konker',
   'KT Pocket',
   'MagicX',
+  'Mangmi',
+  'Miniloong',
   'Miyoo',
   'PowKiddy',
   'Retroid Pocket',
+  'Second Bedroom',
   'SJGAM',
   'TrimUI',
   'Valve',
@@ -123,14 +149,24 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     manufacturer: 'Analogue',
     name: 'Pocket',
     sizeInches: 3.5,
-    resX: 1600,
-    resY: 1440,
-    ratioX: 10,
-    ratioY: 9,
-    ratioType: 'Other',
+    ...analoguePocketScreen,
   },
 
   // Anbernic
+  'rg-ds-plus': {
+    tag: 'rg-ds-plus',
+    manufacturer: 'Anbernic',
+    name: 'RG DS Plus',
+    sizeInches: 4.3,
+    ...p768,
+  },
+  rg55g1: {
+    tag: 'rg55g1',
+    manufacturer: 'Anbernic',
+    name: 'RG 55G1',
+    sizeInches: 5.5,
+    ...p1080,
+  },
   'rg-rotate': {
     tag: 'rg-rotate',
     manufacturer: 'Anbernic',
@@ -166,21 +202,21 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     sizeInches: 4.7,
     ...p960,
   },
-  rg35xx: {
-    tag: 'rg35xx',
-    manufacturer: 'Anbernic',
-    name: 'RG 35XX (all models)',
-    sizeInches: 3.5,
-    ...p480,
-  },
   rg34xx: {
     tag: 'rg34xx',
     manufacturer: 'Anbernic',
-    name: 'RG 34XX (all models)',
+    name: 'RG SP & RG 34XX (all models)',
     sizeInches: 3.4,
     resX: 720,
     resY: 480,
     ...ratio3by2,
+  },
+  rg35xx: {
+    tag: 'rg35xx',
+    manufacturer: 'Anbernic',
+    name: 'RG 35 & 35XX (all models)',
+    sizeInches: 3.5,
+    ...p480,
   },
   rg40xx: {
     tag: 'rg40xx',
@@ -271,6 +307,41 @@ export const screensByTag: Record<ScreenTag, Screen> = {
   },
 
   // Ayaneo
+  'pocket-vert': {
+    tag: 'pocket-vert',
+    manufacturer: 'Ayaneo',
+    name: 'Pocket Vert',
+    sizeInches: 3.5,
+    ...analoguePocketScreen,
+  },
+  'pocket-s-mini': {
+    tag: 'pocket-s-mini',
+    manufacturer: 'Ayaneo',
+    name: 'Pocket S Mini',
+    sizeInches: 4.2,
+    ...p960,
+  },
+  'pocket-air-mini': {
+    tag: 'pocket-air-mini',
+    manufacturer: 'Ayaneo',
+    name: 'Pocket Air Mini',
+    sizeInches: 4.2,
+    ...p960,
+  },
+  'pocket-evo': {
+    tag: 'pocket-evo',
+    manufacturer: 'Ayaneo',
+    name: 'Pocket EVO',
+    sizeInches: 7,
+    ...p1080,
+  },
+  'pocket-dmg': {
+    tag: 'pocket-dmg',
+    manufacturer: 'Ayaneo',
+    name: 'Pocket DMG',
+    sizeInches: 3.92,
+    ...whyThisRatio,
+  },
   'pocket-micro': {
     tag: 'pocket-micro',
     manufacturer: 'Ayaneo',
@@ -286,20 +357,6 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     resX: 2560,
     resY: 1440,
     ...ratio16by9,
-  },
-  'pocket-evo': {
-    tag: 'pocket-evo',
-    manufacturer: 'Ayaneo',
-    name: 'Pocket EVO',
-    sizeInches: 7,
-    ...p1080,
-  },
-  'pocket-dmg': {
-    tag: 'pocket-dmg',
-    manufacturer: 'Ayaneo',
-    name: 'Pocket DMG',
-    sizeInches: 3.92,
-    ...whyThisRatio,
   },
 
   // AYN
@@ -359,6 +416,15 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     ...p720_1by1,
   },
 
+  // Konker
+  'kp-advance': {
+    tag: 'kp-advance',
+    manufacturer: 'Konker',
+    name: 'Pocket Advance',
+    sizeInches: 3.5,
+    ...p640_3by2,
+  },
+
   // KT Pocket
   'kt-r1': {
     tag: 'kt-r1',
@@ -388,6 +454,45 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     ratioX: 3,
     ratioY: 5,
     ratioType: 'Other',
+  },
+
+  // Mangmi
+  'mangmi-air-y-pro': {
+    tag: 'mangmi-air-y-pro',
+    manufacturer: 'Mangmi',
+    name: 'Air Y Pro',
+    sizeInches: 4.2,
+    ...p960,
+  },
+  'mangmi-air-y': {
+    tag: 'mangmi-air-y',
+    manufacturer: 'Mangmi',
+    name: 'Air Y',
+    sizeInches: 4.2,
+    ...p960,
+  },
+  'mangmi-pocket-max': {
+    tag: 'mangmi-pocket-max',
+    manufacturer: 'Mangmi',
+    name: 'Pocket Max',
+    sizeInches: 7,
+    ...p1080,
+  },
+  'mangmi-air-x': {
+    tag: 'mangmi-air-x',
+    manufacturer: 'Mangmi',
+    name: 'Air X',
+    sizeInches: 5.5,
+    ...p1080,
+  },
+
+  // Miniloong
+  'miniloong-pocket-1': {
+    tag: 'miniloong-pocket-1',
+    manufacturer: 'Miniloong',
+    name: 'Pocket 1',
+    sizeInches: 4,
+    ...p720_4by3,
   },
 
   // Miyoo
@@ -439,6 +544,27 @@ export const screensByTag: Record<ScreenTag, Screen> = {
   },
 
   // Retroid Pocket
+  'rp-duo+lite': {
+    tag: 'rp-duo+lite',
+    manufacturer: 'Retroid Pocket',
+    name: 'Duo + Duo Lite (Top screen)',
+    sizeInches: 5.5,
+    ...p1080,
+  },
+  'rp-duo-bottom': {
+    tag: 'rp-duo-bottom',
+    manufacturer: 'Retroid Pocket',
+    name: 'Duo (Bottom screen)',
+    sizeInches: 4.5,
+    ...p960,
+  },
+  'rp-duo-lite-bottom': {
+    tag: 'rp-duo-lite-bottom',
+    manufacturer: 'Retroid Pocket',
+    name: 'Duo Lite (Bottom screen)',
+    sizeInches: 4.2,
+    ...p960,
+  },
   'rp-nova': {
     tag: 'rp-nova',
     manufacturer: 'Retroid Pocket',
@@ -502,6 +628,14 @@ export const screensByTag: Record<ScreenTag, Screen> = {
     ...ratio16by9,
   },
 
+  // Second Bedroom
+  'game-bub-v4': {
+    tag: 'game-bub-v4',
+    manufacturer: 'Second Bedroom',
+    name: 'Game Bub',
+    sizeInches: 4,
+    ...p480_3by2,
+  },
   // SJGAM
   'sjgam-m17': {
     tag: 'sjgam-m17',

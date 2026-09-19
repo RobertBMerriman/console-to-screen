@@ -75,6 +75,12 @@ export const p560: ResAndRatioWithType = {
   ...ratio4by3,
 }
 
+export const p720_4by3: ResAndRatioWithType = {
+  resX: 960,
+  resY: 720,
+  ...ratio4by3,
+}
+
 export const p768: ResAndRatioWithType = {
   resX: 1024,
   resY: 768,
@@ -106,6 +112,11 @@ export const p640_3by2: ResAndRatioWithType = {
   resY: 640,
   ...ratio3by2,
 }
+export const p480_3by2: ResAndRatioWithType = {
+  resX: 720,
+  resY: 480,
+  ...ratio3by2,
+}
 
 // 1:1
 export const p720_1by1 = {
@@ -115,6 +126,13 @@ export const p720_1by1 = {
 }
 
 // Other
+export const analoguePocketScreen: ResAndRatioWithType = {
+  resX: 1600,
+  resY: 1440,
+  ratioX: 10,
+  ratioY: 9,
+  ratioType: 'Other',
+}
 export const whyThisRatio: ResAndRatioWithType = {
   resX: 1240,
   resY: 1080,
