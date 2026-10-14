@@ -1,7 +1,8 @@
 import { H4 } from '@/components/ui/typography/H4'
 import type { Console } from '@/lib/consoleData'
+import { diagonalInches, pixelsToInches, ratiosMatch, solveScaling } from '@/lib/scaling'
 import type { Screen } from '@/lib/screenData'
-import { cn, findDiagonal } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { useConsoleStore } from '@/stores/consoleStore'
 import type { CustomScreen } from '@/stores/customScreenStore'
 import { useSettingsStore } from '@/stores/settingsStore'
@@ -18,30 +19,20 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
   const integerScaling = useConsoleStore((state) => state.integerScaling)
   const cropOverscan = useConsoleStore((state) => state.cropOverscan)
 
-  const screenXInches = screen.sizeInches * (screen.resX / screenDiagonalPixels)
-  const screenYInches = screen.sizeInches * (screen.resY / screenDiagonalPixels)
+  const { scale, scaledResX, scaledResY, croppedX, croppedY, scalesPerfectly, notWorthIt } =
+    solveScaling(consol, screen, { integerScaling, cropOverscan })
 
-  const consoleScaledX = screen.resX / consol.resX
-  const consoleScaledY = screen.resY / consol.resY
-  const consoleScaleRaw = Math.min(consoleScaledX, consoleScaledY)
-  const consoleScaleWithOverscan = cropOverscan
-    ? Math.max(consoleScaledX, consoleScaledY)
-    : consoleScaleRaw
-  const consoleScale = integerScaling
-    ? Math.max(Math.floor(consoleScaleWithOverscan), 1)
-    : consoleScaleWithOverscan
-  const consoleScaledResX = consol.resX * consoleScale
-  const consoleScaledResY = consol.resY * consoleScale
+  const screenXInches = pixelsToInches(screen.resX, screen.sizeInches, screenDiagonalPixels)
+  const screenYInches = pixelsToInches(screen.resY, screen.sizeInches, screenDiagonalPixels)
 
-  const consoleXInches = screen.sizeInches * (consoleScaledResX / screenDiagonalPixels)
-  const consoleYInches = screen.sizeInches * (consoleScaledResY / screenDiagonalPixels)
-  const consoleSizeInches = findDiagonal(consoleXInches, consoleYInches)
-  // const consoleDiagonalPixels = findDiagonal(consoleScaledResX, consoleScaledResY)
-
-  const croppedX = Math.max((consoleScaledResX - screen.resX) / (consoleScale * 2), 0)
-  const croppedY = Math.max((consoleScaledResY - screen.resY) / (consoleScale * 2), 0)
-
-  const notWorthIt = consoleScaleRaw < 1
+  const consoleXInches = pixelsToInches(scaledResX, screen.sizeInches, screenDiagonalPixels)
+  const consoleYInches = pixelsToInches(scaledResY, screen.sizeInches, screenDiagonalPixels)
+  const consoleSizeInches = diagonalInches(
+    scaledResX,
+    scaledResY,
+    screen.sizeInches,
+    screenDiagonalPixels,
+  )
 
   return (
     <div className="flex flex-col gap-1">
@@ -52,18 +43,16 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
           {consol.resX}x{consol.resY}
         </p>
         <div className="flex gap-1">
-          <p
-            className={cn({
-              'text-green-600': consol.ratioX === screen.ratioX && consol.ratioY === screen.ratioY,
-            })}
-          >
+          <p className={cn({ 'text-green-600': ratiosMatch(consol, screen) })}>
             {consol.ratioX}:{consol.ratioY}
           </p>
           {consol.closestRatioX && consol.closestRatioY && (
             <p
               className={cn({
-                'text-green-600':
-                  consol.closestRatioX === screen.ratioX && consol.closestRatioY === screen.ratioY,
+                'text-green-600': ratiosMatch(
+                  { ratioX: consol.closestRatioX, ratioY: consol.closestRatioY },
+                  screen,
+                ),
               })}
             >
               (closest: {consol.closestRatioX}:{consol.closestRatioY})
@@ -112,10 +101,10 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
             at{' '}
             <span
               className={cn({
-                'font-medium text-green-700': consoleScaleRaw === Math.floor(consoleScaleRaw),
+                'font-medium text-green-700': scalesPerfectly,
               })}
             >
-              {consoleScale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
+              {scale.toLocaleString(undefined, { maximumFractionDigits: 1 })}x
             </span>
           </span>
           {(croppedX > 0 || croppedY > 0) && (
