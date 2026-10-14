@@ -12,7 +12,6 @@ interface Props {
   consol: Console
 }
 export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Props) {
-  // const screensMaxDisplayWidth = useSettingsStore((s) => s.screensMaxDisplayWidth)
   const minimumComfortableScreenSize = useSettingsStore((s) => s.minimumComfortableScreenSize)
   const compactMode = useSettingsStore((s) => s.compactMode)
 

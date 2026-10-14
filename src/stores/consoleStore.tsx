@@ -12,6 +12,7 @@ import {
   type ConsoleGroupingOption,
   type ConsoleTag,
 } from '@/lib/consoleData'
+import { sanitiseByDefaults, sanitiseOneOf, sanitiseTags } from '@/stores/persistUtils'
 import { persist } from 'zustand/middleware'
 
 export type PerfBracket = 'upToPs1NoProblem' | 'upToDcN64Psp' | 'upToNgcPs2' | 'aboveNgc'
@@ -43,28 +44,44 @@ interface Action {
   setCropOverscan: (cropOverscan: State['cropOverscan']) => void
 }
 
+const defaultState: State = {
+  tags: ['gba'],
+  grouping: consoleGroupingOptions[0],
+  integerScaling: false,
+  cropOverscan: false,
+}
+
 export const useConsoleStore = create<State & Action>()(
   persist(
     (set) => ({
-      tags: ['gba'],
+      ...defaultState,
+
       setConsolesByTags: (tags) => set(() => ({ tags })),
       clearAll: () => set(() => ({ tags: [] })),
       selectAll: () => set(() => ({ tags: consoleTags.toReversed() })),
-      selectByPerformance: (bracket: PerfBracket) => set(() => ({ tags: perfBrackets[bracket] })),
+      selectByPerformance: (bracket: PerfBracket) => set(() => ({ tags: [...perfBrackets[bracket]] })),
       addByPerformance: (bracket: PerfBracket) =>
         set(({ tags }) => ({ tags: Array.from(new Set([...tags, ...perfBrackets[bracket]])) })),
 
-      grouping: consoleGroupingOptions[0],
       setGrouping: (grouping) => set(() => ({ grouping })),
 
-      integerScaling: false,
       setIntegerScaling: (integerScaling) => set(() => ({ integerScaling })),
 
-      cropOverscan: false,
       setCropOverscan: (cropOverscan) => set(() => ({ cropOverscan })),
     }),
 
-    { name: 'console-storage' },
+    {
+      name: 'console-storage',
+      version: 1,
+      merge: (persisted, current) => ({
+        ...current,
+        ...sanitiseByDefaults(persisted, defaultState),
+        tags: sanitiseTags((persisted as State | undefined)?.tags, consolesByTag) ?? current.tags,
+        grouping:
+          sanitiseOneOf((persisted as State | undefined)?.grouping, consoleGroupingOptions) ??
+          current.grouping,
+      }),
+    },
   ),
 )
 

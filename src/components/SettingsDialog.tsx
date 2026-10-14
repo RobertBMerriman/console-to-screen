@@ -20,8 +20,6 @@ import {
 import { useSettingsStore } from '@/stores/settingsStore'
 
 export function SettingsDialog() {
-  // const screensMaxDisplayWidth = useSettingsStore((s) => s.screensMaxDisplayWidth)
-  // const setScreensMaxDisplayWidth = useSettingsStore((s) => s.setScreensMaxDisplayWidth)
   const minimumComfortableScreenSize = useSettingsStore((s) => s.minimumComfortableScreenSize)
   const setMinimumComfortableScreenSize = useSettingsStore((s) => s.setMinimumComfortableScreenSize)
   const compactMode = useSettingsStore((s) => s.compactMode)
@@ -40,14 +38,6 @@ export function SettingsDialog() {
         </DialogHeader>
 
         <div className="flex flex-col gap-4">
-          {/* <div className="flex flex-row justify-between">
-            Ensure screens are never wider than display width?
-            <Checkbox
-              checked={screensMaxDisplayWidth}
-              onCheckedChange={setScreensMaxDisplayWidth}
-            />
-          </div> */}
-
           <div className="flex flex-row justify-between">
             What is the smallest screen size you can see comfortably?
             <InputGroup className="w-fit">

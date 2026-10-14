@@ -1,35 +1,42 @@
 import { create } from 'zustand'
+import { sanitiseByDefaults } from '@/stores/persistUtils'
 import { persist } from 'zustand/middleware'
 
 interface State {
-  screensMaxDisplayWidth: boolean
   minimumComfortableScreenSize: number
   compactMode: boolean
 }
 
 interface Action {
-  setScreensMaxDisplayWidth: (screensMaxDisplayWidth: State['screensMaxDisplayWidth']) => void
   setMinimumComfortableScreenSize: (
     minimumScreenSize: State['minimumComfortableScreenSize'],
   ) => void
   setCompactMode: (compactMode: State['compactMode']) => void
 }
 
+const defaultState: State = {
+  minimumComfortableScreenSize: 2.8,
+  compactMode: false,
+}
+
 export const useSettingsStore = create<State & Action>()(
   persist(
     (set) => ({
-      screensMaxDisplayWidth: true,
-      setScreensMaxDisplayWidth: (screensMaxDisplayWidth) =>
-        set(() => ({ screensMaxDisplayWidth })),
+      ...defaultState,
 
-      minimumComfortableScreenSize: 2.8,
       setMinimumComfortableScreenSize: (minimumScreenSize) =>
         set(() => ({ minimumComfortableScreenSize: minimumScreenSize })),
 
-      compactMode: false,
       setCompactMode: (compactMode) => set(() => ({ compactMode })),
     }),
 
-    { name: 'settings-storage' },
+    {
+      name: 'settings-storage',
+      version: 1,
+      merge: (persisted, current) => ({
+        ...current,
+        ...sanitiseByDefaults(persisted, defaultState),
+      }),
+    },
   ),
 )
