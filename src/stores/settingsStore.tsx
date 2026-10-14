@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { sanitiseByDefaults } from '@/stores/persistUtils'
+import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
 interface State {
@@ -31,7 +32,7 @@ export const useSettingsStore = create<State & Action>()(
     }),
 
     {
-      name: 'settings-storage',
+      name: storageKeys.settings,
       version: 1,
       merge: (persisted, current) => ({
         ...current,

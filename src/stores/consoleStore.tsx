@@ -13,6 +13,7 @@ import {
   type ConsoleTag,
 } from '@/lib/consoleData'
 import { sanitiseByDefaults, sanitiseOneOf, sanitiseTags } from '@/stores/persistUtils'
+import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
 export type PerfBracket = 'upToPs1NoProblem' | 'upToDcN64Psp' | 'upToNgcPs2' | 'aboveNgc'
@@ -71,7 +72,7 @@ export const useConsoleStore = create<State & Action>()(
     }),
 
     {
-      name: 'console-storage',
+      name: storageKeys.console,
       version: 1,
       merge: (persisted, current) => ({
         ...current,

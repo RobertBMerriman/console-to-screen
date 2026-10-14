@@ -8,6 +8,7 @@ import {
   type ScreenTag,
 } from '@/lib/screenData'
 import { sanitiseOneOf, sanitiseTags } from '@/stores/persistUtils'
+import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
 interface State {
@@ -36,7 +37,7 @@ export const useScreenStore = create<State & Action>()(
     }),
 
     {
-      name: 'screen-storage',
+      name: storageKeys.screen,
       version: 1,
       merge: (persisted, current) => ({
         ...current,

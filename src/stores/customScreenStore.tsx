@@ -2,6 +2,7 @@ import { create } from 'zustand'
 
 import { type Screen } from '@/lib/screenData'
 import { sanitiseTags } from '@/stores/persistUtils'
+import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
 export interface CustomScreen extends Pick<
@@ -79,7 +80,7 @@ export const useCustomScreenStore = create<State & Action>()(
     }),
 
     {
-      name: 'custom-screen-storage',
+      name: storageKeys.customScreen,
       version: 1,
       merge: (persisted, current) => {
         const customScreens =
