@@ -1,5 +1,3 @@
-import { findDiagonal } from '@/lib/utils'
-
 export interface Resolution {
   resX: number
   resY: number
@@ -66,6 +64,10 @@ export function pixelsToInches(pixels: number, sizeInches: number, diagonalPixel
   return sizeInches * (pixels / diagonalPixels)
 }
 
+export function findDiagonal(x: number, y: number) {
+  return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))
+}
+
 export function diagonalInches(
   resX: number,
   resY: number,
@@ -76,4 +78,8 @@ export function diagonalInches(
     pixelsToInches(resX, sizeInches, diagonalPixels),
     pixelsToInches(resY, sizeInches, diagonalPixels),
   )
+}
+
+export function ppi(diagonalPixels: number, inches: number) {
+  return Math.round(diagonalPixels / inches)
 }

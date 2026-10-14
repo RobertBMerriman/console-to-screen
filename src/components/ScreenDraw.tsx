@@ -1,8 +1,8 @@
 import ConsoleDraw from '@/components/ConsoleDraw'
 import { H3 } from '@/components/ui/typography/H3'
 import { H4 } from '@/components/ui/typography/H4'
+import { findDiagonal, ppi } from '@/lib/scaling'
 import type { Screen } from '@/lib/screenData'
-import { findDiagonal, ppi } from '@/lib/utils'
 import { useConsoles } from '@/stores/consoleStore'
 import type { CustomScreen } from '@/stores/customScreenStore'
 
