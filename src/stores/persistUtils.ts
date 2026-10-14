@@ -7,6 +7,11 @@
  * render, and because it is persisted it throws again on every later visit.
  */
 
+/** Hands state saved under an earlier version to `merge` instead of discarding it. */
+export function carryForward(persisted: unknown) {
+  return persisted
+}
+
 /** Keep only tags that still exist in the data, preserving order and deduping. */
 export function sanitiseTags<T extends string>(
   value: unknown,

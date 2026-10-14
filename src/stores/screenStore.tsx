@@ -7,7 +7,7 @@ import {
   type ScreenGroupingOption,
   type ScreenTag,
 } from '@/lib/screenData'
-import { sanitiseOneOf, sanitiseTags } from '@/stores/persistUtils'
+import { carryForward, sanitiseOneOf, sanitiseTags } from '@/stores/persistUtils'
 import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
@@ -39,6 +39,7 @@ export const useScreenStore = create<State & Action>()(
     {
       name: storageKeys.screen,
       version: 1,
+      migrate: carryForward,
       merge: (persisted, current) => ({
         ...current,
         tags: sanitiseTags((persisted as State | undefined)?.tags, screensByTag) ?? current.tags,

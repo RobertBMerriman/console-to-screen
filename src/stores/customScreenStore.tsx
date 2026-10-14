@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 import { type Screen } from '@/lib/screenData'
-import { sanitiseTags } from '@/stores/persistUtils'
+import { carryForward, sanitiseTags } from '@/stores/persistUtils'
 import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
@@ -82,6 +82,7 @@ export const useCustomScreenStore = create<State & Action>()(
     {
       name: storageKeys.customScreen,
       version: 1,
+      migrate: carryForward,
       merge: (persisted, current) => {
         const customScreens =
           sanitiseCustomScreens((persisted as State | undefined)?.customScreens) ??

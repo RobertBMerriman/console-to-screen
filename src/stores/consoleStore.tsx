@@ -12,7 +12,12 @@ import {
   type ConsoleGroupingOption,
   type ConsoleTag,
 } from '@/lib/consoleData'
-import { sanitiseByDefaults, sanitiseOneOf, sanitiseTags } from '@/stores/persistUtils'
+import {
+  carryForward,
+  sanitiseByDefaults,
+  sanitiseOneOf,
+  sanitiseTags,
+} from '@/stores/persistUtils'
 import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
@@ -60,7 +65,8 @@ export const useConsoleStore = create<State & Action>()(
       setConsolesByTags: (tags) => set(() => ({ tags })),
       clearAll: () => set(() => ({ tags: [] })),
       selectAll: () => set(() => ({ tags: consoleTags.toReversed() })),
-      selectByPerformance: (bracket: PerfBracket) => set(() => ({ tags: [...perfBrackets[bracket]] })),
+      selectByPerformance: (bracket: PerfBracket) =>
+        set(() => ({ tags: [...perfBrackets[bracket]] })),
       addByPerformance: (bracket: PerfBracket) =>
         set(({ tags }) => ({ tags: Array.from(new Set([...tags, ...perfBrackets[bracket]])) })),
 
@@ -74,6 +80,7 @@ export const useConsoleStore = create<State & Action>()(
     {
       name: storageKeys.console,
       version: 1,
+      migrate: carryForward,
       merge: (persisted, current) => ({
         ...current,
         ...sanitiseByDefaults(persisted, defaultState),

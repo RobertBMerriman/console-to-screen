@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { sanitiseByDefaults } from '@/stores/persistUtils'
+import { carryForward, sanitiseByDefaults } from '@/stores/persistUtils'
 import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
@@ -34,6 +34,7 @@ export const useSettingsStore = create<State & Action>()(
     {
       name: storageKeys.settings,
       version: 1,
+      migrate: carryForward,
       merge: (persisted, current) => ({
         ...current,
         ...sanitiseByDefaults(persisted, defaultState),
