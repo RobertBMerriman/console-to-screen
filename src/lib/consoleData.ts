@@ -274,8 +274,10 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     type: 'Handheld',
     resX: 480,
     resY: 272,
-    ratioX: 16,
-    ratioY: 9,
+    ratioX: 30,
+    ratioY: 17,
+    closestRatioX: 16,
+    closestRatioY: 9,
   },
 
   '3ds-top': {
@@ -327,8 +329,10 @@ export const consolesByTag: Record<ConsoleTag, Console> = {
     type: 'Handheld',
     resX: 960,
     resY: 544,
-    ratioX: 16,
-    ratioY: 9,
+    ratioX: 30,
+    ratioY: 17,
+    closestRatioX: 16,
+    closestRatioY: 9,
   },
 
   // Hybrids

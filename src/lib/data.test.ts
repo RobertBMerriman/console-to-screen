@@ -11,12 +11,12 @@ import {
 } from '@/lib/consoleData'
 import { screensByTag, type Screen } from '@/lib/screenData'
 
-/**
- * Ratios are the conventional ones rather than the reduced GCD, so a PSP's
- * 480x272 is written 16:9. This catches a transposed or mistyped ratio without
- * rejecting that convention.
- */
-const maxRatioDeviation = 0.02
+/** Screens state their advertised ratio, which is what `ratioType` groups them by. */
+const maxScreenRatioDeviation = 0.008
+
+function gcd(a: number, b: number): number {
+  return b ? gcd(b, a % b) : a
+}
 
 const records: [string, Record<string, Console | Screen>][] = [
   ['console', consolesByTag],
@@ -41,15 +41,6 @@ describe.each(records)('%s data', (_kind, byTag) => {
     expect(bad.map(([key]) => key)).toEqual([])
   })
 
-  it('states a ratio that matches its resolution', () => {
-    const bad = entries.filter(
-      ([, { resX, resY, ratioX, ratioY }]) =>
-        Math.abs(resX / resY / (ratioX / ratioY) - 1) > maxRatioDeviation,
-    )
-
-    expect(bad.map(([key, { resX, resY }]) => `${key} ${resX}x${resY}`)).toEqual([])
-  })
-
   it('names each entry', () => {
     const bad = entries.filter(([, { name }]) => !name.trim())
 
@@ -65,10 +56,33 @@ describe('console data', () => {
   it('matches the tag list to the record keys', () => {
     expect([...consoleTags].sort()).toEqual(Object.keys(consolesByTag).sort())
   })
+
+  it('states the exactly reduced ratio of its resolution', () => {
+    const bad = Object.values(consolesByTag).filter(({ resX, resY, ratioX, ratioY }) => {
+      const divisor = gcd(resX, resY)
+
+      return resX / divisor !== ratioX || resY / divisor !== ratioY
+    })
+
+    expect(
+      bad.map(
+        ({ tag, resX, resY, ratioX, ratioY }) => `${tag} ${resX}x${resY} as ${ratioX}:${ratioY}`,
+      ),
+    ).toEqual([])
+  })
 })
 
 describe('screen data', () => {
   const screens = Object.values(screensByTag)
+
+  it('states an advertised ratio close to its resolution', () => {
+    const bad = screens.filter(
+      ({ resX, resY, ratioX, ratioY }) =>
+        Math.abs(resX / resY / (ratioX / ratioY) - 1) > maxScreenRatioDeviation,
+    )
+
+    expect(bad.map(({ tag, resX, resY }) => `${tag} ${resX}x${resY}`)).toEqual([])
+  })
 
   it('has a positive physical size', () => {
     expect(screens.filter(({ sizeInches }) => !(sizeInches > 0)).map(({ tag }) => tag)).toEqual([])
