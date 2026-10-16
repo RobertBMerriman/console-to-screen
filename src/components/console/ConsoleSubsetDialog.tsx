@@ -23,8 +23,8 @@ import { useState } from 'react'
 
 const items: SelectItems<string, PerfBracket>[] = [
   { label: 'Up to PS1', value: 'upToPs1NoProblem' },
-  { label: 'Up to NDS, PSP, DC, N64 etc', value: 'upToDcN64Psp' },
-  { label: 'Up to PS2, Gamecube, Saturn etc', value: 'upToNgcPs2' },
+  { label: 'NDS, PSP, DC, N64 etc', value: 'ndsPspDcN64' },
+  { label: 'PS2, Gamecube, Saturn etc', value: 'ps2NgcSaturn' },
   { label: 'Xbox, Wii U, Switch', value: 'xboxWiiUSwitch' },
   { label: 'Xbox 360, PS3, PS4', value: 'beyond' },
 ]
@@ -33,6 +33,8 @@ export function ConsoleSubsetDialog() {
   const tags = useConsoleStore((s) => s.tags)
   const selectByPerformance = useConsoleStore((s) => s.selectByPerformance)
   const addByPerformance = useConsoleStore((s) => s.addByPerformance)
+  const filterByPerformance = useConsoleStore((s) => s.filterByPerformance)
+  const clearAll = useConsoleStore((s) => s.clearAll)
 
   const [perf, setPerf] = useState<PerfBracket | undefined>()
 
@@ -42,7 +44,7 @@ export function ConsoleSubsetDialog() {
         <Button variant={'secondary'}>Select subset</Button>
       </DialogTrigger>
 
-      <DialogContent className="max-sm:max-h-screen">
+      <DialogContent className="max-sm:max-h-screen sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>Select a subset of consoles</DialogTitle>
         </DialogHeader>
@@ -77,11 +79,19 @@ export function ConsoleSubsetDialog() {
                 Set
               </Button>
             </Field>
+            <Field className="w-fit">
+              <Button
+                disabled={!perf || tags.length === 0}
+                onClick={() => perf && filterByPerformance(perf)}
+              >
+                Filter
+              </Button>
+            </Field>
           </Field>
         </div>
 
         <DialogFooter>
-          <Button variant="outline" disabled={tags.length === 0}>
+          <Button variant="outline" disabled={tags.length === 0} onClick={clearAll}>
             Clear all
           </Button>
           <DialogClose asChild>
