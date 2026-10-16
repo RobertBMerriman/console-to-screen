@@ -23,9 +23,10 @@ import { useState } from 'react'
 
 const items: SelectItems<string, PerfBracket>[] = [
   { label: 'Up to PS1', value: 'upToPs1NoProblem' },
-  { label: 'Up to NS, PSP, DC, N64 etc', value: 'upToDcN64Psp' },
+  { label: 'Up to NDS, PSP, DC, N64 etc', value: 'upToDcN64Psp' },
   { label: 'Up to PS2, Gamecube, Saturn etc', value: 'upToNgcPs2' },
-  { label: 'Up to Switch, Wii U etc', value: 'aboveNgc' },
+  { label: 'Xbox, Wii U, Switch', value: 'xboxWiiUSwitch' },
+  { label: 'Xbox 360, PS3, PS4', value: 'beyond' },
 ]
 
 export function ConsoleSubsetDialog() {
