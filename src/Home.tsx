@@ -10,6 +10,7 @@ import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
 import { H3 } from '@/components/ui/typography/H3'
 import { H4 } from '@/components/ui/typography/H4'
+import { Muted } from '@/components/ui/typography/Muted'
 import { useSelectedCustomScreens } from '@/stores/customScreenStore'
 import { useScreens } from '@/stores/screenStore'
 
@@ -51,7 +52,7 @@ export function Home() {
         {selectedCustomScreens.toReversed().map((screen, index) => (
           <Fragment key={screen.tag}>
             <ScreenDraw screen={screen} />
-            {index < screens.length - 1 && <Separator />}
+            {index < selectedCustomScreens.length - 1 && <Separator />}
           </Fragment>
         ))}
         {screens.length !== 0 && selectedCustomScreens.length !== 0 && <Separator />}
