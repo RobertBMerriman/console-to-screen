@@ -6,8 +6,8 @@ import {
   consoleGroupingOptions,
   consolesByTag,
   consoleTags,
-  upToDcN64Psp,
-  upToNgcPs2,
+  ndsPspDcN64,
+  ps2NgcSaturn,
   upToPs1NoProblem,
   type Console,
   type ConsoleGroupingOption,
@@ -23,11 +23,11 @@ import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
 export type PerfBracket =
-  'upToPs1NoProblem' | 'upToDcN64Psp' | 'upToNgcPs2' | 'xboxWiiUSwitch' | 'beyond'
+  'upToPs1NoProblem' | 'ndsPspDcN64' | 'ps2NgcSaturn' | 'xboxWiiUSwitch' | 'beyond'
 const perfBrackets: Record<PerfBracket, ConsoleTag[]> = {
   upToPs1NoProblem: upToPs1NoProblem,
-  upToDcN64Psp: upToDcN64Psp,
-  upToNgcPs2: upToNgcPs2,
+  ndsPspDcN64: ndsPspDcN64,
+  ps2NgcSaturn: ps2NgcSaturn,
   xboxWiiUSwitch: xboxWiiUSwitch,
   beyond: beyond,
 }
@@ -45,6 +45,7 @@ interface Action {
   selectAll: () => void
   selectByPerformance: (bracket: PerfBracket) => void
   addByPerformance: (bracket: PerfBracket) => void
+  filterByPerformance: (bracket: PerfBracket) => void
 
   setGrouping: (grouping: State['grouping']) => void
 
@@ -72,6 +73,12 @@ export const useConsoleStore = create<State & Action>()(
         set(() => ({ tags: [...perfBrackets[bracket]] })),
       addByPerformance: (bracket: PerfBracket) =>
         set(({ tags }) => ({ tags: Array.from(new Set([...tags, ...perfBrackets[bracket]])) })),
+      filterByPerformance: (bracket: PerfBracket) =>
+        set(({ tags }) => {
+          const bracketTags = new Set<ConsoleTag>(perfBrackets[bracket])
+
+          return { tags: tags.filter((tag) => bracketTags.has(tag)) }
+        }),
 
       setGrouping: (grouping) => set(() => ({ grouping })),
 

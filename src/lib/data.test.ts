@@ -5,8 +5,8 @@ import {
   beyond,
   consolesByTag,
   consoleTags,
-  upToDcN64Psp,
-  upToNgcPs2,
+  ndsPspDcN64,
+  ps2NgcSaturn,
   upToPs1NoProblem,
   type Console,
 } from '@/lib/consoleData'
@@ -90,8 +90,8 @@ describe('screen data', () => {
 describe('performance brackets', () => {
   const brackets = Object.entries({
     upToPs1NoProblem,
-    upToDcN64Psp,
-    upToNgcPs2,
+    ndsPspDcN64,
+    ps2NgcSaturn,
     xboxWiiUSwitch,
     beyond,
   })
@@ -104,15 +104,18 @@ describe('performance brackets', () => {
     expect(tags).toHaveLength(new Set(tags).size)
   })
 
-  it('nests each cumulative bracket inside the next', () => {
-    expect(upToDcN64Psp).toEqual(expect.arrayContaining(upToPs1NoProblem))
-    expect(upToNgcPs2).toEqual(expect.arrayContaining(upToDcN64Psp))
-  })
+  it('shares no console between brackets', () => {
+    const overlapping = brackets.flatMap(([name, tags], index) =>
+      brackets
+        .slice(index + 1)
+        .flatMap(([otherName, otherTags]) =>
+          tags
+            .filter((tag) => otherTags.includes(tag))
+            .map((tag) => `${tag} in ${name} and ${otherName}`),
+        ),
+    )
 
-  it('keeps the single-tier brackets separate from the cumulative ones', () => {
-    expect(xboxWiiUSwitch.filter((tag) => upToNgcPs2.includes(tag))).toEqual([])
-    expect(beyond.filter((tag) => upToNgcPs2.includes(tag))).toEqual([])
-    expect(beyond.filter((tag) => xboxWiiUSwitch.includes(tag))).toEqual([])
+    expect(overlapping).toEqual([])
   })
 
   it('places every console in a bracket', () => {

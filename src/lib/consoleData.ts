@@ -69,8 +69,7 @@ export const upToPs1NoProblem: ConsoleTag[] = [
   // 'saturn',
   'psx',
 ]
-export const upToDcN64Psp: ConsoleTag[] = [
-  ...upToPs1NoProblem,
+export const ndsPspDcN64: ConsoleTag[] = [
   // Handhelds
   'nds-single',
   'nds-horizontal',
@@ -81,8 +80,7 @@ export const upToDcN64Psp: ConsoleTag[] = [
   'dc',
 ]
 
-export const upToNgcPs2: ConsoleTag[] = [
-  ...upToDcN64Psp,
+export const ps2NgcSaturn: ConsoleTag[] = [
   // Handhelds
   '3ds-top',
   '3ds-bottom',
