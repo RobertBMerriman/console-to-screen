@@ -92,7 +92,7 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
           id="custom-screen-form"
           onSubmit={(e) => {
             e.preventDefault()
-            form.handleSubmit()
+            void form.handleSubmit()
           }}
         >
           <FieldGroup>
