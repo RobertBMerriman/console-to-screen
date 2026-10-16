@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 
 import {
-  aboveNgc,
+  xboxWiiUSwitch,
+  beyond,
   consoleGroupingOptions,
   consolesByTag,
   consoleTags,
@@ -21,12 +22,14 @@ import {
 import { storageKeys } from '@/stores/storageKeys'
 import { persist } from 'zustand/middleware'
 
-export type PerfBracket = 'upToPs1NoProblem' | 'upToDcN64Psp' | 'upToNgcPs2' | 'aboveNgc'
+export type PerfBracket =
+  'upToPs1NoProblem' | 'upToDcN64Psp' | 'upToNgcPs2' | 'xboxWiiUSwitch' | 'beyond'
 const perfBrackets: Record<PerfBracket, ConsoleTag[]> = {
   upToPs1NoProblem: upToPs1NoProblem,
   upToDcN64Psp: upToDcN64Psp,
   upToNgcPs2: upToNgcPs2,
-  aboveNgc: aboveNgc,
+  xboxWiiUSwitch: xboxWiiUSwitch,
+  beyond: beyond,
 }
 
 interface State {

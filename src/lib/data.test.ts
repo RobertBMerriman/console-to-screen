@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
 import {
-  aboveNgc,
+  xboxWiiUSwitch,
+  beyond,
   consolesByTag,
   consoleTags,
   upToDcN64Psp,
@@ -87,7 +88,13 @@ describe('screen data', () => {
 })
 
 describe('performance brackets', () => {
-  const brackets = Object.entries({ upToPs1NoProblem, upToDcN64Psp, upToNgcPs2, aboveNgc })
+  const brackets = Object.entries({
+    upToPs1NoProblem,
+    upToDcN64Psp,
+    upToNgcPs2,
+    xboxWiiUSwitch,
+    beyond,
+  })
 
   it.each(brackets)('%s only lists real consoles', (_name, tags) => {
     expect(tags.filter((tag) => !(tag in consolesByTag))).toEqual([])
@@ -102,7 +109,15 @@ describe('performance brackets', () => {
     expect(upToNgcPs2).toEqual(expect.arrayContaining(upToDcN64Psp))
   })
 
-  it('keeps aboveNgc separate from the cumulative brackets', () => {
-    expect(aboveNgc.filter((tag) => upToNgcPs2.includes(tag))).toEqual([])
+  it('keeps the single-tier brackets separate from the cumulative ones', () => {
+    expect(xboxWiiUSwitch.filter((tag) => upToNgcPs2.includes(tag))).toEqual([])
+    expect(beyond.filter((tag) => upToNgcPs2.includes(tag))).toEqual([])
+    expect(beyond.filter((tag) => xboxWiiUSwitch.includes(tag))).toEqual([])
+  })
+
+  it('places every console in a bracket', () => {
+    const bracketed = new Set<string>(brackets.flatMap(([, tags]) => tags))
+
+    expect(Object.keys(consolesByTag).filter((tag) => !bracketed.has(tag))).toEqual([])
   })
 })

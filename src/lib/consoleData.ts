@@ -96,7 +96,7 @@ export const upToNgcPs2: ConsoleTag[] = [
   'wii',
 ]
 
-export const aboveNgc: ConsoleTag[] = [
+export const xboxWiiUSwitch: ConsoleTag[] = [
   // Home consoles
   'xbox',
   'wii-u',
@@ -105,6 +105,14 @@ export const aboveNgc: ConsoleTag[] = [
   // Hybrids
   'switch-handheld',
   'switch-docked',
+]
+
+export const beyond: ConsoleTag[] = [
+  // Home consoles
+  'xbox-360',
+  'ps3',
+  'ps4',
+  'xbox-one',
 ]
 
 export const consoleGens = [3, 4, 5, 6, 7, 8, 8.5, 'Fantasy'] as const
