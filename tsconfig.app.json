@@ -22,8 +22,6 @@
     "noFallthroughCasesInSwitch": true,
 
     /* For shadcn */
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
