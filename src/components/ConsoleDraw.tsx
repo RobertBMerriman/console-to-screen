@@ -63,7 +63,7 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
 
       {/* Screen */}
       <div
-        className="relative flex items-center justify-center bg-gray-600"
+        className="relative flex items-center justify-center bg-gray-500"
         style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
       >
         {/* Overscan */}
@@ -79,7 +79,7 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
         {/* Console */}
         <div
           className={cn(
-            'z-0 flex flex-col items-center justify-center bg-gray-400 text-center text-gray-900',
+            'z-0 flex flex-col items-center justify-center bg-gray-300 text-center text-gray-900',
             { 'bg-destructive/60': notWorthIt },
           )}
           style={{
@@ -112,7 +112,7 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
               (cropped: {Math.ceil(croppedX)},{Math.ceil(croppedY)})
             </span>
           )}
-          {notWorthIt && <span>Insufficient screen resolution to render at x1</span>}
+          {notWorthIt && <span className="italic">Resolution too low to render at x1</span>}
         </div>
       </div>
     </div>
