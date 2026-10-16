@@ -10,7 +10,6 @@ import { Separator } from '@/components/ui/separator'
 import { H1 } from '@/components/ui/typography/H1'
 import { H3 } from '@/components/ui/typography/H3'
 import { H4 } from '@/components/ui/typography/H4'
-import { Muted } from '@/components/ui/typography/Muted'
 import { useSelectedCustomScreens } from '@/stores/customScreenStore'
 import { useScreens } from '@/stores/screenStore'
 
