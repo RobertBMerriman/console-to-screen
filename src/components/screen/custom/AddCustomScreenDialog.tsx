@@ -15,23 +15,9 @@ import {
 } from '@/components/ui/dialog'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
+import { advertisedRatio } from '@/lib/scaling'
 import { useCustomScreenStore } from '@/stores/customScreenStore'
 import { useForm } from '@tanstack/react-form'
-
-function calcGcf(a: number, b: number) {
-  a = Math.abs(a)
-  b = Math.abs(b)
-  if (a === 0 || b === 0) {
-    return 1
-  }
-
-  while (b > 0) {
-    let temp = b
-    b = a % temp
-    a = temp
-  }
-  return a
-}
 
 const formSchema = z.object({
   name: z
@@ -52,9 +38,6 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
 
   const [open, setOpen] = useState(false)
 
-  const [ratioX, setRatioX] = useState(0)
-  const [ratioY, setRatioY] = useState(0)
-
   const form = useForm({
     defaultValues: {
       name: '',
@@ -70,8 +53,7 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
       addCustomScreen({
         tag,
         ...customScreen,
-        ratioX,
-        ratioY,
+        ...advertisedRatio(customScreen.resX, customScreen.resY),
       })
 
       selectTag(tag)
@@ -79,28 +61,8 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
       setOpen(false)
 
       form.reset()
-      setRatioX(0)
-      setRatioY(0)
     },
   })
-
-  function calcAspectRatio() {
-    const resX = Math.floor(form.getFieldValue('resX'))
-    const resY = Math.floor(form.getFieldValue('resY'))
-
-    const gcf = calcGcf(resX, resY)
-
-    let ratioX = resX / gcf
-    let ratioY = resY / gcf
-
-    if (ratioX === 8 && ratioY === 5) {
-      ratioX = 16
-      ratioY = 10
-    }
-
-    setRatioX(ratioX)
-    setRatioY(ratioY)
-  }
 
   return (
     <Dialog
@@ -185,10 +147,7 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
             </form.Field>
 
             <div className="flex flex-row gap-2">
-              <form.Field
-                name="resX"
-                listeners={{ onChangeDebounceMs: 500, onChange: calcAspectRatio }}
-              >
+              <form.Field name="resX">
                 {(field) => {
                   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
                   return (
@@ -216,10 +175,7 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
                   )
                 }}
               </form.Field>
-              <form.Field
-                name="resY"
-                listeners={{ onChangeDebounceMs: 500, onChange: calcAspectRatio }}
-              >
+              <form.Field name="resY">
                 {(field) => {
                   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
                   return (
@@ -249,16 +205,13 @@ export function AddCustomScreenDialog({ icon = false }: Props) {
               </form.Field>
             </div>
 
-            <p>
-              Aspect ratio:{' '}
-              {!!ratioX && !!ratioY ? (
-                <>
-                  {ratioX}:{ratioY}
-                </>
-              ) : (
-                <>- : -</>
-              )}
-            </p>
+            <form.Subscribe selector={(state) => [state.values.resX, state.values.resY]}>
+              {([resX, resY]) => {
+                const { ratioX, ratioY } = advertisedRatio(resX, resY)
+
+                return <p>Aspect ratio: {ratioX && ratioY ? `${ratioX}:${ratioY}` : '- : -'}</p>
+              }}
+            </form.Subscribe>
           </FieldGroup>
 
           <DialogFooter className="mt-6">

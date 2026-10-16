@@ -60,6 +60,21 @@ export function ratiosMatch(a: Ratio, b: Ratio) {
   return a.ratioX === b.ratioX && a.ratioY === b.ratioY
 }
 
+function greatestCommonFactor(a: number, b: number): number {
+  return b ? greatestCommonFactor(b, a % b) : Math.abs(a)
+}
+
+/** Reduces a resolution to the ratio a screen would be advertised as. */
+export function advertisedRatio(resX: number, resY: number): Ratio {
+  if (!resX || !resY) return { ratioX: 0, ratioY: 0 }
+
+  const factor = greatestCommonFactor(Math.abs(resX), Math.abs(resY))
+  const ratioX = Math.abs(resX) / factor
+  const ratioY = Math.abs(resY) / factor
+
+  return ratioX === 8 && ratioY === 5 ? { ratioX: 16, ratioY: 10 } : { ratioX, ratioY }
+}
+
 export function pixelsToInches(pixels: number, sizeInches: number, diagonalPixels: number) {
   return sizeInches * (pixels / diagonalPixels)
 }

@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-import { diagonalInches, ppi, ratiosMatch, solveScaling, type ScalingModes } from '@/lib/scaling'
+import {
+  advertisedRatio,
+  diagonalInches,
+  ppi,
+  ratiosMatch,
+  solveScaling,
+  type ScalingModes,
+} from '@/lib/scaling'
 
 const none: ScalingModes = { integerScaling: false, cropOverscan: false }
 const integer: ScalingModes = { integerScaling: true, cropOverscan: false }
@@ -84,6 +91,26 @@ describe('ratiosMatch', () => {
 
   it('does not treat equivalent ratios as a match', () => {
     expect(ratiosMatch({ ratioX: 8, ratioY: 5 }, { ratioX: 16, ratioY: 10 })).toBe(false)
+  })
+})
+
+describe('advertisedRatio', () => {
+  it.each([
+    [1920, 1080, 16, 9],
+    [640, 480, 4, 3],
+    [854, 480, 427, 240],
+    [480, 272, 30, 17],
+  ])('reduces %ix%i to %i:%i', (resX, resY, ratioX, ratioY) => {
+    expect(advertisedRatio(resX, resY)).toEqual({ ratioX, ratioY })
+  })
+
+  it('prefers 16:10 over the reduced 8:5', () => {
+    expect(advertisedRatio(1280, 800)).toEqual({ ratioX: 16, ratioY: 10 })
+  })
+
+  it('has no ratio until both sides are entered', () => {
+    expect(advertisedRatio(1920, 0)).toEqual({ ratioX: 0, ratioY: 0 })
+    expect(advertisedRatio(0, 0)).toEqual({ ratioX: 0, ratioY: 0 })
   })
 })
 
