@@ -8,6 +8,9 @@
 :root {
   --radius: 0.625rem;
 
+  /* Pixels per inch used to draw screens and consoles. 96 matches the CSS `in` unit. */
+  --ppi: 96px;
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.148 0.004 228.8);
   --card: oklch(1 0 0);

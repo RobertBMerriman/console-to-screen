@@ -7,6 +7,9 @@ import { useConsoleStore } from '@/stores/consoleStore'
 import type { CustomScreen } from '@/stores/customScreenStore'
 import { useSettingsStore } from '@/stores/settingsStore'
 
+/** Converts inches to a CSS length using the page's drawing scale. */
+const drawn = (inches: number) => `calc(var(--ppi) * ${inches})`
+
 interface Props {
   screen: Screen | CustomScreen
   screenDiagonalPixels: number
@@ -64,16 +67,16 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
       {/* Screen */}
       <div
         className="relative flex items-center justify-center bg-gray-500"
-        style={{ width: screenXInches + 'in', height: screenYInches + 'in' }}
+        style={{ width: drawn(screenXInches), height: drawn(screenYInches) }}
       >
         {/* Overscan */}
         <div
           className={cn('bg-destructive/40 absolute -z-50', { hidden: notWorthIt })}
           style={{
-            width: consoleXInches + 'in',
-            height: consoleYInches + 'in',
-            left: `calc(50% - ${consoleXInches / 2}in)`,
-            top: `calc(50% - ${consoleYInches / 2}in)`,
+            width: drawn(consoleXInches),
+            height: drawn(consoleYInches),
+            left: `calc(50% - ${drawn(consoleXInches / 2)})`,
+            top: `calc(50% - ${drawn(consoleYInches / 2)})`,
           }}
         />
         {/* Console */}
@@ -83,10 +86,10 @@ export default function ConsoleDraw({ screen, screenDiagonalPixels, consol }: Pr
             { 'bg-destructive/60': notWorthIt },
           )}
           style={{
-            width: consoleXInches + 'in',
-            height: consoleYInches + 'in',
-            maxWidth: screenXInches + 'in',
-            maxHeight: screenYInches + 'in',
+            width: drawn(consoleXInches),
+            height: drawn(consoleYInches),
+            maxWidth: drawn(screenXInches),
+            maxHeight: drawn(screenYInches),
           }}
         >
           <span>{consol.name}</span>
